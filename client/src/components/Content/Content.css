@@ -1,0 +1,11 @@
+#main-content-container {
+  width: 1860px;
+  height: 100vh;
+  background: rgb(28, 29, 28);
+  color: white;
+}
+
+.home-icon {
+  fill: 'blue';
+  stroke: 'blue';
+}
