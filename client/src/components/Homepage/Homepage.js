@@ -2,9 +2,13 @@ import React, { useEffect } from 'react'
 import './Homepage.css'
 
 export default function Homepage () {
-  useEffect(() => {
-    const spans = document.querySelectorAll('.bounce')
+  const nrOrbs = []
+  const orbCnt = 20
 
+  for (let i = 0; i < orbCnt; i++) nrOrbs.push(0)
+
+  useEffect(async () => {
+    const spans = document.querySelectorAll('.bounce')
     for (const span of spans) {
       span.addEventListener('mouseover', e => {
         span.classList.add('animated')
@@ -16,111 +20,218 @@ export default function Homepage () {
     }
 
     moveOrbs()
+    await textEntrance()
   }, [])
 
-  const moveOrbs = () => {
-    const nav = document.querySelector('#navigation-container')
+  const textEntrance = () => {
+    return new Promise((resolve, reject) => {
+      const first = document.querySelector('#first-row')
+      const second = document.querySelector('#second-row')
+      const third = document.querySelector('#third-row')
+      const fourth = document.querySelector('#fourth-row')
+
+      setTimeout(() => {
+        first.style.transform = 'translate(0px, 0px)'
+
+        setTimeout(() => {
+          animateLetters(first.querySelectorAll('span'))
+          second.style.transform = 'translate(0px, 0px)'
+          setTimeout(() => {
+            animateLetters(second.querySelectorAll('span'))
+            third.style.transform = 'translate(0px, 0px)'
+            setTimeout(() => {
+              animateLetters(third.querySelectorAll('span'))
+              fourth.style.transform = 'translate(0px, 0px)'
+              resolve()
+            }, 1000)
+          }, 1000)
+        }, 1000)
+      }, 500)
+    })
+  }
+
+  const animateLetters = spans => {
+    for (const span of spans) {
+      span.classList.add('animated')
+    }
+  }
+
+  const orbs = []
+
+  const setOrbColor = orb => {
+    const r = Math.round(Math.random() * 255)
+    const g = Math.round(Math.random() * 255)
+    const b = Math.round(Math.random() * 255)
+    const rgb = `rgb(${r}, ${g}, ${b})`
+
+    orb.style.background = rgb
+    orb.style.boxShadow = `0 0 5px ${rgb}, 0 0 10px ${rgb}, 0 0 15px ${rgb}, 0 0 25px ${rgb},
+    0 0 40px ${rgb}`
+  }
+
+  const setOrbStartPos = orb => {
     const home = document.querySelector('#homepage-container')
+    let x = Math.floor(Math.random() * home.offsetWidth - orb.offsetWidth)
+    let y = Math.floor(Math.random() * home.offsetHeight - orb.offsetHeight)
+
+    if (x <= 0) x += orb.offsetWidth + 1
+    if (y <= 0) y += orb.offsetHeight + 1
+
+    orb.style.left = x + 'px'
+    orb.style.top = y + 'px'
+  }
+
+  const moveOrbs = () => {
     const o = document.querySelectorAll('.orb')
-    const orbs = []
+
     for (const orb of o) {
-      const tempOrb = { element: orb, x: 0, y: 0, maxDistance: 0, distance: 0 }
-      resetOrb(tempOrb)
+      setOrbStartPos(orb)
+      setOrbColor(orb)
+
+      const tempOrb = {
+        element: orb,
+        x: {
+          direction: 0,
+          target: 0,
+          count: 0
+        },
+        y: { direction: 0, target: 0, count: 0 }
+      }
+
+      setDirection(tempOrb)
       orbs.push(tempOrb)
     }
 
-    setInterval(() => {
-      for (const orb of orbs) {
-        const pos = orb.element.getBoundingClientRect()
-        const moveX = pos.x + orb.x - nav.offsetWidth
-        const moveY = pos.y + orb.y
-
-        if (
-          moveX + orb.element.offsetWidth >= home.offsetWidth ||
-          moveX < 0 ||
-          moveY + orb.element.offsetHeight >= home.offsetHeight ||
-          moveY < 0
-        ) {
-          resetOrb(orb)
-        } else if (orb.distance >= orb.maxDistance) {
-          resetOrb(orb)
-          orb.element.style.left = `${moveX}px`
-          orb.element.style.top = `${moveY}px`
-        } else {
-          orb.distance++
-          orb.element.style.left = `${moveX}px`
-          orb.element.style.top = `${moveY}px`
-        }
-      }
-    }, 1)
+    /*setInterval(() => {
+      moveOrbsPos(orbs)
+    }, 10)*/
+    window.requestAnimationFrame(moveOrbsPos)
   }
 
-  const resetOrb = orb => {
-    orb.x = Math.floor(Math.random() * 3 - 1)
-    orb.y = Math.floor(Math.random() * 3 - 1)
-    orb.maxDistance = Math.floor(Math.random() * 300)
-    orb.distance = 0
+  const moveOrbsPos = () => {
+    const nav = document.querySelector('#navigation-container')
+    const home = document.querySelector('#homepage-container')
+
+    if (!home) return
+
+    for (const orb of orbs) {
+      const pos = orb.element.getBoundingClientRect()
+
+      if (orb.x.target === 0 || orb.x.count === orb.x.target) {
+        orb.x.count = 0
+
+        orb.element.style.left =
+          pos.x + orb.x.direction - nav.offsetWidth + 'px'
+      }
+
+      if (orb.y.target === 0 || orb.y.count === orb.y.target) {
+        orb.y.count = 0
+
+        orb.element.style.top = pos.y + orb.y.direction + 'px'
+      }
+
+      orb.x.count++
+      orb.y.count++
+
+      const currentPos = orb.element.getBoundingClientRect()
+
+      if (currentPos.x - nav.offsetWidth <= 0) {
+        orb.x.direction = 1
+      }
+
+      if (
+        currentPos.x - nav.offsetWidth + orb.element.offsetWidth >=
+        home.offsetWidth
+      ) {
+        orb.x.direction = -1
+      }
+
+      if (currentPos.y <= 0) {
+        orb.y.direction = 1
+      }
+
+      if (currentPos.y + orb.element.offsetHeight >= home.offsetHeight) {
+        orb.y.direction = -1
+      }
+    }
+
+    window.requestAnimationFrame(moveOrbsPos)
+  }
+
+  const setDirection = orb => {
+    const which = Math.round(Math.random())
+
+    if (which === 0) {
+      orb.x.target = 0
+      orb.y.target = Math.round(Math.random() * 10)
+    } else {
+      orb.x.target = Math.round(Math.random() * 10)
+      orb.y.target = 0
+    }
+
+    orb.y.direction = Math.round(Math.random()) === 0 ? -1 : 1
+    orb.x.direction = Math.round(Math.random()) === 0 ? -1 : 1
   }
 
   return (
     <div id='homepage-container'>
-      <span className='orb' />
-      <span className='orb' />
-      <span className='orb' />
-      <span className='orb' />
-      <span className='orb' />
-      <span className='orb' />
-      <span className='orb' />
-      <span className='orb' />
-      <span className='orb' />
+      {nrOrbs.map(s => {
+        return <span className='orb' />
+      })}
 
       <div id='welcome-container'>
         <h1>
-          <span className='bounce'>H</span>
-          <span className='bounce'>e</span>
-          <span className='bounce'>l</span>
-          <span className='bounce'>l</span>
-          <span className='bounce'>o</span>
-          <span className='bounce'>,</span>
-          <br />
-          <span className='bounce'>I</span>
-          <span className='bounce'>'</span>
-          <span className='bounce'>m</span>
-          &nbsp;
-          <span className='bounce'>S</span>
-          <span className='bounce'>t</span>
-          <span className='bounce'>e</span>
-          <span className='bounce'>f</span>
-          <span className='bounce'>a</span>
-          <span className='bounce'>n</span>
-          <span className='bounce'>.</span>
-          <br />
-          <span className='bounce'>W</span>
-          <span className='bounce'>e</span>
-          <span className='bounce'>l</span>
-          <span className='bounce'>c</span>
-          <span className='bounce'>o</span>
-          <span className='bounce'>m</span>
-          <span className='bounce'>e</span>
-          &nbsp;
-          <span className='bounce'>t</span>
-          <span className='bounce'>o</span>
-          &nbsp;
-          <span className='bounce'>m</span>
-          <span className='bounce'>y</span>
-          &nbsp;
-          <span className='bounce'>p</span>
-          <span className='bounce'>o</span>
-          <span className='bounce'>r</span>
-          <span className='bounce'>t</span>
-          <span className='bounce'>f</span>
-          <span className='bounce'>o</span>
-          <span className='bounce'>l</span>
-          <span className='bounce'>i</span>
-          <span className='bounce'>o</span>
-          <span className='bounce'>.</span>
+          <div id='first-row'>
+            <span className='bounce'>H</span>
+            <span className='bounce'>e</span>
+            <span className='bounce'>l</span>
+            <span className='bounce'>l</span>
+            <span className='bounce'>o</span>
+            <span className='bounce'>,</span>
+          </div>
+          <div id='second-row'>
+            <span className='bounce'>I</span>
+            <span className='bounce'>'</span>
+            <span className='bounce'>m</span>
+            &nbsp;
+            <span className='bounce'>S</span>
+            <span className='bounce'>t</span>
+            <span className='bounce'>e</span>
+            <span className='bounce'>f</span>
+            <span className='bounce'>a</span>
+            <span className='bounce'>n</span>
+            <span className='bounce'>.</span>
+          </div>
+          <div id='third-row'>
+            <span className='bounce'>W</span>
+            <span className='bounce'>e</span>
+            <span className='bounce'>l</span>
+            <span className='bounce'>c</span>
+            <span className='bounce'>o</span>
+            <span className='bounce'>m</span>
+            <span className='bounce'>e</span>
+            &nbsp;
+            <span className='bounce'>t</span>
+            <span className='bounce'>o</span>
+            &nbsp;
+            <span className='bounce'>m</span>
+            <span className='bounce'>y</span>
+            &nbsp;
+            <span className='bounce'>p</span>
+            <span className='bounce'>o</span>
+            <span className='bounce'>r</span>
+            <span className='bounce'>t</span>
+            <span className='bounce'>f</span>
+            <span className='bounce'>o</span>
+            <span className='bounce'>l</span>
+            <span className='bounce'>i</span>
+            <span className='bounce'>o</span>
+            <span className='bounce'>.</span>
+          </div>
         </h1>
-        <h2>Full stack web developer</h2>
+        <div id='fourth-row'>
+          <h2>Full stack web developer</h2>
+        </div>
       </div>
     </div>
   )

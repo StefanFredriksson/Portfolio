@@ -4,10 +4,12 @@
   display: flex;
   align-items: center;
   position: relative;
+  overflow: hidden;
 }
 
 #homepage-container #welcome-container {
-  margin-left: 50px;
+  margin-left: 150px;
+  z-index: 1000;
 }
 
 #homepage-container #welcome-container h1 {
@@ -16,6 +18,29 @@
 
 #homepage-container #welcome-container h1 span {
   display: inline-block;
+}
+
+#homepage-container #welcome-container h1 #first-row,
+#homepage-container #welcome-container h1 #second-row,
+#homepage-container #welcome-container h1 #third-row,
+#homepage-container #welcome-container #fourth-row {
+  transition: 1s;
+}
+
+#homepage-container #welcome-container h1 #first-row {
+  transform: translateY(-500px);
+}
+
+#homepage-container #welcome-container h1 #second-row {
+  transform: translateX(-800px);
+}
+
+#homepage-container #welcome-container h1 #third-row {
+  transform: translateX(2000px);
+}
+
+#homepage-container #welcome-container #fourth-row {
+  transform: translateY(500px);
 }
 
 #homepage-container #welcome-container h1 span:hover {
@@ -78,6 +103,15 @@
   position: absolute;
   left: 900px;
   top: 500px;
-  background: cyan;
-  box-shadow: 0 0 20px cyan;
+  animation: color 10s linear infinite;
+}
+
+@keyframes color {
+  0% {
+    filter: hue-rotate(0deg);
+  }
+
+  100% {
+    filter: hue-rotate(360deg);
+  }
 }

@@ -1,0 +1,15 @@
+#about-container {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+}
+
+#about-container #info-container {
+  margin-left: 150px;
+}
+
+#about-container #info-container h1 {
+  font-size: 60px;
+  color: cyan;
+}
