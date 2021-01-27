@@ -20,22 +20,22 @@
   display: inline-block;
 }
 
-#homepage-container #welcome-container h1 #first-row,
-#homepage-container #welcome-container h1 #second-row,
-#homepage-container #welcome-container h1 #third-row,
+#homepage-container #welcome-container h1 #first-row span,
+#homepage-container #welcome-container h1 #second-row span,
+#homepage-container #welcome-container h1 #third-row span,
 #homepage-container #welcome-container #fourth-row {
   transition: 1s;
 }
 
-#homepage-container #welcome-container h1 #first-row {
+#homepage-container #welcome-container h1 #first-row span {
   transform: translateY(-500px);
 }
 
-#homepage-container #welcome-container h1 #second-row {
+#homepage-container #welcome-container h1 #second-row span {
   transform: translateX(-800px);
 }
 
-#homepage-container #welcome-container h1 #third-row {
+#homepage-container #welcome-container h1 #third-row span {
   transform: translateX(2000px);
 }
 

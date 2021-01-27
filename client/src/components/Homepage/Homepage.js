@@ -10,10 +10,6 @@ export default function Homepage () {
   useEffect(async () => {
     const spans = document.querySelectorAll('.bounce')
     for (const span of spans) {
-      span.addEventListener('mouseover', e => {
-        span.classList.add('animated')
-      })
-
       span.addEventListener('animationend', e => {
         span.classList.remove('animated')
       })
@@ -21,6 +17,13 @@ export default function Homepage () {
 
     moveOrbs()
     await textEntrance()
+
+    for (const span of spans) {
+      span.addEventListener('mouseover', e => {
+        span.classList.add('animated')
+      })
+      span.style.transition = '0s'
+    }
   }, [])
 
   const textEntrance = () => {
@@ -30,15 +33,15 @@ export default function Homepage () {
       const third = document.querySelector('#third-row')
       const fourth = document.querySelector('#fourth-row')
 
-      setTimeout(() => {
-        first.style.transform = 'translate(0px, 0px)'
+      setTimeout(async () => {
+        await moveRow(first, false)
 
-        setTimeout(() => {
+        setTimeout(async () => {
           animateLetters(first.querySelectorAll('span'))
-          second.style.transform = 'translate(0px, 0px)'
-          setTimeout(() => {
+          await moveRow(second, true)
+          setTimeout(async () => {
             animateLetters(second.querySelectorAll('span'))
-            third.style.transform = 'translate(0px, 0px)'
+            await moveRow(third, false)
             setTimeout(() => {
               animateLetters(third.querySelectorAll('span'))
               fourth.style.transform = 'translate(0px, 0px)'
@@ -47,6 +50,28 @@ export default function Homepage () {
           }, 1000)
         }, 1000)
       }, 500)
+    })
+  }
+
+  const moveRow = (row, reverse) => {
+    return new Promise(async (resolve, reject) => {
+      const spans = row.querySelectorAll('span')
+      if (!reverse) {
+        for (let i = 0; i < spans.length; i++) await moveSpan(spans[i])
+      } else {
+        for (let i = spans.length - 1; i >= 0; i--) await moveSpan(spans[i])
+      }
+
+      resolve(0)
+    })
+  }
+
+  const moveSpan = span => {
+    return new Promise((resolve, reject) => {
+      setTimeout(() => {
+        span.style.transform = 'translate(0px, 0px)'
+        resolve(0)
+      }, 100)
     })
   }
 
