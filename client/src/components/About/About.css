@@ -3,13 +3,144 @@
   height: 100%;
   display: flex;
   align-items: center;
+  justify-content: center;
 }
 
-#about-container #info-container {
-  margin-left: 150px;
+#about-container #cards-container {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 40px 0;
+  flex-wrap: wrap;
 }
 
-#about-container #info-container h1 {
-  font-size: 60px;
-  color: cyan;
+#about-container .about-box {
+  position: relative;
+  width: 300px;
+  height: 400px;
+  margin: 50px 100px;
+  transition: 0.5s;
+}
+
+#about-container .about-box:hover {
+  height: 600px;
+  width: 500px;
+}
+
+#about-container .about-box::before,
+#about-container .about-box::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+
+#about-container .about-box::after {
+  filter: blur(30px);
+}
+
+#about-container #about-me::before {
+  background: linear-gradient(45deg, #ffbc00, #ff0058);
+}
+
+#about-container #about-me::after {
+  animation: about-me-color-rotate 5s linear infinite;
+}
+
+#about-container #hobbies::after {
+  animation: hobbies-color-rotate 5s linear infinite;
+}
+
+#about-container #programming::after {
+  animation: programming-color-rotate 5s linear infinite;
+}
+
+#about-container #hobbies::before,
+#about-container #hobbies::after {
+  background: linear-gradient(45deg, #03a9f4, #ff0058);
+}
+
+#about-container #programming::before,
+#about-container #programming::after {
+  background: linear-gradient(45deg, #4dff03, #00d0ff);
+}
+
+#about-container .about-box .outer-span {
+  position: absolute;
+  top: 6px;
+  left: 6px;
+  right: 6px;
+  bottom: 6px;
+  z-index: 2;
+}
+
+#about-container #about-me .outer-span {
+  background: linear-gradient(45deg, #ffbc00, #ff0058);
+}
+
+#about-container #hobbies .outer-span {
+  background: linear-gradient(45deg, #03a9f4, #ff0058);
+}
+
+#about-container #programming .outer-span {
+  background: linear-gradient(45deg, #4dff03, #00d0ff);
+}
+
+#about-container .about-box .inner-span {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.6);
+  z-index: 3;
+}
+
+#about-container .about-box .inner-span::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 50%;
+  height: 100%;
+  background: rgba(255, 255, 255, 0.1);
+  pointer-events: none;
+}
+
+#about-container .about-box .content,
+#about-container .about-box .front-content,
+#about-container .about-box .hover-content {
+  position: relative;
+  z-index: 10;
+  height: 100%;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: 1s ease-in-out;
+}
+
+#about-container .about-box .content {
+  overflow: hidden;
+  flex-direction: column;
+}
+
+#about-container .about-box .front-content {
+  transform: translateY(100px);
+}
+
+#about-container .about-box .hover-content {
+  transform: translateY(1000px);
+}
+
+#about-container .about-box:hover .front-content {
+  transform: translateY(-1000px);
+}
+
+#about-container .about-box:hover .hover-content {
+  display: flex;
+  transform: translateY(-150px);
 }

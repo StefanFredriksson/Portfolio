@@ -127,9 +127,6 @@ export default function Homepage () {
       orbs.push(tempOrb)
     }
 
-    /*setInterval(() => {
-      moveOrbsPos(orbs)
-    }, 10)*/
     window.requestAnimationFrame(moveOrbsPos)
   }
 
@@ -255,7 +252,7 @@ export default function Homepage () {
           </div>
         </h1>
         <div id='fourth-row'>
-          <h2>Full stack web developer</h2>
+          <h2>Web developer</h2>
         </div>
       </div>
     </div>
