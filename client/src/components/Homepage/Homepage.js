@@ -100,7 +100,7 @@ export default function Homepage () {
     if (y <= 0) y += orb.element.offsetHeight + 1
 
     orb.pos = { x, y }
-    orb.element.style.transform = `translate(${x}px, ${y}px)`
+    orb.element.style.transform = `translate(${orb.pos.x}px, ${orb.pos.y}px)`
   }
 
   const moveOrbs = () => {

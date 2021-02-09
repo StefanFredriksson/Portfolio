@@ -8,12 +8,16 @@ const expandCss = (id, toHide) => {
   let hide = ''
 
   for (let i = 0; i < toHide.length; i++) {
-    hide += i === toHide.length - 1 ? `#${toHide[i]}` : `#${toHide[i]}, `
+    hide +=
+      i === toHide.length - 1
+        ? `#about-container #cards-container #${toHide[i]}`
+        : `#about-container #cards-container #${toHide[i]}, `
   }
 
   return `#about-container #cards-container #${id} {
     width: 1500px;
     height: 700px;
+    left: 50%;
   }
 
   #about-container #${id} .front-content {
@@ -25,7 +29,7 @@ const expandCss = (id, toHide) => {
   }
   
   ${hide} {
-    display: none;
+    top: -500px;
   }
   `
 }
@@ -67,19 +71,35 @@ export default function About () {
     document.querySelector('#about-container').addEventListener('click', revert)
   }
 
-  const revert = event => {
+  const revert = async event => {
     if (event.path.length > 9) return
 
     const cards = document.querySelector('#cards-container')
 
     for (const div of cards.childNodes) {
       const style = div.querySelector('style')
-      if (style) div.removeChild(style)
+      if (style) {
+        await reduce(div)
+        div.removeChild(style)
+      }
     }
 
     document
       .querySelector('#about-container')
       .removeEventListener('click', revert)
+  }
+
+  const reduce = div => {
+    return new Promise((resolve, reject) => {
+      div.style.width = '300px'
+      div.style.height = '400px'
+
+      setTimeout(() => {
+        div.style.width = ''
+        div.style.height = ''
+        resolve(0)
+      }, 500)
+    })
   }
 
   return (
