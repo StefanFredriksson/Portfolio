@@ -142,8 +142,8 @@
   height: 5px;
   border-radius: 50%;
   position: absolute;
-  left: 900px;
-  top: 500px;
+  left: 0;
+  top: 0;
   animation: color 10s linear infinite;
 }
 

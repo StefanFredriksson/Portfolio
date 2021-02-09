@@ -89,23 +89,24 @@ export default function Homepage () {
 
   const setOrbStartPos = orb => {
     const home = document.querySelector('#homepage-container')
-    let x = Math.floor(Math.random() * home.offsetWidth - orb.offsetWidth)
-    let y = Math.floor(Math.random() * home.offsetHeight - orb.offsetHeight)
+    let x = Math.floor(
+      Math.random() * home.offsetWidth - orb.element.offsetWidth
+    )
+    let y = Math.floor(
+      Math.random() * home.offsetHeight - orb.element.offsetHeight
+    )
 
-    if (x <= 0) x += orb.offsetWidth + 1
-    if (y <= 0) y += orb.offsetHeight + 1
+    if (x <= 0) x += orb.element.offsetWidth + 1
+    if (y <= 0) y += orb.element.offsetHeight + 1
 
-    orb.style.left = x + 'px'
-    orb.style.top = y + 'px'
+    orb.pos = { x, y }
+    orb.element.style.transform = `translate(${x}px, ${y}px)`
   }
 
   const moveOrbs = () => {
     const o = document.querySelectorAll('.orb')
 
     for (const orb of o) {
-      setOrbStartPos(orb)
-      setOrbColor(orb)
-
       const tempOrb = {
         element: orb,
         x: {
@@ -113,9 +114,12 @@ export default function Homepage () {
           target: 0,
           count: 0
         },
-        y: { direction: 0, target: 0, count: 0 }
+        y: { direction: 0, target: 0, count: 0 },
+        pos: { x: 0, y: 0 }
       }
 
+      setOrbStartPos(tempOrb)
+      setOrbColor(orb)
       setDirection(tempOrb)
       orbs.push(tempOrb)
     }
@@ -124,48 +128,41 @@ export default function Homepage () {
   }
 
   const moveOrbsPos = () => {
-    const nav = document.querySelector('#navigation-container')
     const home = document.querySelector('#homepage-container')
 
     if (!home) return
 
     for (const orb of orbs) {
-      const pos = orb.element.getBoundingClientRect()
-
       if (orb.x.target === 0 || orb.x.count === orb.x.target) {
         orb.x.count = 0
 
-        orb.element.style.left =
-          pos.x + orb.x.direction - nav.offsetWidth + 'px'
+        orb.pos.x += orb.x.direction
+        orb.element.style.transform = `translate(${orb.pos.x}px, ${orb.pos.y}px)`
       }
 
       if (orb.y.target === 0 || orb.y.count === orb.y.target) {
         orb.y.count = 0
 
-        orb.element.style.top = pos.y + orb.y.direction + 'px'
+        orb.pos.y += orb.y.direction
+        orb.element.style.transform = `translate(${orb.pos.x}px, ${orb.pos.y}px)`
       }
 
       orb.x.count++
       orb.y.count++
 
-      const currentPos = orb.element.getBoundingClientRect()
-
-      if (currentPos.x - nav.offsetWidth <= 0) {
+      if (orb.pos.x <= 0) {
         orb.x.direction = 1
       }
 
-      if (
-        currentPos.x - nav.offsetWidth + orb.element.offsetWidth >=
-        home.offsetWidth
-      ) {
+      if (orb.pos.x + orb.element.offsetWidth >= home.offsetWidth) {
         orb.x.direction = -1
       }
 
-      if (currentPos.y <= 0) {
+      if (orb.pos.y <= 0) {
         orb.y.direction = 1
       }
 
-      if (currentPos.y + orb.element.offsetHeight >= home.offsetHeight) {
+      if (orb.pos.y + orb.element.offsetHeight >= home.offsetHeight) {
         orb.y.direction = -1
       }
     }
