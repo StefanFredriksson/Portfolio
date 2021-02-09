@@ -68,6 +68,8 @@ export default function About () {
   }
 
   const revert = event => {
+    if (event.path.length > 9) return
+
     const cards = document.querySelector('#cards-container')
 
     for (const div of cards.childNodes) {

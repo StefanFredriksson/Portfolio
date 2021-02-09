@@ -12,6 +12,8 @@ export default function Homepage () {
     for (const span of spans) {
       span.addEventListener('animationend', e => {
         span.classList.remove('animated')
+        span.classList.remove('fade-in-anim')
+        span.style.opacity = '1'
       })
     }
 
@@ -34,17 +36,17 @@ export default function Homepage () {
       const fourth = document.querySelector('#fourth-row')
 
       setTimeout(async () => {
-        await moveRow(first, false)
-
+        await fadeInRow(first)
         setTimeout(async () => {
-          animateLetters(first.querySelectorAll('span'))
-          await moveRow(second, true)
+          await fadeInRow(second)
           setTimeout(async () => {
-            animateLetters(second.querySelectorAll('span'))
-            await moveRow(third, false)
+            await fadeInRow(third)
             setTimeout(() => {
-              animateLetters(third.querySelectorAll('span'))
-              fourth.style.transform = 'translate(0px, 0px)'
+              fourth.addEventListener('animationend', e => {
+                fourth.classList.remove('fade-in-anim')
+                fourth.style.opacity = '1'
+              })
+              fourth.classList.add('fade-in-anim')
               resolve()
             }, 1000)
           }, 1000)
@@ -53,32 +55,23 @@ export default function Homepage () {
     })
   }
 
-  const moveRow = (row, reverse) => {
+  const fadeInRow = row => {
     return new Promise(async (resolve, reject) => {
       const spans = row.querySelectorAll('span')
-      if (!reverse) {
-        for (let i = 0; i < spans.length; i++) await moveSpan(spans[i])
-      } else {
-        for (let i = spans.length - 1; i >= 0; i--) await moveSpan(spans[i])
-      }
+
+      for (const span of spans) await fadeInSpan(span)
 
       resolve(0)
     })
   }
 
-  const moveSpan = span => {
+  const fadeInSpan = span => {
     return new Promise((resolve, reject) => {
       setTimeout(() => {
-        span.style.transform = 'translate(0px, 0px)'
+        span.classList.add('fade-in-anim')
         resolve(0)
       }, 100)
     })
-  }
-
-  const animateLetters = spans => {
-    for (const span of spans) {
-      span.classList.add('animated')
-    }
   }
 
   const orbs = []
