@@ -12,8 +12,12 @@ export default function Hobbies (props) {
         <li>Programming</li>
         <li>Slalom</li>
       </ul>
-      <button onClick={props.expand} value='hobbies'>
-        Read more.
+      <button
+        className='about-button'
+        onClick={props.expand}
+        value={props.btnVal}
+      >
+        Read more
       </button>
     </div>
   )

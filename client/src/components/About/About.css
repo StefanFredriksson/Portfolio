@@ -159,3 +159,27 @@
   display: flex;
   transform: translateY(-150px);
 }
+
+.about-button {
+  outline: none;
+  border: none;
+  padding: 10px 15px;
+  background: rgba(255, 255, 255, 0.2);
+  color: white;
+  font-size: 17px;
+  border-radius: 10px;
+}
+
+.about-button:hover {
+  cursor: pointer;
+  background: rgba(255, 255, 255, 0.3);
+}
+
+.about-box .about-button {
+  margin-top: 20px;
+  float: right;
+}
+
+.about-box .hover-content ul {
+  list-style-type: none;
+}

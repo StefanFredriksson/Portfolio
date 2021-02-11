@@ -10,8 +10,12 @@ export default function AboutMe (props) {
         <li>Enjoys solving problems.</li>
         <li>Have an easy time focusing on task at hand.</li>
       </ul>
-      <button onClick={props.expand} value='about-me'>
-        Read more.
+      <button
+        className='about-button'
+        onClick={props.expand}
+        value={props.btnVal}
+      >
+        Read more
       </button>
     </div>
   )

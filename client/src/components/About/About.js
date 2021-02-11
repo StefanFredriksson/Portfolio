@@ -1,8 +1,15 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import './About.css'
-import AboutMe from './Summaries/AboutMe/AboutMe'
-import Hobbies from './Summaries/Hobbies/Hobbies'
-import Programming from './Summaries/Programming/Programming'
+import AboutMeHover from './Summaries/AboutMe/AboutMeHover'
+import AboutMeExpanded from './Summaries/AboutMe/AboutMeExpanded'
+import HobbiesHover from './Summaries/Hobbies/HobbiesHover'
+import HobbiesExpanded from './Summaries/Hobbies/HobbiesExpanded'
+import ProgrammingHover from './Summaries/Programming/ProgrammingHover'
+import ProgrammingExpanded from './Summaries/Programming/ProgrammingExpanded'
+
+const aboutMeId = 'about-me'
+const hobbiesId = 'hobbies'
+const programmingId = 'programming'
 
 const expandCss = (id, toHide) => {
   let hide = ''
@@ -35,10 +42,15 @@ const expandCss = (id, toHide) => {
 }
 
 export default function About () {
+  const [sumState, setSumState] = useState({})
   useEffect(() => {
     animateGradients('about-me-color-rotate', '#ffbc00', '#ff0058')
     animateGradients('hobbies-color-rotate', '#03a9f4', '#ff0058')
     animateGradients('programming-color-rotate', '#4dff03', '#00d0ff')
+    const buttons = document.querySelectorAll('.about-button')
+    const obj = {}
+    for (const button of buttons) obj[button.value] = false
+    setSumState({ ...obj })
   }, [])
 
   const animateGradients = (name, color1, color2) => {
@@ -60,6 +72,8 @@ export default function About () {
     const box = document.querySelector(`#${event.target.value}`)
     const parent = document.querySelector('#cards-container')
     const toHide = []
+    sumState[event.target.value] = true
+    setSumState({ ...sumState })
 
     for (const div of parent.children) {
       if (div !== box) toHide.push(div.id)
@@ -75,11 +89,16 @@ export default function About () {
     if (event.path.length > 9) return
 
     const cards = document.querySelector('#cards-container')
+    const keys = Object.keys(sumState)
 
-    for (const div of cards.childNodes) {
+    for (const key of keys) sumState[key] = false
+
+    setSumState({ ...sumState })
+
+    for (const div of cards.children) {
       const style = div.querySelector('style')
       if (style) {
-        await reduce(div)
+        await shrink(div)
         div.removeChild(style)
       }
     }
@@ -89,7 +108,7 @@ export default function About () {
       .removeEventListener('click', revert)
   }
 
-  const reduce = div => {
+  const shrink = div => {
     return new Promise((resolve, reject) => {
       div.style.width = '300px'
       div.style.height = '400px'
@@ -105,42 +124,46 @@ export default function About () {
   return (
     <div id='about-container'>
       <div id='cards-container'>
-        <div id='about-me' className='about-box'>
+        <div id={aboutMeId} className='about-box'>
           <span className='outer-span'>
             <span className='inner-span' />
           </span>
           <div className='content'>
             <div className='front-content'>
-              <h1>About me</h1>
+              {sumState[aboutMeId] ? <AboutMeExpanded /> : <h1>About me</h1>}
             </div>
             <div className='hover-content'>
-              <AboutMe expand={expand} />
+              <AboutMeHover btnVal={aboutMeId} expand={expand} />
             </div>
           </div>
         </div>
-        <div id='hobbies' className='about-box'>
+        <div id={hobbiesId} className='about-box'>
           <span className='outer-span'>
             <span className='inner-span' />
           </span>
           <div className='content'>
             <div className='front-content'>
-              <h1>Hobbies</h1>
+              {sumState[hobbiesId] ? <HobbiesExpanded /> : <h1>Hobbies</h1>}
             </div>
             <div className='hover-content'>
-              <Hobbies expand={expand} />
+              <HobbiesHover btnVal={hobbiesId} expand={expand} />
             </div>
           </div>
         </div>
-        <div id='programming' className='about-box'>
+        <div id={programmingId} className='about-box'>
           <span className='outer-span'>
             <span className='inner-span' />
           </span>
           <div className='content'>
             <div className='front-content'>
-              <h1>Programming</h1>
+              {sumState[programmingId] ? (
+                <ProgrammingExpanded />
+              ) : (
+                <h1>Programming</h1>
+              )}
             </div>
             <div className='hover-content'>
-              <Programming expand={expand} />
+              <ProgrammingHover btnVal={programmingId} expand={expand} />
             </div>
           </div>
         </div>
