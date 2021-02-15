@@ -119,17 +119,17 @@
   left: 0;
   top: 0;
   animation: color 10s linear infinite;
-  transform-origin: 30px 30px;
-  transform: translate(0px, 0px);
 }
 
-#homepage-container .position-orb {
+#main-content-container #homepage-container .position-orb {
   transition: 0.5s;
-  transform: translate(-30px, -30px);
+  transform: translate(0px, -50px);
+  animation: none;
 }
 
-#homepage-container .rotate {
-  transform: translate(-30px, -30px);
+#main-content-container .rotate .orb {
+  transform-origin: 0px 50px;
+  transform: translate(0px, -50px);
   animation: rotate-orb 2s linear infinite;
 }
 
@@ -145,10 +145,10 @@
 
 @keyframes rotate-orb {
   0% {
-    transform: translate(-30px, -30px) rotateZ(0deg);
+    transform: translate(0px, -50px) rotateZ(0deg);
   }
 
   100% {
-    transform: translate(-30px, -30px) rotateZ(360deg);
+    transform: translate(0px, -50px) rotateZ(360deg);
   }
 }
