@@ -63,6 +63,15 @@
   }
 }
 
+#homepage-container #welcome-container:hover {
+  cursor: default;
+}
+
+#homepage-container #welcome-container h1 span,
+#homepage-container #welcome-container div h2 {
+  user-select: none;
+}
+
 #homepage-container #welcome-container h1 span:hover {
   color: cyan;
 }
@@ -135,7 +144,7 @@
 #main-content-container .rotate .orb {
   transform-origin: 0px 50px;
   transform: translate(0px, -50px);
-  animation: rotate-orb 2s linear infinite;
+  animation: color 10s linear infinite, rotate-orb 2s linear infinite;
 }
 
 @keyframes color {

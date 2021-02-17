@@ -4,6 +4,7 @@ import './Homepage.css'
 export default function Homepage () {
   const nrOrbs = []
   const orbCnt = 20
+  const force = 3
   const mouseDown = {
     state: false,
     pos: { x: 0, y: 0 }
@@ -44,6 +45,7 @@ export default function Homepage () {
   }, [])
 
   const handleMouseDown = event => {
+    if (event.button !== 0) return
     const nav = document.querySelector('#navigation-container')
     mouseDown.state = true
     mouseDown.pos.x = event.clientX - nav.offsetWidth
@@ -51,6 +53,7 @@ export default function Homepage () {
   }
 
   const handleMouseUp = event => {
+    if (event.button !== 0) return
     mouseDown.state = false
     const nav = document.querySelector('#navigation-container')
     const home = document.querySelector('#homepage-container')
@@ -60,38 +63,41 @@ export default function Homepage () {
         const pos = orb.element.getBoundingClientRect()
         orb.element.style.left = pos.x - nav.offsetWidth + 'px'
         orb.element.style.top = pos.y + 'px'
+        orb.element.style.transition = ''
         orb.element.style.transform = ''
         setDirection(orb)
-      } else if (atMouse(orb)) {
+        console.log(orb.x.direction, orb.y.direction)
+      } else if (atMouse(orb) || orb.movingToMouse) {
         setDirection(orb)
       }
 
+      clearTimeout(orb.timeout)
       orb.rotating = false
       orb.movingToMouse = false
-      home.classList.remove('rotate')
+      orb.element.classList.remove('position-orb')
     }
+    home.classList.remove('rotate')
   }
 
   const handleMouseMove = event => {
     const home = document.querySelector('#homepage-container')
-    if (mouseDown.state) {
-      //home.classList.remove('rotate')
-      const nav = document.querySelector('#navigation-container')
-      mouseDown.pos.x = event.clientX - nav.offsetWidth
-      mouseDown.pos.y = event.clientY
-      for (const orb of orbs) {
-        if (orb.rotating) {
-          orb.element.style.left = mouseDown.pos.x + 'px'
-          orb.element.style.top = mouseDown.pos.y + 'px'
-        } /*else if (orb.movingToMouse) {
-          const pos = orb.element.getBoundingClientRect()
-          orb.element.style.left = pos.x - nav.offsetWidth + 'px'
-          orb.element.style.top = pos.y + 'px'
-          clearTimeout(orb.timeout)
-          orb.element.style.transform = ''
-          orb.element.style.transition = ''
-          moveToMouse(orb)
-        }*/
+    if (!mouseDown.state) return
+
+    const nav = document.querySelector('#navigation-container')
+    mouseDown.pos.x = event.clientX - nav.offsetWidth
+    mouseDown.pos.y = event.clientY
+    for (const orb of orbs) {
+      if (orb.rotating) {
+        orb.element.style.left = mouseDown.pos.x + 'px'
+        orb.element.style.top = mouseDown.pos.y + 'px'
+      } else if (orb.positioning) {
+        const pos = orb.element.getBoundingClientRect()
+        orb.element.style.left = pos.x - nav.offsetWidth + 'px'
+        orb.element.style.top = pos.y + 'px'
+        orb.element.style.transform = ''
+        orb.element.classList.remove('position-orb')
+        clearTimeout(orb.timeout)
+        orb.positioning = false
       }
     }
   }
@@ -182,7 +188,8 @@ export default function Homepage () {
         },
         y: { direction: 0 },
         rotating: false,
-        movingToMouse: false
+        movingToMouse: false,
+        positioning: false
       }
 
       setOrbStartPos(tempOrb)
@@ -194,10 +201,10 @@ export default function Homepage () {
     window.requestAnimationFrame(moveOrbsPos)
   }
 
-  const moveOrbsPos = timestamp => {
+  const moveOrbsPos = () => {
     if (mouseDown.state) {
       for (const orb of orbs) {
-        if (orb.rotating) continue
+        if (orb.rotating || orb.positioning) continue
 
         if (allAtMouse()) {
           circleMouse()
@@ -209,7 +216,6 @@ export default function Homepage () {
       }
     } else {
       for (const orb of orbs) {
-        if (orb.movingToMouse) moveToMouse(orb)
         orbFloat(orb)
       }
     }
@@ -220,6 +226,7 @@ export default function Homepage () {
   const allAtMouse = () => {
     for (const orb of orbs) {
       if (!atMouse(orb)) return false
+      else if (orb.movingToMouse) orb.movingToMouse = false
     }
 
     return true
@@ -236,7 +243,7 @@ export default function Homepage () {
         ? pos.y - mouseDown.pos.y
         : mouseDown.pos.y - pos.y
 
-    if (xDiff < 1 && yDiff < 1) {
+    if (xDiff < force && yDiff < force) {
       orb.element.style.left = mouseDown.pos.x + 'px'
       orb.element.style.top = mouseDown.pos.y + 'px'
       orb.x.direction = 0
@@ -249,7 +256,7 @@ export default function Homepage () {
     )
   }
 
-  const position = async orb => {
+  const position = async () => {
     return new Promise((resolve, reject) => {
       const angle = 360 / orbs.length
 
@@ -259,13 +266,14 @@ export default function Homepage () {
         const y = mouseDown.pos.y + 50 * Math.sin(angle * i)
         orbs[i].element.style.transform = `translate(${mouseDown.pos.x -
           x}px, ${mouseDown.pos.y - y}px)`
-        orbs[i].rotating = true
+        orbs[i].positioning = true
 
-        setTimeout(() => {
+        orbs[i].timeout = setTimeout(() => {
+          orbs[i].positioning = false
+          orbs[i].rotating = true
           orbs[i].element.classList.remove('position-orb')
           orbs[i].element.style.animationDelay = `${(i - orbs.length - 1) *
             0.1}s`
-          //orb.element.classList.add('rotate')
 
           if (i === orbs.length - 1) resolve(0)
         }, 500)
@@ -275,9 +283,6 @@ export default function Homepage () {
 
   const circleMouse = async orb => {
     const home = document.querySelector('#homepage-container')
-    /*for (const orb of orbs) {
-      await position(orb)
-    }*/
     await position()
     home.classList.add('rotate')
   }
@@ -302,22 +307,9 @@ export default function Homepage () {
       orb.x.direction = xDiff / yDiff
       if (x > mouseDown.pos.x) orb.x.direction *= -1
     }
+    orb.x.direction *= force
+    orb.y.direction *= force
     orb.movingToMouse = true
-
-    /*orb.movingToMouse = true
-    const pos = orb.element.getBoundingClientRect()
-    const xDiff = mouseDown.pos.x - pos.x + nav.offsetWidth
-    const yDiff = mouseDown.pos.y - pos.y
-    orb.element.style.transition = '2s linear'
-    orb.element.style.transform = `translate(${xDiff}px, ${yDiff}px)`
-
-    orb.timeout = setTimeout(() => {
-      orb.element.style.left = mouseDown.pos.x + 'px'
-      orb.element.style.top = mouseDown.pos.y + 'px'
-      orb.element.style.transform = ''
-      orb.element.style.transition = ''
-      orb.movingToMouse = false
-    }, 2000)*/
   }
 
   const orbFloat = orb => {
