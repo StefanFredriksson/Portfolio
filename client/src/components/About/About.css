@@ -126,8 +126,8 @@
 }
 
 #about-container .about-box .content,
-#about-container .about-box .front-content,
-#about-container .about-box .hover-content {
+#about-container .about-box .content .front-content,
+#about-container .about-box .content .hover-content {
   position: relative;
   z-index: 10;
   height: 100%;

@@ -1,0 +1,22 @@
+.expanded-content {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  position: relative;
+  align-items: center;
+  z-index: 10;
+}
+
+.expanded-content .front-content {
+  margin: 50px 150px;
+}
+
+.expanded-content .front-content #expanded-summary h1 {
+  margin-bottom: 20px;
+  text-decoration: underline;
+}
+
+.expanded-content .front-content #expanded-summary p {
+  margin-bottom: 20px;
+  font-size: 20px;
+}

@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import './About.css'
+import './Summaries/Expanded.css'
 import AboutMeHover from './Summaries/AboutMe/AboutMeHover'
 import AboutMeExpanded from './Summaries/AboutMe/AboutMeExpanded'
 import HobbiesHover from './Summaries/Hobbies/HobbiesHover'
@@ -128,7 +129,7 @@ export default function About () {
           <span className='outer-span'>
             <span className='inner-span' />
           </span>
-          <div className='content'>
+          <div className={sumState[aboutMeId] ? 'expanded-content' : 'content'}>
             <div className='front-content'>
               {sumState[aboutMeId] ? <AboutMeExpanded /> : <h1>About me</h1>}
             </div>
@@ -141,7 +142,7 @@ export default function About () {
           <span className='outer-span'>
             <span className='inner-span' />
           </span>
-          <div className='content'>
+          <div className={sumState[hobbiesId] ? 'expanded-content' : 'content'}>
             <div className='front-content'>
               {sumState[hobbiesId] ? <HobbiesExpanded /> : <h1>Hobbies</h1>}
             </div>
@@ -154,7 +155,9 @@ export default function About () {
           <span className='outer-span'>
             <span className='inner-span' />
           </span>
-          <div className='content'>
+          <div
+            className={sumState[programmingId] ? 'expanded-content' : 'content'}
+          >
             <div className='front-content'>
               {sumState[programmingId] ? (
                 <ProgrammingExpanded />
