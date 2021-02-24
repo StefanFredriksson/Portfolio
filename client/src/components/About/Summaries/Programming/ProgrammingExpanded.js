@@ -28,7 +28,7 @@ export default function ProgrammingExpanded () {
       <p>
         Out of all the different types of programming I've tried, web
         development is the one I've enjoyed the most. You get to work with both
-        graphical components and algorithms, which I liked. It is also a lot
+        graphical components and algorithms, which I like. It is also a lot
         easier to work with than something like WPF.
       </p>
     </div>
