@@ -4,110 +4,64 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
-  animation: change-background 50s linear infinite;
 }
 
-#sun,
-#moon {
+#main-skills-container .orb {
   position: absolute;
-  top: 50%;
-  left: 50%;
-  width: 500px;
-  height: 500px;
   border-radius: 50%;
-  transform-origin: -100% 150%;
-  animation: move-sun 50s linear infinite reverse;
+  width: 300px;
+  height: 300px;
   overflow: visible;
+  transition: 0.1s;
 }
 
-#sun::after,
-#moon::after {
+#main-skills-container .orb::after {
   content: '';
   position: absolute;
   top: 0;
   left: 0;
-  filter: blur(80px);
-  height: 100%;
   width: 100%;
+  height: 100%;
   border-radius: 50%;
+  filter: blur(40px);
 }
 
-#sun {
+#main-skills-container #orb-1 {
+  top: 10%;
+  left: 5%;
+}
+
+#main-skills-container #orb-1,
+#main-skills-container #orb-1::after {
   background: linear-gradient(#e91e63, #ffc107);
 }
 
-#sun::after {
-  background: linear-gradient(#e91e63, #ffc107);
+#main-skills-container #orb-2 {
+  top: 60%;
+  left: 20%;
 }
 
-#moon {
-  background: linear-gradient(white, grey);
-  animation-delay: -25s;
+#main-skills-container #orb-2,
+#main-skills-container #orb-2::after {
+  background: linear-gradient(45deg, #e55d87, #5fc3e4);
 }
 
-#moon::after {
-  background: linear-gradient(white, grey);
+#main-skills-container #orb-3 {
+  top: 20%;
+  left: 50%;
 }
 
-@keyframes move-sun {
-  0% {
-    transform: translate(100%, -50%) rotateZ(0deg);
-  }
-
-  100% {
-    transform: translate(100%, -50%) rotateZ(360deg);
-  }
+#main-skills-container #orb-3,
+#main-skills-container #orb-3::after {
+  background: linear-gradient(90deg, #334d50, #cbcaa5);
 }
 
-@keyframes change-background {
-  0% {
-    background: rgb(0, 0, 114);
-  }
-
-  10% {
-    background: rgb(119, 119, 245);
-  }
-
-  20% {
-    background: rgb(119, 119, 245);
-  }
-
-  30% {
-    background: rgb(0, 0, 114);
-  }
-
-  50% {
-    background: black;
-  }
-
-  90% {
-    background: black;
-  }
-
-  100% {
-    background: rgb(0, 0, 114);
-  }
+#main-skills-container #orb-4 {
+  top: 70%;
+  left: 82%;
 }
 
-/*#main-skills-container::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: linear-gradient(#e91e63, #ffc107);
-  clip-path: circle(12% at 50% 50%);
-  animation: move-sun 5s linear infinite;
-}*/
-
-/*#main-skills-container::after {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: linear-gradient(#fff, #da00ff);
-  clip-path: circle(50% at 80% 85%);
-}*/
+#main-skills-container #orb-4,
+#main-skills-container #orb-4::after {
+  background: linear-gradient(#00416a, #799f0c, #ffe000);
+}
