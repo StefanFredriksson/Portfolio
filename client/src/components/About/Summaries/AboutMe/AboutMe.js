@@ -1,8 +1,8 @@
 import React from 'react'
 
-export default function AboutMeExpanded () {
+export default function AboutMe () {
   return (
-    <div id='expanded-summary'>
+    <div id='expanded-summary' className='summary'>
       <h1>About me</h1>
       <p>
         My name is Stefan, I am a 26 year old guy living in Uppsala, Sweden.

@@ -1,8 +1,8 @@
 import React from 'react'
 
-export default function HobbiesExpanded () {
+export default function Hobbies () {
   return (
-    <div id='expanded-summary'>
+    <div id='expanded-summary' className='summary'>
       <h1>Hobbies</h1>
       <p>
         The thing I enjoy more than anything else is video games. Video games

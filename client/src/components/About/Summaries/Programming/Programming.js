@@ -1,8 +1,8 @@
 import React from 'react'
 
-export default function ProgrammingExpanded () {
+export default function Programming () {
   return (
-    <div id='expanded-summary'>
+    <div id='expanded-summary' className='summary'>
       <h1>Programming</h1>
       <p>
         During my years in school, maths was always my favorite subject.
