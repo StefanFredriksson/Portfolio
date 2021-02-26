@@ -13,11 +13,13 @@ export default function Programming () {
         I applied for a beginner's C++ programming university course and I have
         been hooked ever since.
       </p>
+      <br />
       <p>
         After the first programming course, I tried my hand at Java and then
         went back to C++ in the form of 2 video game AI courses. I also took a
         C# course, and a mobile programming course.
       </p>
+      <br />
       <p>
         At this point I felt like I needed to focus my attention on one area of
         programming. I found a 2 year university program for web development
@@ -25,6 +27,7 @@ export default function Programming () {
         science. I completed the three year program and received my bachelor
         degree in computer science in 2020.
       </p>
+      <br />
       <p>
         Out of all the different types of programming I've tried, web
         development is the one I've enjoyed the most. You get to work with both

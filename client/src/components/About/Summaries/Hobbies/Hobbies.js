@@ -10,16 +10,19 @@ export default function Hobbies () {
         of the games I've enjoyed the most are RuneScape, Path of Exile, Mass
         Effect, Witcher, and Dark Souls.
       </p>
+      <br />
       <p>
         Just like any other person, I also enjoy listening to music and watching
         TV. I don't have any favorite genres in music but I tend to prefer
         fantasy and sci-fi movies/TV-shows.
       </p>
+      <br />
       <p>
         During the warm seasons of the year, I play golf. It is not something
         that I am great at but I thoroughly enjoy it nonetheless. I've played
         golf for around 15 years and currently have 21.3 in handicap.
       </p>
+      <br />
       <p>
         During the winter, me and my family like to go skiing. Downhill skiing
         is something I enjoy very much and have very fond memories of from my

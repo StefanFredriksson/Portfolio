@@ -11,6 +11,7 @@ export default function AboutMe () {
         enjoy programming, since programming is, at its core, about solving one
         problem after another to eventually end up with a finished product.
       </p>
+      <br />
       <p>
         Around 10 years ago, I was diagnosed with Aspberger syndrome. In my
         case, it means that I generally have a harder timer than most at social

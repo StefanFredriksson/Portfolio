@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { useState } from 'react'
 import './About.css'
 import './Summaries/Expanded.css'
 import AboutMe from './Summaries/AboutMe/AboutMe'

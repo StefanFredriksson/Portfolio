@@ -6,12 +6,10 @@ export default function Greeting () {
     for (const span of spans) {
       span.addEventListener('animationend', e => {
         span.classList.remove('animated')
-        span.classList.remove('fade-in-anim')
-        span.style.opacity = '1'
       })
     }
 
-    await textEntrance()
+    await text()
 
     for (const span of spans) {
       span.addEventListener('mouseover', e => {
@@ -21,49 +19,38 @@ export default function Greeting () {
     }
   }, [])
 
-  const textEntrance = () => {
-    return new Promise((resolve, reject) => {
+  const text = () => {
+    return new Promise(async (resolve, reject) => {
       const first = document.querySelector('#first-row')
       const second = document.querySelector('#second-row')
       const third = document.querySelector('#third-row')
-      const fourth = document.querySelector('#fourth-row')
 
-      setTimeout(async () => {
-        await fadeInRow(first)
-        setTimeout(async () => {
-          await fadeInRow(second)
-          setTimeout(async () => {
-            await fadeInRow(third)
-            setTimeout(() => {
-              fourth.addEventListener('animationend', e => {
-                fourth.classList.remove('fade-in-anim')
-                fourth.style.opacity = '1'
-              })
-              fourth.classList.add('fade-in-anim')
-              resolve()
-            }, 1000)
-          }, 1000)
-        }, 1000)
-      }, 500)
+      await rowEntrance(first)
+      await rowEntrance(second)
+      await rowEntrance(third)
+      resolve(0)
     })
   }
 
-  const fadeInRow = row => {
+  const rowEntrance = row => {
     return new Promise(async (resolve, reject) => {
       const spans = row.querySelectorAll('span')
 
-      for (const span of spans) await fadeInSpan(span)
+      for (const span of spans) {
+        await spanEntrance(span)
+      }
 
       resolve(0)
     })
   }
 
-  const fadeInSpan = span => {
+  const spanEntrance = span => {
     return new Promise((resolve, reject) => {
       setTimeout(() => {
-        span.classList.add('fade-in-anim')
+        span.style.opacity = '1'
+        span.classList.add('animated')
         resolve(0)
-      }, 100)
+      }, 50)
     })
   }
 
