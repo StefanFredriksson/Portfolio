@@ -42,7 +42,7 @@ export default function VisualSkills () {
     }
   ]
   return (
-    <div id='visual-skills-container'>
+    <div id='visual-skills-container' className='skills-container'>
       {data.map(d => {
         return (
           <Indicator

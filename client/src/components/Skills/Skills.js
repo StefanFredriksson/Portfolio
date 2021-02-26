@@ -19,8 +19,8 @@ export default function Skills () {
       const pos = orb.getBoundingClientRect()
       const orbX = pos.x - nav.offsetWidth
       const orbY = pos.y
-      const x = orbX <= mx ? (mx - orbX) / 5 : ((orbX - mx) * -1) / 10
-      const y = orbY <= my ? (my - orbY) / 5 : ((orbY - my) * -1) / 10
+      const x = orbX <= mx ? (mx - orbX) / 20 : ((orbX - mx) * -1) / 30
+      const y = orbY <= my ? (my - orbY) / 20 : ((orbY - my) * -1) / 30
       orb.style.transform = `translate(${x}px, ${y}px)`
     }
   }
