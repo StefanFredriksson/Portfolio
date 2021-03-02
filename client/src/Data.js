@@ -5,3 +5,5 @@ export const endpoints = {
   skills: 'skills',
   work: 'work'
 }
+
+export const workImgPath = 'img/work/'

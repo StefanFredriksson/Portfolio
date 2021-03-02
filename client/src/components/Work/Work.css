@@ -1,20 +1,5 @@
-#outer-work-container {
+#main-work-container {
   height: 100%;
   width: 100%;
   display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-#inner-work-container {
-  height: 80%;
-  width: 80%;
-  background: rgba(0, 0, 0, 0.2);
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-}
-
-#inner-work-container div {
-  height: 100%;
-  width: 100%;
 }

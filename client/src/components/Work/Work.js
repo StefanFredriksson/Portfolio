@@ -1,15 +1,21 @@
-import React from 'react'
+import React, { useState } from 'react'
 import './Work.css'
+import WorkSelection from './WorkSelection/WorkSelection'
+import Project from './Project/Project'
 
 export default function Work () {
-  const data = [{}, {}, {}, {}, {}, {}]
+  const [showProject, setShowProject] = useState(false)
+  const [project, setProject] = useState({})
   return (
-    <div id='outer-work-container'>
-      <div id='inner-work-container'>
-        {data.map(d => {
-          return <div />
-        })}
-      </div>
+    <div id='main-work-container'>
+      {showProject ? (
+        <Project project={project} />
+      ) : (
+        <WorkSelection
+          setShowProject={setShowProject}
+          setProject={setProject}
+        />
+      )}
     </div>
   )
 }

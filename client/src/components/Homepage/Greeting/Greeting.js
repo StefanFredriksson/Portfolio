@@ -9,7 +9,7 @@ export default function Greeting () {
       })
     }
 
-    await text()
+    await textEntrance()
 
     for (const span of spans) {
       span.addEventListener('mouseover', e => {
@@ -19,7 +19,7 @@ export default function Greeting () {
     }
   }, [])
 
-  const text = () => {
+  const textEntrance = () => {
     return new Promise(async (resolve, reject) => {
       const first = document.querySelector('#first-row')
       const second = document.querySelector('#second-row')

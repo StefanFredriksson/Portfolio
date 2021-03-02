@@ -1,0 +1,95 @@
+#main-project-container {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+}
+
+#main-project-container #project-title {
+  width: 100%;
+  height: 10%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+#main-project-container #project-media-container {
+  width: 90%;
+  height: 80%;
+  background: rgba(255, 255, 255, 0.05);
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  grid-template-rows: repeat(3, 1fr);
+}
+
+#main-project-container #project-media-container > .small-image-container {
+  width: 100%;
+  height: 100%;
+  position: relative;
+}
+
+#main-project-container
+  #project-media-container
+  > .small-image-container:before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5);
+  mix-blend-mode: multiply;
+}
+
+#main-project-container
+  #project-media-container
+  > .small-image-container:hover:before {
+  background: rgba(0, 0, 0, 0);
+}
+
+#main-project-container
+  #project-media-container
+  > .small-image-container:hover {
+  cursor: pointer;
+}
+
+#main-project-container #project-media-container > .small-image-container img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+#main-project-container
+  #project-media-container
+  > .small-image-container
+  .view-media {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  height: 0;
+  width: 0;
+  border-radius: 50%;
+  background: rgb(86, 86, 240);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 13px;
+  color: white;
+  white-space: nowrap;
+  transition: 0.3s;
+}
+
+#main-project-container
+  #project-media-container
+  > .small-image-container:hover
+  .view-media {
+  height: 100px;
+  width: 100px;
+}
