@@ -7,19 +7,13 @@ export default function WorkSelection (props) {
     {
       thumbnail: `${imgPath}project1/thumbnail.jpg`,
       folder: 'project1/',
-      images: [
-        { enlarge: false, path: '1.jpg' },
-        { enlarge: false, path: '2.jpg' }
-      ],
+      images: ['1.jpg', '2.jpg'],
       title: 'Sudoku'
     },
     {
       thumbnail: `${imgPath}project2/thumbnail.jpg`,
       folder: 'project2/',
-      images: [
-        { enlarge: false, path: '1.jpg' },
-        { enlarge: false, path: '2.jpg' }
-      ],
+      images: ['1.jpg', '2.jpg'],
       title: 'Analysis'
     }
   ]

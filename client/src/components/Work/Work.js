@@ -9,7 +9,7 @@ export default function Work () {
   return (
     <div id='main-work-container'>
       {showProject ? (
-        <Project project={project} />
+        <Project project={project} setShowProject={setShowProject} />
       ) : (
         <WorkSelection
           setShowProject={setShowProject}
