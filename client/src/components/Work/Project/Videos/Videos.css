@@ -1,4 +1,4 @@
-#main-project-container #project-media-container {
+#main-project-container #videos-container {
   width: 90%;
   height: 80%;
   background: rgba(255, 255, 255, 0.05);
@@ -7,15 +7,17 @@
   grid-template-rows: repeat(3, 1fr);
 }
 
-#main-project-container #project-media-container > .small-image-container {
+#main-project-container #videos-container .video-thumbnail {
   width: 100%;
   height: 100%;
   position: relative;
 }
 
-#main-project-container
-  #project-media-container
-  > .small-image-container:before {
+#main-project-container #videos-container .video-thumbnail:hover {
+  cursor: pointer;
+}
+
+#main-project-container #videos-container .video-thumbnail:before {
   content: '';
   position: absolute;
   top: 0;
@@ -26,28 +28,17 @@
   mix-blend-mode: multiply;
 }
 
-#main-project-container
-  #project-media-container
-  > .small-image-container:hover:before {
+#main-project-container #videos-container .video-thumbnail:hover:before {
   background: rgba(0, 0, 0, 0);
 }
 
-#main-project-container
-  #project-media-container
-  > .small-image-container:hover {
-  cursor: pointer;
-}
-
-#main-project-container #project-media-container > .small-image-container img {
+#main-project-container #videos-container .video-thumbnail img {
   width: 100%;
   height: 100%;
   object-fit: cover;
 }
 
-#main-project-container
-  #project-media-container
-  > .small-image-container
-  .view-media {
+#main-project-container #videos-container .video-thumbnail .view-video {
   position: absolute;
   top: 50%;
   left: 50%;
@@ -65,10 +56,7 @@
   transition: 0.3s;
 }
 
-#main-project-container
-  #project-media-container
-  > .small-image-container:hover
-  .view-media {
+#main-project-container #videos-container .video-thumbnail:hover .view-video {
   height: 100px;
   width: 100px;
 }

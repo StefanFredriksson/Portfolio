@@ -7,3 +7,4 @@ export const endpoints = {
 }
 
 export const workImgPath = 'img/work/'
+export const workVideoPath = 'video/work/'

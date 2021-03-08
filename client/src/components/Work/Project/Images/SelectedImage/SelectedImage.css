@@ -1,0 +1,102 @@
+#main-project-container #selected-image-container {
+  position: absolute;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 0;
+  z-index: 10;
+}
+
+#main-project-container #selected-image-container img {
+  height: 100%;
+  width: 100%;
+  object-fit: cover;
+}
+
+#main-project-container #selected-image-container > span {
+  position: absolute;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 30px;
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  transform: translate(-50%, -50%);
+  background: rgba(0, 0, 0, 0.2);
+  transition: 0.5s;
+}
+
+#main-project-container #selected-image-container > span:hover {
+  cursor: pointer;
+  background: rgba(0, 0, 0, 0.4);
+}
+
+#main-project-container #selected-image-container #next-image {
+  top: 50%;
+  left: 90%;
+}
+
+#main-project-container #selected-image-container #next-image:hover span {
+  animation: nxtImg 1s ease-in-out infinite;
+}
+
+#main-project-container #selected-image-container #previous-image {
+  top: 50%;
+  left: 10%;
+}
+
+#main-project-container #selected-image-container #previous-image:hover span {
+  animation: prevImg 1s ease-in-out infinite;
+}
+
+#main-project-container #selected-image-container #close-image {
+  top: 10%;
+  left: 90%;
+}
+
+#main-project-container #selected-image-container #close-image:hover {
+  font-size: 60px;
+}
+
+@keyframes nxtImg {
+  0% {
+    transform: translateX(0);
+  }
+
+  50% {
+    transform: translateX(20px);
+  }
+
+  100% {
+    transform: translateX(0);
+  }
+}
+
+@keyframes prevImg {
+  0% {
+    transform: translateX(0);
+  }
+
+  50% {
+    transform: translateX(-20px);
+  }
+
+  100% {
+    transform: translateX(0);
+  }
+}
+
+@keyframes closeImg {
+  0% {
+    color: white;
+  }
+
+  50% {
+    color: black;
+  }
+
+  100% {
+    color: white;
+  }
+}

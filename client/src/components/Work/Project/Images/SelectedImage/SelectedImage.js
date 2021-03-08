@@ -1,4 +1,5 @@
 import React from 'react'
+import './SelectedImage.css'
 import { enlargeImage, minimizeImage } from '../imageLogic'
 
 export default function SelectedImage (props) {

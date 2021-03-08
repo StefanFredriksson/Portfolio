@@ -6,6 +6,8 @@
 .pnp.js
 .eslintcache
 
+/public/video
+
 # testing
 /coverage
 
