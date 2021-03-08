@@ -201,3 +201,23 @@
     color: white;
   }
 }
+
+#main-project-container #project-navigation-container {
+  height: 5%;
+  width: 90%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+#main-project-container #project-navigation-container > div:hover {
+  cursor: pointer;
+}
+
+#main-project-container #project-navigation-container #go-back {
+  margin-right: 20px;
+}
+
+#main-project-container #project-navigation-container #videos {
+  margin-left: 20px;
+}
