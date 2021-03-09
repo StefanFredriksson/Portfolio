@@ -21,10 +21,14 @@
 #time-bar {
   position: relative;
   width: 90%;
-  height: 10%;
+  height: 10px;
   background: grey;
   display: flex;
   overflow: visible;
+}
+
+#time-bar:hover {
+  cursor: pointer;
 }
 
 #time-bar #time-played {
@@ -48,4 +52,23 @@
   width: 20px;
   border-radius: 50%;
   background: white;
+}
+
+#current-time,
+#duration {
+  width: 3%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+#video-controls #hover-time {
+  position: absolute;
+  top: -13px;
+  transform: translate(-50%, -50%);
+  pointer-events: none;
+}
+
+#video-controls .hide-hover {
+  display: none;
 }
