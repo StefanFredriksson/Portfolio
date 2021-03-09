@@ -12,3 +12,32 @@
   height: 100%;
   width: 100%;
 }
+
+#selected-video-container #close-video {
+  position: absolute;
+  top: 10%;
+  left: 90%;
+  transform: translate(-50%, -50%) translateY(-200px);
+  background: rgba(0, 0, 0, 0.2);
+  width: 0;
+  height: 0;
+  border-radius: 50%;
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 25px;
+  transition: 0.5s;
+  z-index: 1000;
+}
+
+#selected-video-container:hover #close-video {
+  width: 70px;
+  height: 70px;
+  transform: translate(-50%, -50%) translateY(0);
+}
+
+#selected-video-container #close-video:hover {
+  background: rgba(0, 0, 0, 0.4);
+  cursor: pointer;
+}

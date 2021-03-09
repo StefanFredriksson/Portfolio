@@ -27,7 +27,15 @@ export default function Project (props) {
         imgPath={imgPath}
         folder={folder}
       />
-      {selectedVideo.state ? <SelectedVideo src={selectedVideo.src} /> : ''}
+      {selectedVideo.state ? (
+        <SelectedVideo
+          src={selectedVideo.src}
+          selected={selectedVideo}
+          setSelected={setSelectedVideo}
+        />
+      ) : (
+        ''
+      )}
       <div
         id='inner-project-container'
         className={`${selectedVideo.state ? 'blur' : ''}`}
