@@ -2,10 +2,15 @@
   position: absolute;
   top: 50%;
   left: 50%;
-  transform: translate(-50%, -50%);
-  width: 90%;
-  height: 90%;
+  transform: translate(-50%, -50%) translateY(1000px);
+  width: 0;
+  height: 0;
   z-index: 200;
+  transition: 0.5s;
+}
+
+#selected-video-container:hover {
+  cursor: none;
 }
 
 #selected-video-container video {
@@ -40,4 +45,18 @@
 #selected-video-container #close-video:hover {
   background: rgba(0, 0, 0, 0.4);
   cursor: pointer;
+}
+
+#cursor {
+  font-family: 'FontAwesome';
+  font-size: 30px;
+  position: absolute;
+  transform: translate(-50%, -50%);
+  height: 80px;
+  width: 80px;
+  border-radius: 50%;
+  background: rgb(28, 29, 28);
+  align-items: center;
+  justify-content: center;
+  display: none;
 }

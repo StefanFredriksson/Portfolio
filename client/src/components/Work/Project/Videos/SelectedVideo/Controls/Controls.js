@@ -44,6 +44,7 @@ export default function Controls () {
   }
 
   const barClick = event => {
+    event.stopPropagation()
     const val = getBarVal(event)
     const v = document.querySelector('video')
     const targetTime = v.duration * val
@@ -57,7 +58,15 @@ export default function Controls () {
   }
 
   return (
-    <div id='video-controls'>
+    <div
+      id='video-controls'
+      onMouseEnter={event =>
+        (document.querySelector('#cursor').style.display = 'none')
+      }
+      onMouseLeave={event =>
+        (document.querySelector('#cursor').style.display = 'flex')
+      }
+    >
       <span id='current-time'>{video.current}</span>
       <span
         id='time-bar'
