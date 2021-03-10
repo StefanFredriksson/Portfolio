@@ -16,7 +16,7 @@ export default function Project (props) {
     div: null
   })
   const [selectedVideo, setSelectedVideo] = useState({ state: false, src: '' })
-  const [showImages, setShowImages] = useState(false)
+  const [showImages, setShowImages] = useState(true)
 
   return (
     <div id='main-project-container'>
@@ -62,6 +62,7 @@ export default function Project (props) {
 
         <Navigation
           setShowProject={props.setShowProject}
+          showImages={showImages}
           setShowImages={setShowImages}
         />
       </div>

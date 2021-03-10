@@ -13,6 +13,7 @@
   transform: translateY(200px);
   cursor: auto;
   transition: 0.5s;
+  overflow: visible;
 }
 
 #selected-video-container:hover #video-controls {
@@ -73,6 +74,7 @@
   border-radius: 5px;
   background: rgb(28, 29, 28);
   overflow: visible;
+  box-shadow: 0 0 8px black;
 }
 
 #video-controls #hover-time:before {

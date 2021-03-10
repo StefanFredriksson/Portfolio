@@ -17,3 +17,7 @@
 #main-project-container #project-navigation-container #videos {
   margin-left: 20px;
 }
+
+#main-project-container #project-navigation-container .active {
+  color: cyan;
+}
