@@ -79,6 +79,7 @@ export default function SelectedVideo (props) {
           (document.querySelector('#cursor').style.display = 'flex')
         }
         onClick={event => {
+          event.stopPropagation()
           const v = document.querySelector('#selected-video-container')
           v.style.width = ''
           v.style.height = ''

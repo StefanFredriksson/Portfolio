@@ -69,7 +69,7 @@ export default function SelectedImage (props) {
           )
         }}
       >
-        x
+        X
       </span>
       <img id='selected-image' src='#' alt='' />
     </div>

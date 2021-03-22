@@ -1,7 +1,7 @@
 #main-project-container #project-media-container {
   width: 90%;
   height: 80%;
-  background: rgba(255, 255, 255, 0.05);
+  background: rgba(0, 0, 0, 0.2);
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   grid-template-rows: repeat(3, 1fr);
@@ -55,7 +55,7 @@
   height: 0;
   width: 0;
   border-radius: 50%;
-  background: rgb(86, 86, 240);
+  background: rgb(28, 29, 28);
   display: flex;
   align-items: center;
   justify-content: center;
