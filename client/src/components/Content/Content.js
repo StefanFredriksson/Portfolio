@@ -7,6 +7,7 @@ import About from '../About/About'
 import Skills from '../Skills/Skills'
 import Work from '../Work/Work'
 import Contact from '../Contact/Contact'
+import Canvas from '../Canvas/Canvas'
 
 export default function Content () {
   return (
@@ -28,6 +29,7 @@ export default function Content () {
           <Homepage />
         </Route>
       </Switch>
+      <Canvas />
     </div>
   )
 }
