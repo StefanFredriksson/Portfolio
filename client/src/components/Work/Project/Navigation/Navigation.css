@@ -6,6 +6,10 @@
   justify-content: center;
 }
 
+#main-project-container #project-navigation-container > div {
+  z-index: 10;
+}
+
 #main-project-container #project-navigation-container > div:hover {
   cursor: pointer;
 }

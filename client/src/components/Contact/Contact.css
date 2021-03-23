@@ -9,6 +9,8 @@
   position: absolute;
   top: 30%;
   left: 50px;
+  background: rgb(28, 29, 28);
+  z-index: 10;
 }
 
 #main-contact-container #inner-contact-container #input-container {
@@ -152,6 +154,7 @@ textarea {
   overflow: visible;
   position: relative;
   display: flex;
+  z-index: 10;
 }
 
 #main-contact-container #inner-contact-container #submit-btn {

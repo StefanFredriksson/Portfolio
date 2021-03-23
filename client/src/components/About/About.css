@@ -4,7 +4,6 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  z-index: 5;
 }
 
 #about-container #cards-container {
@@ -26,6 +25,8 @@
   justify-content: center;
   padding: 20px;
   transition: 0.5s;
+  background: rgb(28, 29, 28);
+  z-index: 10;
 }
 
 #about-container #cards-container .active-card {
