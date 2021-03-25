@@ -1,11 +1,12 @@
 import React, { useEffect } from 'react'
 import './Canvas.css'
-import { init, animate } from './CanvasLogic'
+//import { init } from './CanvasLogic'
+//import { init } from './MouseTrail'
+import { initOscillator } from './Oscillator'
 
 export default function Canvas () {
   useEffect(() => {
-    init()
-    animate()
+    initOscillator(false)
   }, [])
 
   return (
