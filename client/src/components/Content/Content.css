@@ -1,7 +1,7 @@
 #main-content-container {
   width: 1860px;
   height: 100vh;
-  background: rgb(28, 29, 28);
+  background: #1d1d1d;
   color: white;
   position: relative;
 }

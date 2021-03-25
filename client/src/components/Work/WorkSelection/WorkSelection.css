@@ -13,6 +13,7 @@
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   grid-template-rows: repeat(3, 1fr);
+  z-index: 10;
 }
 
 #inner-work-container > div {

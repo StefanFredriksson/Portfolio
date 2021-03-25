@@ -27,6 +27,7 @@
   height: 300px;
   overflow: visible;
   transition: 0.1s;
+  z-index: 10;
 }
 
 #main-skills-container .orb::after {

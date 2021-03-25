@@ -159,10 +159,8 @@ export const initOscillator = () => {
 
   const loop = () => {
     c.globalCompositeOperation = 'source-over'
-    c.fillStyle = '#1D1D1D'
-    c.fillRect(0, 0, canvas.width, canvas.height)
     c.globalCompositeOperation = 'lighter'
-    c.strokeStyle = 'hsla(346, 98%, 56%, 0.25)'
+    c.clearRect(0, 0, canvas.width, canvas.height)
     c.lineWidth = 1
     c.strokeStyle = color
 
