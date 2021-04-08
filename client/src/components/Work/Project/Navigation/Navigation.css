@@ -23,5 +23,5 @@
 }
 
 #main-project-container #project-navigation-container .active {
-  color: cyan;
+  color: var(--main-color, cyan);
 }

@@ -3,8 +3,10 @@
   height: 100%;
   display: flex;
   align-items: center;
+  justify-content: center;
   position: relative;
   overflow: hidden;
+  z-index: 10;
 }
 
 #homepage-container ::selection {
@@ -13,24 +15,44 @@
 }
 
 #homepage-container #welcome-container {
-  margin-left: 150px;
-  z-index: 1000;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  flex-direction: column;
+  z-index: 10;
 }
 
-#homepage-container #welcome-container h1 {
+#homepage-container #welcome-container #main-text {
   font-size: 80px;
+  overflow: visible;
+  width: 100%;
+  z-index: 20;
 }
 
-#homepage-container #welcome-container h1 span {
+#homepage-container #welcome-container #main-text > div {
+  overflow: visible;
+}
+
+#homepage-container #welcome-container div span {
   display: inline-block;
-  opacity: 0;
 }
 
-#homepage-container #welcome-container h1 #first-row span,
-#homepage-container #welcome-container h1 #second-row span,
-#homepage-container #welcome-container h1 #third-row span,
+#homepage-container #welcome-container #first-row span,
+#homepage-container #welcome-container #second-row span,
+#homepage-container #welcome-container #third-row span,
 #homepage-container #welcome-container #fourth-row {
-  transition: 0.5s;
+  transition: 2s;
+}
+
+#homepage-container #welcome-container .left {
+  transform: translateX(-1500px);
+}
+
+#homepage-container #welcome-container .enter-left {
+  transform: translateX(0);
 }
 
 #homepage-container #welcome-container:hover {

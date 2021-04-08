@@ -1,0 +1,120 @@
+.st0 {
+  fill: #ecb989;
+}
+.st1 {
+  fill: #1a8468;
+}
+.st2 {
+  fill: #c8ddf2;
+}
+.st3 {
+  fill: #dadbc8;
+}
+.st4 {
+  fill: #523527;
+}
+.st5 {
+  fill: #3d2926;
+}
+.st6 {
+  fill: #3a312f;
+}
+.st7 {
+  fill: #ffffff;
+}
+.st8 {
+  fill: #f15b5c;
+}
+
+#avatar-container {
+  width: 100px;
+  height: 150px;
+  position: absolute;
+  top: 10%;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 10;
+}
+
+#avatar-container #left-arm {
+  transform-origin: bottom left;
+  transform-box: fill-box;
+}
+
+#avatar-container:hover #left-arm {
+  animation: wave 1.5s ease-in-out infinite;
+}
+
+#avatar-container #eye1_1_ {
+  animation: right-eye-blink 10s linear infinite;
+}
+
+#avatar-container #eye2_1_ {
+  animation: left-eye-blink 10s linear infinite;
+}
+
+@keyframes right-eye-blink {
+  0%,
+  20% {
+    d: path(
+      'M22.8,30.7c0.1-1-0.7-1.9-1.7-2c-1,0-1.9,0.9-1.8,1.9c0.1,0.9,0.9,1.6,1.8,1.6,C22,32.2,22.7,31.6,22.8,30.7z'
+    );
+  }
+
+  21%,
+  22% {
+    d: path('M19.4,30.3c0,0-0.1,0.1,0,0.4l3.4,0c0,0,0.1-0.2,0-0.4L19.4,30.3z');
+  }
+
+  23%,
+  98% {
+    d: path(
+      'M22.8,30.7c0.1-1-0.7-1.9-1.7-2c-1,0-1.9,0.9-1.8,1.9c0.1,0.9,0.9,1.6,1.8,1.6,C22,32.2,22.7,31.6,22.8,30.7z'
+    );
+  }
+
+  99%,
+  100% {
+    d: path('M19.4,30.3c0,0-0.1,0.1,0,0.4l3.4,0c0,0,0.1-0.2,0-0.4L19.4,30.3z');
+  }
+}
+
+@keyframes left-eye-blink {
+  0%,
+  20% {
+    d: path(
+      'M39.2,30.7c0.1-1-0.7-1.9-1.7-2c-1,0-1.9,0.9-1.8,1.9c0.1,0.9,0.9,1.6,1.8,1.6,C38.4,32.2,39.1,31.6,39.2,30.7z'
+    );
+  }
+
+  21%,
+  22% {
+    d: path('M35.8,30.3c0,0-0.1,0.1,0,0.4l3.4,0c0,0,0.1-0.2,0-0.4L35.8,30.3z');
+  }
+
+  23%,
+  98% {
+    d: path(
+      'M39.2,30.7c0.1-1-0.7-1.9-1.7-2c-1,0-1.9,0.9-1.8,1.9c0.1,0.9,0.9,1.6,1.8,1.6,C38.4,32.2,39.1,31.6,39.2,30.7z'
+    );
+  }
+
+  99%,
+  100% {
+    d: path('M35.8,30.3c0,0-0.1,0.1,0,0.4l3.4,0c0,0,0.1-0.2,0-0.4L35.8,30.3z');
+  }
+}
+
+@keyframes wave {
+  0% {
+    transform: rotateZ(0deg);
+  }
+
+  50% {
+    transform: rotateZ(25deg);
+  }
+
+  100% {
+    transform: rotateZ(0deg);
+  }
+}

@@ -1,4 +1,4 @@
-export const initOscillator = () => {
+export const initOscillator = color => {
   let tendrils = []
   const hue = new Oscillator({
     phase: Math.random() * (Math.PI * 2),
@@ -149,13 +149,6 @@ export const initOscillator = () => {
       )
     }
   }
-
-  const randomIntFromInterval = (min, max) => {
-    return Math.floor(Math.random() * (max - min + 1) + min)
-  }
-
-  const colors = ['hsla(346,98%,56%,0.25)', 'hsla(171,98%,56%,0.25)']
-  const color = colors[randomIntFromInterval(0, colors.length - 1)]
 
   const loop = () => {
     c.globalCompositeOperation = 'source-over'

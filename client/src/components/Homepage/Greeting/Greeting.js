@@ -2,7 +2,13 @@ import React, { useEffect } from 'react'
 
 export default function Greeting () {
   useEffect(async () => {
-    const spans = document.querySelectorAll('.bounce')
+    const spans = document.querySelectorAll('.left')
+
+    for (const span of spans) {
+      span.classList.remove('left')
+      span.classList.add('enter-left')
+    }
+    /*const spans = document.querySelectorAll('.bounce')
     for (const span of spans) {
       span.addEventListener('animationend', e => {
         span.classList.remove('animated')
@@ -16,7 +22,7 @@ export default function Greeting () {
         span.classList.add('animated')
       })
       span.style.transition = '0s'
-    }
+    }*/
   }, [])
 
   const textEntrance = () => {
@@ -56,14 +62,14 @@ export default function Greeting () {
 
   return (
     <div id='welcome-container'>
-      <h1>
+      <div id='main-text'>
         <div id='first-row'>
-          <span className='bounce'>H</span>
-          <span className='bounce'>e</span>
-          <span className='bounce'>l</span>
-          <span className='bounce'>l</span>
-          <span className='bounce'>o</span>
-          <span className='bounce'>,</span>
+          <span className='left'>H</span>
+          <span className='left'>e</span>
+          <span className='left'>l</span>
+          <span className='left'>l</span>
+          <span className='left'>o</span>
+          <span className='left'>,</span>
         </div>
         <div id='second-row'>
           <span className='bounce'>I</span>
@@ -104,7 +110,7 @@ export default function Greeting () {
           <span className='bounce'>o</span>
           <span className='bounce'>.</span>
         </div>
-      </h1>
+      </div>
       <div id='fourth-row'>
         <h2>Web developer</h2>
       </div>

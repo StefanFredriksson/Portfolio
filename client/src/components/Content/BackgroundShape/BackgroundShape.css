@@ -1,0 +1,22 @@
+.background-st0 {
+  filter: url(#AI_Shadow_1);
+}
+.background-st1 {
+  fill: #9eaa39;
+}
+.background-st2 {
+  fill: none;
+  stroke: #000000;
+  stroke-miterlimit: 10;
+}
+.background-st3 {
+  fill: #00a6bf;
+}
+
+#background-shape {
+  position: absolute;
+  top: 0;
+  left: 0;
+  display: flex;
+  width: 100vw;
+}

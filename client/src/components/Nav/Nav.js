@@ -1,4 +1,5 @@
-import React from 'react'
+import React, { useContext } from 'react'
+import { StateContext } from '../../Store'
 import './Nav.css'
 import { withRouter, Link } from 'react-router-dom'
 import { endpoints } from '../../Data'
@@ -9,9 +10,10 @@ import WorkIcon from '../Icons/Work/Work'
 import ContactIcon from '../Icons/Contact/Contact'
 
 function Nav (props) {
+  const [state] = useContext(StateContext)
   const styling = {
     stroke: 'grey',
-    active: 'cyan',
+    active: state.color,
     sWidth: '2'
   }
 
