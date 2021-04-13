@@ -8,7 +8,7 @@ import Skills from '../Skills/Skills'
 import Work from '../Work/Work'
 import Contact from '../Contact/Contact'
 import Canvas from '../Canvas/Canvas'
-import BackgroundShape from './BackgroundShape/BackgroundShape'
+//import BackgroundShape from './BackgroundShape/BackgroundShape'
 
 export default function Content () {
   useEffect(() => {
@@ -34,7 +34,7 @@ export default function Content () {
           <Homepage />
         </Route>
       </Switch>
-      <BackgroundShape />
+
       <Canvas />
     </div>
   )
