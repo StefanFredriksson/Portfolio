@@ -38,52 +38,66 @@ export const initBackground = () => {
     }
   }
 
-  function Particle (x, y, radius, color) {
+  function Particle (x, y, radius, color, xDist, yDist) {
     this.radius = radius
     this.x = x
     this.y = y
     this.shift = { x: 0, y: 0 }
-    this.radians = Math.random() * Math.PI * 2
-    this.motion = false
     this.color = color
+    this.motion = false
+    this.xDist = xDist
+    this.yDist = yDist
 
-    this.update = (x, y, color) => {
-      this.x = x
-      this.y = y
+    this.update = (startPoint, endPoint, color) => {
+      this.x = startPoint.x
+      this.y = startPoint.y
       this.color = color
 
-      this.draw()
+      this.draw(endPoint)
     }
 
-    this.draw = () => {
+    this.draw = endPoint => {
       c.beginPath()
-      c.arc(this.x, this.y, this.radius, 0, 2 * Math.PI, false)
-      c.fillStyle = this.color
-      c.fill()
-      c.closePath()
+      c.lineWidth = this.radius
+      c.strokeStyle = this.color
+      c.moveTo(this.x, this.y)
+      c.lineTo(endPoint.x, endPoint.y)
+      c.stroke()
     }
   }
 
   function Square (length) {
     this.length = length
     this.particles = []
+    this.particleCount = 0
     this.x = mouse.x
     this.y = mouse.y
-    this.radius = 2
+    this.radius = 1
     this.void = 0
-    this.velocity = 0.05
-    this.lastMouse = { x: mouse.x, y: mouse.y }
+    this.maxVoid = 50
 
     this.init = () => {
       const l = this.length / 2
+      const xPos = 500
+      const yPos = 500
 
-      for (let x = this.x - l; x < this.x + l; x += this.radius) {
-        const temp = []
-        for (let y = this.y - l; y < this.y + l; y += this.radius) {
-          temp.push(new Particle(x, y, this.radius, 'blue'))
+      for (let i = 0; i < this.length; i++) {
+        const tempArr = []
+
+        for (let j = 0; j < this.length; j++) {
+          const xDist = i - l
+          const yDist = j - l
+          const dist = Math.sqrt(Math.pow(xDist, 2) + Math.pow(yDist, 2))
+
+          if (dist <= l) {
+            tempArr.push(
+              new Particle(xPos + i, yPos + j, this.radius, 'yellow', j, i)
+            )
+          }
         }
-        this.particles.push(temp)
+        this.particles.push(tempArr)
       }
+      console.log(this.particles.length)
     }
 
     this.update = () => {
@@ -99,45 +113,68 @@ export const initBackground = () => {
       )
       this.draw()
 
-      this.void += this.void >= 50 ? 0 : 1
-      const xDir = this.x - lastPoint.x
-      const yDir = this.y - lastPoint.y
+      const pixelsInside = []
+      let tempPixels = []
+      let prevY = 0
+      const { data } = imageData
 
-      this.lastMouse.x += this.x - this.lastMouse.x + xDir * this.velocity
-      this.lastMouse.y += this.y - this.lastMouse.y + yDir * this.velocity
+      for (let i = 0; i < data.length; i += 4) {
+        const x = Math.floor((i / 4) % this.length)
+        const y = Math.floor(i / 4 / this.length)
+        if (y !== prevY) {
+          pixelsInside.push([...tempPixels])
+          prevY = y
+          tempPixels = []
+        }
+        const xDist = x - l
+        const yDist = y - l
+        const distance = Math.sqrt(Math.pow(xDist, 2) + Math.pow(yDist, 2))
+
+        if (distance <= l) {
+          tempPixels.push(getRgba(data, i))
+        }
+      }
+
+      pixelsInside.push(tempPixels)
+
+      this.void += this.void >= l ? 0 : 1
+      const middle = this.particles.length / 2
 
       for (let i = 0; i < this.particles.length; i++) {
+        const distance = i - middle
+        const diameter =
+          distance < 0
+            ? this.void * 2 + distance * -1
+            : this.void * 2 + distance
+        const radians = Math.PI / this.particles[i].length
+
         for (let j = 0; j < this.particles[i].length; j++) {
           const particle = this.particles[i][j]
 
-          const { red, green, blue, alpha } = getRgba(
-            i * this.radius,
-            j * this.radius,
-            this.length,
-            imageData.data
-          )
-          let x = mouse.x - l + i * this.radius + particle.shift.x
-          let y = mouse.y - l + j * this.radius + particle.shift.y
-          const xDist = mouse.x - x
-          const yDist = mouse.y - y
-          const distance = Math.sqrt(Math.pow(xDist, 2) + Math.pow(yDist, 2))
+          const x = this.x + particle.shift.x
+          const y = this.y + particle.shift.y
 
-          if (particle.motion || distance <= this.void) {
-            particle.motion = true
-            particle.radians += this.velocity
-            x =
-              this.lastMouse.x +
-              Math.cos(particle.radians) * this.void +
-              Math.random() * 10 -
-              5
-            y =
-              this.lastMouse.y +
-              Math.sin(particle.radians) * this.void +
-              Math.random() * 10 -
-              5
+          const color = pixelsInside[i][j]
+          let endPoint = { x: x + particle.radius, y }
+
+          if (distance < 0) {
+            particle.shift.y = (diameter / 2) * Math.sin(Math.PI + radians * j)
+            particle.shift.x = (diameter / 2) * Math.cos(Math.PI + radians * j)
+            endPoint.x =
+              this.x + (diameter / 2) * Math.cos(Math.PI + radians * (j + 1))
+            endPoint.y =
+              this.y + (diameter / 2) * Math.sin(Math.PI + radians * (j + 1))
+          } else if (distance > 0) {
+            const increment = this.particles[i].length - 1 - j
+            particle.shift.y = (diameter / 2) * Math.sin(radians * increment)
+            particle.shift.x = (diameter / 2) * Math.cos(radians * increment)
+            endPoint.x =
+              this.x + (diameter / 2) * Math.cos(radians * (increment - 1))
+            endPoint.y =
+              this.y + (diameter / 2) * Math.sin(radians * (increment - 1))
           }
 
-          particle.update(x, y, `rgb(${red}, ${green}, ${blue}, ${alpha})`)
+          particle.update({ x, y }, endPoint, color)
         }
       }
     }
@@ -146,21 +183,17 @@ export const initBackground = () => {
       const l = this.length / 2
 
       c.beginPath()
-      c.rect(this.x - l, this.y - l, this.length - 2, this.length - 2)
+      c.arc(this.x, this.y, l - 1, 0, 2 * Math.PI, false)
       c.fillStyle = '#1d1d1d'
       c.fill()
       c.closePath()
     }
   }
 
-  const getRgba = (x, y, width, data) => {
-    const red = y * (width * 4) + x * 4
-    return {
-      red: data[red],
-      green: data[red + 1],
-      blue: data[red + 2],
-      alpha: data[red + 3]
-    }
+  const getRgba = (data, index) => {
+    return `rgba(${data[index]}, ${data[index + 1]}, ${data[index + 2]}, ${
+      data[index + 3]
+    })`
   }
 
   const init = event => {
@@ -194,11 +227,16 @@ export const initBackground = () => {
 
   const animate = () => {
     c.clearRect(0, 0, canvas.width, canvas.height)
-    c.strokeStyle = 'blue'
 
     for (const part of parts) {
       part.update()
     }
+
+    c.beginPath()
+    c.rect(600, 800, 100, 50)
+    c.fillStyle = 'green'
+    c.fill()
+    c.closePath()
 
     square.update()
 
