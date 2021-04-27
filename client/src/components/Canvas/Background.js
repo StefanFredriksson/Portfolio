@@ -5,6 +5,7 @@ export const initBackground = () => {
   const parts = []
 
   const mouse = { x: 0, y: 0 }
+  const container = document.querySelector('#main-content-container')
   const {
     offsetHeight: innerHeight,
     offsetWidth: innerWidth
@@ -82,7 +83,7 @@ export const initBackground = () => {
     this.y = mouse.y
     this.radius = 1
     this.void = 0
-    this.maxVoid = 50
+    this.expand = true
 
     this.init = () => {
       const l = this.length / 2
@@ -143,7 +144,11 @@ export const initBackground = () => {
 
       pixelsInside.push(tempPixels)
 
-      this.void += this.void >= l ? 0 : 1
+      if (this.expand) this.void += this.void >= l ? 0 : 1
+      else {
+        if (this.void <= 0) square = null
+        else this.void -= 1
+      }
       const middle = this.particles.length / 2
 
       for (let i = 0; i < this.particles.length; i++) {
@@ -207,9 +212,9 @@ export const initBackground = () => {
   }
 
   const init = event => {
-    window.removeEventListener('mousemove', init)
-    window.addEventListener('mousemove', mousemove)
-
+    container.addEventListener('mousemove', mousemove)
+    container.addEventListener('mousedown', mousedown)
+    container.addEventListener('mouseup', mouseup)
     const points1 = [
       { x: 0, y: 0 },
       { x: 0, y: innerHeight },
@@ -222,17 +227,22 @@ export const initBackground = () => {
       { x: innerWidth, y: 0 }
     ]
     parts.push(new Part(points2, 'red'))
-    square = new Square(100)
-    square.init()
-    mousemove(event)
     animate()
   }
-
-  window.addEventListener('mousemove', init)
 
   const mousemove = event => {
     mouse.x = event.clientX - navWidth
     mouse.y = event.clientY
+  }
+
+  const mousedown = event => {
+    mousemove(event)
+    square = new Square(100)
+    square.init()
+  }
+
+  const mouseup = event => {
+    square.expand = false
   }
 
   const animate = () => {
@@ -248,8 +258,10 @@ export const initBackground = () => {
     c.fill()
     c.closePath()
 
-    square.update()
+    if (square) square.update()
 
     window.requestAnimationFrame(animate)
   }
+
+  init()
 }
