@@ -61,7 +61,15 @@ export const initBackground = () => {
       c.lineWidth = this.radius
       c.strokeStyle = this.color
       c.moveTo(this.x, this.y)
-      c.lineTo(endPoint.x, endPoint.y)
+      if (!endPoint.control) c.lineTo(endPoint.x, endPoint.y)
+      else {
+        c.quadraticCurveTo(
+          endPoint.control.x,
+          endPoint.control.y,
+          endPoint.x,
+          endPoint.y
+        )
+      }
       c.stroke()
     }
   }
@@ -97,11 +105,9 @@ export const initBackground = () => {
         }
         this.particles.push(tempArr)
       }
-      console.log(this.particles.length)
     }
 
     this.update = () => {
-      const lastPoint = { x: this.x, y: this.y }
       const l = this.length / 2
       this.x = mouse.x
       this.y = mouse.y
@@ -155,7 +161,7 @@ export const initBackground = () => {
           const y = this.y + particle.shift.y
 
           const color = pixelsInside[i][j]
-          let endPoint = { x: x + particle.radius, y }
+          let endPoint = { x: x + particle.radius, y, control: null }
 
           if (distance < 0) {
             particle.shift.y = (diameter / 2) * Math.sin(Math.PI + radians * j)
@@ -164,14 +170,20 @@ export const initBackground = () => {
               this.x + (diameter / 2) * Math.cos(Math.PI + radians * (j + 1))
             endPoint.y =
               this.y + (diameter / 2) * Math.sin(Math.PI + radians * (j + 1))
-          } else if (distance > 0) {
+          } else if (distance >= 0) {
             const increment = this.particles[i].length - 1 - j
             particle.shift.y = (diameter / 2) * Math.sin(radians * increment)
             particle.shift.x = (diameter / 2) * Math.cos(radians * increment)
             endPoint.x =
-              this.x + (diameter / 2) * Math.cos(radians * (increment - 1))
+              this.x + (diameter / 2) * Math.cos(radians * (increment + 1))
             endPoint.y =
-              this.y + (diameter / 2) * Math.sin(radians * (increment - 1))
+              this.y + (diameter / 2) * Math.sin(radians * (increment + 1))
+          }
+
+          if (this.particles[i].length === 1) {
+            const cx = endPoint.x - (endPoint.x - x) / 2
+            const cy = endPoint.y - diameter
+            endPoint.control = { x: cx, y: cy }
           }
 
           particle.update({ x, y }, endPoint, color)
@@ -180,10 +192,8 @@ export const initBackground = () => {
     }
 
     this.draw = () => {
-      const l = this.length / 2
-
       c.beginPath()
-      c.arc(this.x, this.y, l - 1, 0, 2 * Math.PI, false)
+      c.arc(this.x, this.y, this.void, 0, 2 * Math.PI, false)
       c.fillStyle = '#1d1d1d'
       c.fill()
       c.closePath()
