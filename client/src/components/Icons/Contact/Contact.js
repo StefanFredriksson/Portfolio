@@ -12,11 +12,13 @@ export default function Contact (props) {
           height='17'
           stroke={props.stroke}
           stroke-width={props.sWidth}
+          fill={props.fill}
         />
         <polyline
           points='1.5,6.5 12.5,15 23.5,6.5 '
           stroke={props.stroke}
           stroke-width={props.sWidth}
+          fill={props.fill}
         />
       </svg>
     </div>

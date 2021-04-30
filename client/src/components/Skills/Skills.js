@@ -27,12 +27,13 @@ export default function Skills () {
 
   return (
     <div id='main-skills-container'>
-      <span id='orb-1' className='orb' />
-      <span id='orb-2' className='orb' />
-      <span id='orb-3' className='orb' />
-      <span id='orb-4' className='orb' />
       <TextSkills />
       <VisualSkills />
     </div>
   )
 }
+
+/*<span id='orb-1' className='orb' />
+      <span id='orb-2' className='orb' />
+      <span id='orb-3' className='orb' />
+      <span id='orb-4' className='orb' /> */

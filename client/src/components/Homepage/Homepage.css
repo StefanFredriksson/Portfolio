@@ -12,6 +12,7 @@
 #homepage-container ::selection {
   color: none;
   background: none;
+  text-shadow: none;
 }
 
 #homepage-container #welcome-container {
@@ -26,7 +27,7 @@
 }
 
 #homepage-container #welcome-container #main-text {
-  font-size: 80px;
+  font-size: 100px;
   overflow: visible;
   width: 100%;
   z-index: 20;
@@ -115,4 +116,11 @@
   color: rgba(255, 255, 255, 0.3);
   margin-top: 20px;
   margin-left: 20px;
+}
+
+#homepage-container #welcome-container span {
+  color: var(--background-color);
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7),
+    -2px -2px 4px rgba(255, 255, 255, 0.1);
+  overflow: visible;
 }

@@ -1,8 +1,9 @@
+import { waving } from '../../Shapes/Person'
+
 export const initBackground = () => {
   const canvas = document.querySelector('canvas')
   const c = canvas.getContext('2d')
-  let square = null
-  const parts = []
+  let blackhole = null
 
   const mouse = { x: 0, y: 0 }
   const container = document.querySelector('#main-content-container')
@@ -16,28 +17,6 @@ export const initBackground = () => {
 
   canvas.width = innerWidth
   canvas.height = innerHeight
-
-  function Part (points, color) {
-    this.points = points
-    this.color = color
-
-    this.update = () => {
-      this.draw()
-    }
-
-    this.draw = () => {
-      c.beginPath()
-      const { x, y } = this.points[0]
-      c.moveTo(x, y)
-
-      for (let i = 1; i < this.points.length; i++) {
-        c.lineTo(points[i].x, points[i].y)
-      }
-      c.fillStyle = this.color
-      c.fill()
-      c.closePath()
-    }
-  }
 
   function Particle (x, y, radius, color, xDist, yDist) {
     this.radius = radius
@@ -64,6 +43,7 @@ export const initBackground = () => {
       c.moveTo(this.x, this.y)
       if (!endPoint.control) c.lineTo(endPoint.x, endPoint.y)
       else {
+        c.strokeStyle = 'rgba(0, 0, 0, 0)'
         c.quadraticCurveTo(
           endPoint.control.x,
           endPoint.control.y,
@@ -75,7 +55,7 @@ export const initBackground = () => {
     }
   }
 
-  function Square (length) {
+  function BlackHole (length) {
     this.length = length
     this.particles = []
     this.particleCount = 0
@@ -86,6 +66,8 @@ export const initBackground = () => {
     this.expand = true
 
     this.init = () => {
+      if (this.particles.length > 0) return
+      this.particles = []
       const l = this.length / 2
       const xPos = 500
       const yPos = 500
@@ -146,7 +128,7 @@ export const initBackground = () => {
 
       if (this.expand) this.void += this.void >= l ? 0 : 1
       else {
-        if (this.void <= 0) square = null
+        if (this.void <= 0) this.particles = []
         else this.void -= 1
       }
       const middle = this.particles.length / 2
@@ -205,28 +187,62 @@ export const initBackground = () => {
     }
   }
 
+  function Person (data, x, y) {
+    this.data = data
+    this.x = x
+    this.y = y
+
+    this.update = () => {
+      const keys = Object.keys(this.data)
+
+      for (const key of keys) {
+        this.draw(this.data[key].path, this.data[key].color)
+      }
+    }
+
+    this.draw = (path, color) => {
+      c.save()
+      c.setTransform(1, 0, 0, 1, this.x, this.y)
+      c.beginPath()
+      c.fillStyle = color
+      c.fill(path)
+      c.restore()
+    }
+  }
+
   const getRgba = (data, index) => {
     return `rgba(${data[index]}, ${data[index + 1]}, ${data[index + 2]}, ${
       data[index + 3]
     })`
   }
 
+  let person = null
+  let mainGradient = null
+  let containers = []
+
   const init = event => {
     container.addEventListener('mousemove', mousemove)
     container.addEventListener('mousedown', mousedown)
     container.addEventListener('mouseup', mouseup)
-    const points1 = [
-      { x: 0, y: 0 },
-      { x: 0, y: innerHeight },
-      { x: innerWidth, y: 0 }
+    containers = [
+      { element: document.querySelector('#homepage-container'), active: true },
+      { element: document.querySelector('#about-container'), active: false },
+      {
+        element: document.querySelector('#main-skills-container'),
+        active: false
+      }
     ]
-    parts.push(new Part(points1, 'blue'))
-    const points2 = [
-      { x: 0, y: innerHeight },
-      { x: innerWidth, y: innerHeight },
-      { x: innerWidth, y: 0 }
-    ]
-    parts.push(new Part(points2, 'red'))
+
+    for (let i = 0; i < containers.length; i++) {
+      const c = containers[i]
+      c.element.style.transition = '1s'
+    }
+
+    mainGradient = c.createLinearGradient(0, 0, 0, 500)
+    mainGradient.addColorStop(0, 'rgb(114, 123, 199)')
+    mainGradient.addColorStop(1, 'rgb(88, 94, 151)')
+    person = new Person(waving, 500, 100)
+
     animate()
   }
 
@@ -237,28 +253,21 @@ export const initBackground = () => {
 
   const mousedown = event => {
     mousemove(event)
-    square = new Square(100)
-    square.init()
+    if (!blackhole) blackhole = new BlackHole(100)
+    blackhole.expand = true
+    blackhole.init()
   }
 
   const mouseup = event => {
-    square.expand = false
+    blackhole.expand = false
   }
 
   const animate = () => {
     c.clearRect(0, 0, canvas.width, canvas.height)
 
-    for (const part of parts) {
-      part.update()
-    }
+    person.update()
 
-    c.beginPath()
-    c.rect(600, 800, 100, 50)
-    c.fillStyle = 'green'
-    c.fill()
-    c.closePath()
-
-    if (square) square.update()
+    if (blackhole) blackhole.update()
 
     window.requestAnimationFrame(animate)
   }

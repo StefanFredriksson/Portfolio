@@ -15,6 +15,7 @@ export default function Skills (props) {
   c0,0-3.7-1.8-3.6-1.8c0.5-0.9,0.9-1.9,1.1-2.9c0-0.1,3.1,0.5,3.1,0.5C23.8,16.3,23.9,12.9,23.8,12.3z'
           stroke={props.stroke}
           stroke-width={props.sWidth}
+          fill={props.fill}
         />
         <circle
           cx='12.5'
@@ -22,6 +23,7 @@ export default function Skills (props) {
           r='2.5'
           stroke={props.stroke}
           stroke-width={props.sWidth}
+          fill={props.fill}
         />
       </svg>
     </div>

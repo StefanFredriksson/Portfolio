@@ -1,9 +1,12 @@
 #main-content-container {
   width: 1860px;
   height: 100vh;
-  background: #1d1d1d;
+  background: var(--background-color);
   color: white;
-  position: relative;
+  position: absolute;
+  top: 0;
+  left: 60px;
+  overflow-y: hidden;
 }
 
 .home-icon {

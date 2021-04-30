@@ -18,6 +18,7 @@ function App () {
           --main-color: ${state.color};
         }`}
         </style>
+
         <Nav />
         <Content />
       </div>

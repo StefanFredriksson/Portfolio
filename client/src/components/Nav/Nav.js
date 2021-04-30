@@ -14,7 +14,8 @@ function Nav (props) {
   const styling = {
     stroke: 'grey',
     active: state.color,
-    sWidth: '2'
+    sWidth: '2',
+    fill: 'rgb(88, 94, 151)'
   }
 
   const path = window.location.pathname.replace('/', '')
@@ -32,18 +33,21 @@ function Nav (props) {
           <AboutIcon
             stroke={path === endpoints.about ? styling.active : styling.stroke}
             sWidth={styling.sWidth}
+            fill={styling.fill}
           />
         </Link>
         <Link to={`/${endpoints.skills}`}>
           <SkillsIcon
             stroke={path === endpoints.skills ? styling.active : styling.stroke}
             sWidth={styling.sWidth}
+            fill={styling.fill}
           />
         </Link>
         <Link to={`/${endpoints.work}`}>
           <WorkIcon
             stroke={path === endpoints.work ? styling.active : styling.stroke}
             sWidth={styling.sWidth}
+            fill={styling.fill}
           />
         </Link>
         <Link to={`/${endpoints.contact}`}>
@@ -52,6 +56,7 @@ function Nav (props) {
               path === endpoints.contact ? styling.active : styling.stroke
             }
             sWidth={styling.sWidth}
+            fill={styling.fill}
           />
         </Link>
       </div>

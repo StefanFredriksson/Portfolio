@@ -4,6 +4,7 @@
   display: flex;
   align-items: center;
   margin-bottom: 20px;
+  overflow: hidden;
 }
 
 .skill-indicator-container .skill-icons-container .skill-icon {

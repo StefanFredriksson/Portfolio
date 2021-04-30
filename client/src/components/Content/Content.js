@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import React from 'react'
 import './Content.css'
 import { Switch, Route } from 'react-router-dom'
 import { endpoints } from '../../Data'
@@ -8,15 +8,12 @@ import Skills from '../Skills/Skills'
 import Work from '../Work/Work'
 import Contact from '../Contact/Contact'
 import Canvas from '../Canvas/Canvas'
-//import BackgroundShape from './BackgroundShape/BackgroundShape'
+import Scroll from '../Scroll/Scroll'
 
 export default function Content () {
-  useEffect(() => {
-    const container = document.querySelector('#main-content-container')
-    console.log(container.offsetWidth, container.offsetHeight)
-  })
   return (
     <div id='main-content-container'>
+      <Canvas />
       <Switch>
         <Route path={`/${endpoints.about}`}>
           <About />
@@ -31,11 +28,9 @@ export default function Content () {
           <Contact />
         </Route>
         <Route path={`/${endpoints.home}`}>
-          <Homepage />
+          <Scroll />
         </Route>
       </Switch>
-
-      <Canvas />
     </div>
   )
 }

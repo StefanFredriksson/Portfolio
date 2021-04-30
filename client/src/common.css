@@ -1,3 +1,7 @@
+:root {
+  --background-color: rgb(88, 94, 151);
+}
+
 .magenta-color {
   color: rgb(248, 47, 114);
 }
