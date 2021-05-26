@@ -1,9 +1,8 @@
 import React from 'react'
-import './Contact.css'
 
 export default function Contact (props) {
   return (
-    <div className='contact-icon'>
+    <div className={`${props.path} nav-icon`}>
       <svg>
         <rect
           x='1.5'

@@ -1,9 +1,8 @@
 import React from 'react'
-import './About.css'
 
 export default function About (props) {
   return (
-    <div className='about-icon'>
+    <div className={`${props.path} nav-icon`}>
       <svg>
         <circle
           cx='12.5'

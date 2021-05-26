@@ -1,9 +1,8 @@
 import React from 'react'
-import './Skills.css'
 
 export default function Skills (props) {
   return (
-    <div className='skills-icon'>
+    <div className={`${props.path} nav-icon`}>
       <svg>
         <path
           d='M23.8,12.3c0-0.1-3.2,1-3.2,0.9c-0.2-0.9-0.6-2.2-1-2.9c0,0,3.2-1.6,3.1-1.7

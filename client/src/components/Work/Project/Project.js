@@ -8,7 +8,7 @@ import Videos from './Videos/Videos'
 import SelectedVideo from './Videos/SelectedVideo/SelectedVideo'
 
 export default function Project (props) {
-  const { folder, images, videos, title } = props.project
+  const { folder, images, videos, title, description } = props.project
   const [selectedImage, setSelectedImage] = useState({
     state: false,
     width: 0,
@@ -40,25 +40,28 @@ export default function Project (props) {
         id='inner-project-container'
         className={`${selectedVideo.state ? 'blur' : ''}`}
       >
-        <div id='project-title'>
+        <div id='project-description'>
           <h1>{title}</h1>
+          <h3>{description}</h3>
         </div>
-        {showImages ? (
-          <Images
-            images={images}
-            selected={selectedImage}
-            setSelected={setSelectedImage}
-            folder={folder}
-            imgPath={imgPath}
-          />
-        ) : (
-          <Videos
-            videos={videos}
-            folder={folder}
-            selected={selectedVideo}
-            setSelected={setSelectedVideo}
-          />
-        )}
+        <div id='project-media-container'>
+          {showImages ? (
+            <Images
+              images={images}
+              selected={selectedImage}
+              setSelected={setSelectedImage}
+              folder={folder}
+              imgPath={imgPath}
+            />
+          ) : (
+            <Videos
+              videos={videos}
+              folder={folder}
+              selected={selectedVideo}
+              setSelected={setSelectedVideo}
+            />
+          )}
+        </div>
 
         <Navigation
           setShowProject={props.setShowProject}

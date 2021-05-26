@@ -11,5 +11,10 @@ const ix = randomIntFromInterval(0, 1)
 
 export const globalState = {
   color: colors[ix].color,
-  trail: colors[ix].trail
+  trail: colors[ix].trail,
+  path: '',
+  imageNav: {
+    offset: 0,
+    ix: 0
+  }
 }

@@ -1,4 +1,4 @@
-import React, { useContext } from 'react'
+import React, { useContext, useEffect } from 'react'
 import { StateContext } from '../../Store'
 import './Nav.css'
 import { withRouter, Link } from 'react-router-dom'
@@ -10,7 +10,7 @@ import WorkIcon from '../Icons/Work/Work'
 import ContactIcon from '../Icons/Contact/Contact'
 
 function Nav (props) {
-  const [state] = useContext(StateContext)
+  const [state, setState] = useContext(StateContext)
   const styling = {
     stroke: 'grey',
     active: state.color,
@@ -18,45 +18,68 @@ function Nav (props) {
     fill: 'rgb(88, 94, 151)'
   }
 
-  const path = window.location.pathname.replace('/', '')
+  useEffect(() => {
+    const container = document.querySelector('#info-container')
+    container.addEventListener('click', event => {
+      if (!event.target.classList.contains('nav-icon')) return
+      const path = event.target.classList[0]
+      state.path = path === 'home' ? '' : path
+      setState({ ...state })
+    })
+    state.path = window.location.pathname.replace('/', '')
+    setState({ ...state })
+  }, [])
 
   return (
     <div id='navigation-container'>
       <div id='info-container'>
         <Link to={`/${endpoints.home}`}>
           <HomeIcon
-            stroke={path === endpoints.home ? styling.active : styling.stroke}
+            stroke={
+              state.path === endpoints.home ? styling.active : styling.stroke
+            }
             sWidth={styling.sWidth}
+            path={'home'}
           />
         </Link>
         <Link to={`/${endpoints.about}`}>
           <AboutIcon
-            stroke={path === endpoints.about ? styling.active : styling.stroke}
+            stroke={
+              state.path === endpoints.about ? styling.active : styling.stroke
+            }
             sWidth={styling.sWidth}
             fill={styling.fill}
+            path={endpoints.about}
           />
         </Link>
         <Link to={`/${endpoints.skills}`}>
           <SkillsIcon
-            stroke={path === endpoints.skills ? styling.active : styling.stroke}
+            stroke={
+              state.path === endpoints.skills ? styling.active : styling.stroke
+            }
             sWidth={styling.sWidth}
             fill={styling.fill}
+            path={endpoints.skills}
           />
         </Link>
         <Link to={`/${endpoints.work}`}>
           <WorkIcon
-            stroke={path === endpoints.work ? styling.active : styling.stroke}
+            stroke={
+              state.path === endpoints.work ? styling.active : styling.stroke
+            }
             sWidth={styling.sWidth}
             fill={styling.fill}
+            path={endpoints.work}
           />
         </Link>
         <Link to={`/${endpoints.contact}`}>
           <ContactIcon
             stroke={
-              path === endpoints.contact ? styling.active : styling.stroke
+              state.path === endpoints.contact ? styling.active : styling.stroke
             }
             sWidth={styling.sWidth}
             fill={styling.fill}
+            path={endpoints.contact}
           />
         </Link>
       </div>

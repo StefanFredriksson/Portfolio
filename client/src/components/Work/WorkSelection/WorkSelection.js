@@ -1,26 +1,15 @@
 import React from 'react'
 import './WorkSelection.css'
-import { workImgPath as imgPath } from '../../../Data'
+import { workText } from './workText'
+import { tsp } from './ProjectData/TSP'
+import { gol } from './ProjectData/3DGoL'
+import { fiveInARow } from './ProjectData/FiveInARow'
 
 export default function WorkSelection (props) {
-  const data = [
-    {
-      thumbnail: `${imgPath}project1/thumbnail.jpg`,
-      folder: 'project1/',
-      images: ['1.jpg', '2.jpg'],
-      videos: [],
-      title: 'Sudoku'
-    },
-    {
-      thumbnail: `${imgPath}project2/thumbnail.jpg`,
-      folder: 'project2/',
-      images: ['1.jpg', '2.jpg'],
-      videos: [{ thumbnail: '1.jpg', src: '1.mp4' }],
-      title: 'Analysis'
-    }
-  ]
+  const data = [tsp, gol, fiveInARow]
   return (
     <div id='outer-work-container'>
+      <div id='text-work-container'>{workText}</div>
       <div id='inner-work-container'>
         {data.map(d => {
           return (

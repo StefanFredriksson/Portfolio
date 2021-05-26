@@ -55,3 +55,70 @@ export const minimizeImage = (target, selected, setSelected) => {
   selected.state = false
   setSelected({ ...selected })
 }
+
+export const nextImages = (navOffset, images) => {
+  const container = document.querySelector('#project-image-container')
+  const imageContainers = container.querySelectorAll('.small-image-container')
+  if (
+    atEnd(
+      container.offsetWidth,
+      imageContainers[0].offsetWidth,
+      images,
+      navOffset
+    )
+  ) {
+    return navOffset
+  }
+
+  for (const img of imageContainers) {
+    img.style.transform = `translateX(${navOffset - container.offsetWidth}px)`
+  }
+
+  return navOffset - container.offsetWidth
+}
+
+const atEnd = (width, imgWidth, images, navOffset) => {
+  const length = images.length
+  if (length === 0 || !length) return true
+
+  const fullWidth = imgWidth * length
+  return navOffset * -1 >= fullWidth - width
+}
+
+export const prevImages = navOffset => {
+  const container = document.querySelector('#project-image-container')
+  const imageContainers = container.querySelectorAll('.small-image-container')
+  if (navOffset >= 0) return
+
+  for (const img of imageContainers) {
+    img.style.transform = `translateX(${navOffset + container.offsetWidth}px)`
+  }
+
+  return navOffset + container.offsetWidth
+}
+
+export const moveToEnd = images => {
+  const container = document.querySelector('#project-image-container')
+  const imageContainers = container.querySelectorAll('.small-image-container')
+  if (imageContainers.length === 0) return
+  const width =
+    (imageContainers[0].offsetWidth * imageContainers.length -
+      container.offsetWidth) *
+    -1
+  for (const img of imageContainers) {
+    img.style.transform = `translateX(${width}px)`
+  }
+
+  return width
+}
+
+export const moveToStart = () => {
+  const container = document.querySelector('#project-image-container')
+  const imageContainers = container.querySelectorAll('.small-image-container')
+
+  for (const img of imageContainers) {
+    img.style.transform = `translateX(${0}px)`
+  }
+
+  return 0
+}

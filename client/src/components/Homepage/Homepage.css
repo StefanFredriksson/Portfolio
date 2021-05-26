@@ -7,6 +7,11 @@
   position: relative;
   overflow: hidden;
   z-index: 10;
+  background: radial-gradient(
+    circle at 50%,
+    var(--background-color) 60%,
+    var(--background-gradient)
+  );
 }
 
 #homepage-container ::selection {
@@ -120,6 +125,7 @@
 
 #homepage-container #welcome-container span {
   color: var(--background-color);
+  mix-blend-mode: difference;
   text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7),
     -2px -2px 4px rgba(255, 255, 255, 0.1);
   overflow: visible;

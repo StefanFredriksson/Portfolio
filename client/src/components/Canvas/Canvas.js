@@ -3,8 +3,8 @@ import { StateContext } from '../../Store'
 import './Canvas.css'
 //import { init } from './CanvasLogic'
 //import { init } from './MouseTrail'
-//import { initOscillator as init } from './Oscillator'
-import { initBackground as init } from './Background'
+import { initOscillator as init } from './Oscillator'
+//import { initBackground as init } from './Background'
 
 export default function Canvas () {
   const [state] = useContext(StateContext)

@@ -1,15 +1,24 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import './SelectedImage.css'
-import { enlargeImage, minimizeImage } from '../imageLogic'
+import {
+  enlargeImage,
+  minimizeImage,
+  nextImages,
+  prevImages,
+  moveToEnd,
+  moveToStart
+} from '../imageLogic'
+import { StateContext } from '../../../../../Store'
 
 export default function SelectedImage (props) {
   const { images, selected, setSelected, folder, imgPath } = props
+  const [state, setState] = useContext(StateContext)
 
-  const waitForTransition = () => {
+  const waitForTransition = (time = 500) => {
     return new Promise((resolve, reject) => {
       setTimeout(() => {
         resolve(0)
-      }, 500)
+      }, time)
     })
   }
 
@@ -36,6 +45,32 @@ export default function SelectedImage (props) {
         break
       }
     }
+
+    let ix = state.imageNav.ix + (next ? 1 : -1)
+    let offset = state.imageNav.offset
+    if (ix < 0) {
+      offset = moveToEnd(images)
+      ix = images.length - 1
+      await waitForTransition(1000)
+    } else if (ix >= images.length) {
+      offset = moveToStart()
+      ix = 0
+      await waitForTransition(1000)
+    } else if (
+      (next && (state.imageNav.ix + 1) % 4 === 0) ||
+      (!next && state.imageNav.ix % 4 === 0)
+    ) {
+      if (next) {
+        offset = nextImages(state.imageNav.offset, images)
+      } else {
+        offset = prevImages(state.imageNav.offset)
+      }
+
+      await waitForTransition(1000)
+    }
+    state.imageNav.offset = offset
+    state.imageNav.ix = ix
+    setState({ ...state })
 
     enlargeImage(div, path, selected, setSelected)
   }
