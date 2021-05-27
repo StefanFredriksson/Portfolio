@@ -9,7 +9,7 @@
 
 #text-work-container {
   width: 80%;
-  height: 40%;
+  height: 20%;
   position: absolute;
   top: 5%;
   left: 50%;
@@ -18,10 +18,10 @@
 }
 
 #inner-work-container {
-  height: 30%;
+  height: 80%;
   width: 80%;
   position: absolute;
-  top: 70%;
+  top: 55%;
   left: 50%;
   transform: translate(-50%, -50%);
   display: grid;

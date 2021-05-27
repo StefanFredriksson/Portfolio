@@ -11,7 +11,7 @@ export const enlargeImage = (target, path, selected, setSelected) => {
   document.querySelector('#inner-project-container').style.filter = 'blur(30px)'
   setTimeout(() => {
     div.style.transition = '0.5s'
-    const container = document.querySelector('#inner-project-container')
+    const container = document.querySelector('#main-project-container')
     const mx = container.offsetWidth / 2.0
     const my = container.offsetHeight / 2.0
     const width = container.offsetWidth * 0.9

@@ -1,30 +1,37 @@
 #main-project-container #videos-container {
-  width: 90%;
-  height: 80%;
-  background: rgba(0, 0, 0, 0.2);
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  grid-template-rows: repeat(3, 1fr);
-}
-
-#main-project-container #videos-container .video-thumbnail {
-  width: 100%;
-  height: 100%;
-  position: relative;
-  border: 1px solid white;
-  z-index: 10;
+  width: 1408px;
+  height: 200px;
+  display: flex;
+  flex-direction: column;
   overflow: hidden;
 }
 
-#main-project-container #videos-container .video-thumbnail:hover {
+#videos {
+  width: 100%;
+  height: 80%;
+  display: flex;
+}
+
+#main-project-container #videos-container #videos .video-thumbnail {
+  min-width: 350px;
+  width: 350px;
+  height: 95%;
+  position: relative;
+  border: 1px solid white;
+  z-index: 10;
+  transition: 1s;
+  overflow: hidden;
+}
+
+#main-project-container #videos-container #videos .video-thumbnail:hover {
   cursor: pointer;
 }
 
-#main-project-container #videos-container .video-thumbnail:hover img {
+#main-project-container #videos-container #videos .video-thumbnail:hover img {
   transform: scale(1.2);
 }
 
-#main-project-container #videos-container .video-thumbnail:before {
+#main-project-container #videos-container #videos .video-thumbnail:before {
   content: '';
   position: absolute;
   top: 0;
@@ -37,18 +44,21 @@
   z-index: 1000;
 }
 
-#main-project-container #videos-container .video-thumbnail:hover:before {
+#main-project-container
+  #videos-container
+  #videos
+  .video-thumbnail:hover:before {
   background: rgba(0, 0, 0, 0);
 }
 
-#main-project-container #videos-container .video-thumbnail img {
+#main-project-container #videos-container #videos .video-thumbnail img {
   width: 100%;
   height: 100%;
   object-fit: cover;
   transition: 0.5s;
 }
 
-#main-project-container #videos-container .video-thumbnail .view-video {
+#main-project-container #videos-container #videos .video-thumbnail .view-video {
   position: absolute;
   top: 50%;
   left: 50%;
@@ -66,8 +76,26 @@
   transition: 0.3s;
 }
 
-#main-project-container #videos-container .video-thumbnail:hover .view-video {
+#main-project-container
+  #videos-container
+  #videos
+  .video-thumbnail:hover
+  .view-video {
   height: 100px;
   width: 100px;
   z-index: 1000;
+}
+
+#main-project-container #videos-container #video-navigation {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+}
+
+#main-project-container #videos-container #video-navigation span {
+  font-size: 2em;
+}
+
+#main-project-container #videos-container #video-navigation span:hover {
+  cursor: pointer;
 }

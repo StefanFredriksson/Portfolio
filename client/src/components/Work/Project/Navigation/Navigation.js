@@ -10,22 +10,22 @@ export default function Navigation (props) {
         Projects
       </div>
       <div
-        id='images'
+        id='images-nav'
         className={props.showImages ? 'active' : ''}
         onClick={event => {
           event.currentTarget.classList.add('active')
-          document.querySelector('#videos').classList.remove('active')
+          document.querySelector('#videos-nav').classList.remove('active')
           props.setShowImages(true)
         }}
       >
         Images
       </div>
       <div
-        id='videos'
+        id='videos-nav'
         className={!props.showImages ? 'active' : ''}
         onClick={event => {
           event.currentTarget.classList.add('active')
-          document.querySelector('#images').classList.remove('active')
+          document.querySelector('#images-nav').classList.remove('active')
           props.setShowImages(false)
         }}
       >
