@@ -1,12 +1,14 @@
 import React, { useState } from 'react'
+import { motion, AnimatePresence } from 'framer-motion'
 import './Videos.css'
 import {
   workImgPath as imgPath,
-  workVideoPath as videoPath
+  workVideoPath as videoPath,
+  mediaAnimation
 } from '../../../../Data'
 
 export default function Videos (props) {
-  const { videos, folder, selected, setSelected } = props
+  const { videos, folder, selected, setSelected, showImages } = props
   const [offset, setOffset] = useState(0)
 
   const setVideo = () => {
@@ -56,29 +58,39 @@ export default function Videos (props) {
   }
 
   return (
-    <div id='videos-container'>
-      <div id='videos'>
-        {videos.map(v => {
-          return (
-            <div
-              className='video-thumbnail'
-              onClick={event => {
-                selected.state = true
-                selected.src = `${videoPath}${folder}${v.src}`
-                setSelected({ ...selected })
-                setVideo()
-              }}
-            >
-              <span className='view-video'>Watch video</span>
-              <img src={`${imgPath}${folder}${v.thumbnail}`} alt='' />
-            </div>
-          )
-        })}
-      </div>
-      <div id='video-navigation'>
-        <span onClick={previous}>&#60;</span>
-        <span onClick={next}>&#62;</span>
-      </div>
-    </div>
+    <AnimatePresence>
+      {!showImages && (
+        <motion.div
+          id='videos-container'
+          initial='initial'
+          animate='in'
+          exit='out'
+          variants={mediaAnimation.variants}
+        >
+          <div id='videos'>
+            {videos.map(v => {
+              return (
+                <div
+                  className='video-thumbnail'
+                  onClick={event => {
+                    selected.state = true
+                    selected.src = `${videoPath}${folder}${v.src}`
+                    setSelected({ ...selected })
+                    setVideo()
+                  }}
+                >
+                  <span className='view-video'>Watch video</span>
+                  <img src={`${imgPath}${folder}${v.thumbnail}`} alt='' />
+                </div>
+              )
+            })}
+          </div>
+          <div id='video-navigation'>
+            <span onClick={previous}>&#60;</span>
+            <span onClick={next}>&#62;</span>
+          </div>
+        </motion.div>
+      )}
+    </AnimatePresence>
   )
 }

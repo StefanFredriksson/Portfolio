@@ -1,21 +1,22 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
+import { motion, AnimatePresence } from 'framer-motion'
 import './Work.css'
 import WorkSelection from './WorkSelection/WorkSelection'
 import Project from './Project/Project'
+import ProjectSelection from './ProjectSelection/ProjectSelection'
+import { pageTransition } from '../../Data'
 
 export default function Work () {
-  const [showProject, setShowProject] = useState(false)
-  const [project, setProject] = useState({})
   return (
-    <div id='main-work-container'>
-      {showProject ? (
-        <Project project={project} setShowProject={setShowProject} />
-      ) : (
-        <WorkSelection
-          setShowProject={setShowProject}
-          setProject={setProject}
-        />
-      )}
-    </div>
+    <motion.div
+      id='main-work-container'
+      initial='initial'
+      animate='in'
+      exit='out'
+      variants={pageTransition.variants}
+      transition={pageTransition.transition}
+    >
+      <ProjectSelection />
+    </motion.div>
   )
 }

@@ -1,7 +1,9 @@
 import React, { useEffect } from 'react'
+import { motion } from 'framer-motion'
 import './Skills.css'
 import TextSkills from './TextSkills/TextSkills'
 import VisualSkills from './VisualSkills/VisualSkills'
+import { pageTransition } from '../../Data'
 
 export default function Skills () {
   useEffect(() => {
@@ -26,10 +28,17 @@ export default function Skills () {
   }
 
   return (
-    <div id='main-skills-container'>
+    <motion.div
+      id='main-skills-container'
+      initial='initial'
+      animate='in'
+      exit='out'
+      variants={pageTransition.variants}
+      transition={pageTransition.transition}
+    >
       <TextSkills />
       <VisualSkills />
-    </div>
+    </motion.div>
   )
 }
 

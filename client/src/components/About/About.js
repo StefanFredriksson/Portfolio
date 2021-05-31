@@ -1,9 +1,11 @@
 import React, { useState } from 'react'
+import { motion } from 'framer-motion'
 import './About.css'
 import './Summaries/Expanded.css'
 import AboutMe from './Summaries/AboutMe/AboutMe'
 import Hobbies from './Summaries/Hobbies/Hobbies'
 import Programming from './Summaries/Programming/Programming'
+import { pageTransition } from '../../Data'
 
 export default function About () {
   const [aboutMe, setAboutMe] = useState(false)
@@ -11,7 +13,14 @@ export default function About () {
   const [programming, setProgramming] = useState(false)
 
   return (
-    <div id='about-container'>
+    <motion.div
+      id='about-container'
+      initial='initial'
+      animate='in'
+      exit='out'
+      variants={pageTransition.variants}
+      transition={pageTransition.transition}
+    >
       <div id='cards-container'>
         <div
           id='about-me-container'
@@ -41,6 +50,6 @@ export default function About () {
           {programming ? <Programming /> : <h1>Programming</h1>}
         </div>
       </div>
-    </div>
+    </motion.div>
   )
 }

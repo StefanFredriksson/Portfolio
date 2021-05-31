@@ -1,9 +1,18 @@
 import React from 'react'
 import './Contact.css'
+import { motion } from 'framer-motion'
+import { pageTransition } from '../../Data'
 
 export default function Contact () {
   return (
-    <div id='main-contact-container'>
+    <motion.div
+      id='main-contact-container'
+      initial='initial'
+      animate='in'
+      exit='out'
+      variants={pageTransition.variants}
+      transition={pageTransition.transition}
+    >
       <div id='inner-contact-container'>
         <div id='input-container'>
           <span id='name-email-container'>
@@ -34,6 +43,6 @@ export default function Contact () {
           <button id='submit-btn'>SEND</button>
         </div>
       </div>
-    </div>
+    </motion.div>
   )
 }
