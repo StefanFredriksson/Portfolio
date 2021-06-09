@@ -19,7 +19,6 @@ export default function About () {
       animate='in'
       exit='out'
       variants={pageTransition.variants}
-      transition={pageTransition.transition}
     >
       <div id='cards-container'>
         <div

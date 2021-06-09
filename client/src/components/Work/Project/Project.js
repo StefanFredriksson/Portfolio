@@ -7,6 +7,7 @@ import Images from './Images/Images'
 import Navigation from './Navigation/Navigation'
 import Videos from './Videos/Videos'
 import SelectedVideo from './Videos/SelectedVideo/SelectedVideo'
+import MediaNavigation from './MediaNavigation/MediaNavigation'
 
 const outerVariants = {
   initial: {
@@ -91,6 +92,11 @@ export default function Project (props) {
                 setSelected={setSelectedVideo}
               />
             </AnimatePresence>
+            <MediaNavigation
+              showImages={showImages}
+              images={images}
+              videos={videos}
+            />
 
             <Navigation
               setShowProject={props.setShowProject}

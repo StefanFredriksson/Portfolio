@@ -1,0 +1,41 @@
+/*If changing max-width, also update state!*/
+@media screen and (max-width: 1000px) {
+  /*Navigation*/
+  #navigation-container {
+    width: 100vw;
+    height: 6vh;
+    z-index: 100;
+  }
+
+  #navigation-container #info-container {
+    flex-direction: row;
+    height: 100%;
+    width: 40%;
+  }
+
+  /*Paths*/
+  .path-container {
+    height: 100%;
+    width: var(--nav-width);
+  }
+
+  .path-container div,
+  .path-container label {
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
+
+  /*Content*/
+  #main-content-container {
+    left: 0;
+    top: 6vh;
+    width: 100vw;
+    height: 94vh;
+  }
+
+  /*Canvas*/
+  #main-canvas-container {
+    left: 0;
+  }
+}

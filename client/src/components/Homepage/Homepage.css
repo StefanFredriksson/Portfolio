@@ -7,11 +7,6 @@
   position: relative;
   overflow: hidden;
   z-index: 10;
-  background: radial-gradient(
-    circle at 50%,
-    var(--background-color) 60%,
-    var(--background-gradient)
-  );
 }
 
 #homepage-container ::selection {
@@ -44,13 +39,14 @@
 
 #homepage-container #welcome-container div span {
   display: inline-block;
+  margin-left: 3px;
 }
 
 #homepage-container #welcome-container #first-row span,
 #homepage-container #welcome-container #second-row span,
 #homepage-container #welcome-container #third-row span,
 #homepage-container #welcome-container #fourth-row {
-  transition: 2s;
+  transition: 1s;
 }
 
 #homepage-container #welcome-container .left {
@@ -70,8 +66,8 @@
   user-select: none;
 }
 
-#homepage-container #welcome-container h1 span:hover {
-  color: cyan;
+#homepage-container #welcome-container span:hover {
+  color: var(--main-color);
 }
 
 .animated {
@@ -118,7 +114,7 @@
 
 #homepage-container #welcome-container h2 {
   font-weight: initial;
-  color: rgba(255, 255, 255, 0.3);
+  color: var(--main-color);
   margin-top: 20px;
   margin-left: 20px;
 }

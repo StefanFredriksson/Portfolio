@@ -1,14 +1,14 @@
 #navigation-container {
-  min-width: 60px;
+  min-width: var(--nav-width);
   height: 100vh;
-  background: rgb(88, 94, 151);
+  background: var(--darker);
   color: white;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
   z-index: 10;
-  position: fixed;
+  position: absolute;
   top: 0;
   left: 0;
 }
@@ -16,7 +16,8 @@
 #navigation-container #info-container {
   display: flex;
   flex-direction: column;
-  height: 40vh;
+  height: 40%;
+  width: 100%;
   justify-content: space-between;
 }
 

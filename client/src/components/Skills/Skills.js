@@ -34,7 +34,6 @@ export default function Skills () {
       animate='in'
       exit='out'
       variants={pageTransition.variants}
-      transition={pageTransition.transition}
     >
       <TextSkills />
       <VisualSkills />

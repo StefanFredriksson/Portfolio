@@ -1,4 +1,4 @@
-export const initOscillator = color => {
+export const initOscillator = (color, navSwap) => {
   let tendrils = []
   const hue = new Oscillator({
     phase: Math.random() * (Math.PI * 2),
@@ -21,9 +21,10 @@ export const initOscillator = color => {
     offsetHeight: innerHeight,
     offsetWidth: innerWidth
   } = document.querySelector('#main-canvas-container')
-  const { offsetWidth: navWidth } = document.querySelector(
+  const { offsetWidth: navOffsetWidth } = document.querySelector(
     '#navigation-container'
   )
+  let navWidth = navOffsetWidth
 
   canvas.width = innerWidth
   canvas.height = innerHeight
@@ -33,16 +34,29 @@ export const initOscillator = color => {
     window.addEventListener('mousemove', mousemove)
 
     mousemove(event)
+    resize(event)
     reset()
     loop()
   }
-
-  window.addEventListener('mousemove', init)
 
   const mousemove = event => {
     mouse.x = event.clientX - navWidth
     mouse.y = event.clientY
   }
+
+  const resize = event => {
+    if (window.innerWidth <= navSwap) {
+      navWidth = 0
+    } else {
+      navWidth = navOffsetWidth
+    }
+    const container = document.querySelector('#main-canvas-container')
+    canvas.width = container.offsetWidth
+    canvas.height = container.offsetHeight
+  }
+
+  window.addEventListener('mousemove', init)
+  window.addEventListener('resize', resize)
 
   function Oscillator (options) {
     let value = 0

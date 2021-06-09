@@ -1,13 +1,14 @@
 import React, { useContext, useEffect } from 'react'
 import { StateContext } from '../../Store'
 import './Nav.css'
+import './Paths/Paths.css'
 import { withRouter, Link } from 'react-router-dom'
 import { endpoints } from '../../Data'
-import HomeIcon from '../Icons/Home/Home'
-import AboutIcon from '../Icons/About/About'
-import SkillsIcon from '../Icons/Skills/Skills'
-import WorkIcon from '../Icons/Work/Work'
-import ContactIcon from '../Icons/Contact/Contact'
+import About from './Paths/About/About'
+import Homepage from './Paths/Homepage/Homepage'
+import Contact from './Paths/Contact/Contact'
+import Skills from './Paths/Skills/Skills'
+import Work from './Paths/Work/Work'
 
 function Nav (props) {
   const [state, setState] = useContext(StateContext)
@@ -15,7 +16,7 @@ function Nav (props) {
     stroke: 'grey',
     active: state.color,
     sWidth: '2',
-    fill: 'rgb(88, 94, 151)'
+    fill: 'var(--darker)'
   }
 
   useEffect(() => {
@@ -34,7 +35,7 @@ function Nav (props) {
     <div id='navigation-container'>
       <div id='info-container'>
         <Link to={`/${endpoints.home}`}>
-          <HomeIcon
+          <Homepage
             stroke={
               state.path === endpoints.home ? styling.active : styling.stroke
             }
@@ -43,7 +44,7 @@ function Nav (props) {
           />
         </Link>
         <Link to={`/${endpoints.about}`}>
-          <AboutIcon
+          <About
             stroke={
               state.path === endpoints.about ? styling.active : styling.stroke
             }
@@ -53,7 +54,7 @@ function Nav (props) {
           />
         </Link>
         <Link to={`/${endpoints.skills}`}>
-          <SkillsIcon
+          <Skills
             stroke={
               state.path === endpoints.skills ? styling.active : styling.stroke
             }
@@ -63,7 +64,7 @@ function Nav (props) {
           />
         </Link>
         <Link to={`/${endpoints.work}`}>
-          <WorkIcon
+          <Work
             stroke={
               state.path === endpoints.work ? styling.active : styling.stroke
             }
@@ -73,7 +74,7 @@ function Nav (props) {
           />
         </Link>
         <Link to={`/${endpoints.contact}`}>
-          <ContactIcon
+          <Contact
             stroke={
               state.path === endpoints.contact ? styling.active : styling.stroke
             }

@@ -32,7 +32,7 @@ export default function Content () {
             <Contact />
           </Route>
           <Route path={`/${endpoints.home}`}>
-            <Scroll />
+            <Homepage />
           </Route>
         </Switch>
       </AnimatePresence>

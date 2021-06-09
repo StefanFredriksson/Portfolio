@@ -1,6 +1,6 @@
 :root {
-  --background-color: rgb(41, 44, 66);
-  --background-gradient: rgb(61, 66, 99);
+  --background-color: #1d1d1d;
+  --darker: #181818;
 }
 
 .magenta-color {

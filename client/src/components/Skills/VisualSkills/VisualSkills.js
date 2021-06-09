@@ -1,4 +1,5 @@
 import React from 'react'
+import { motion } from 'framer-motion'
 import './VisualSkills.css'
 import Indicator from './Indicator/Indicator'
 const imgPath = 'img/skills/'
@@ -26,7 +27,7 @@ export default function VisualSkills () {
     {
       icons: [`${imgPath}reactjs.png`],
       title: 'ReactJS',
-      width: '70%',
+      width: '80%',
       background: 'rgb(9, 217, 254)'
     },
     {
@@ -42,18 +43,20 @@ export default function VisualSkills () {
       background: 'rgb(159, 117, 218)'
     }
   ]
+
   return (
-    <div id='visual-skills-container' className='skills-container'>
-      {data.map(d => {
+    <motion.div id='visual-skills-container' className='skills-container'>
+      {data.map((d, i) => {
         return (
           <Indicator
             icons={d.icons}
             title={d.title}
             width={d.width}
             background={d.background}
+            index={i}
           />
         )
       })}
-    </div>
+    </motion.div>
   )
 }

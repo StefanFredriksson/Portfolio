@@ -11,7 +11,6 @@ export default function Contact () {
       animate='in'
       exit='out'
       variants={pageTransition.variants}
-      transition={pageTransition.transition}
     >
       <div id='inner-contact-container'>
         <div id='input-container'>

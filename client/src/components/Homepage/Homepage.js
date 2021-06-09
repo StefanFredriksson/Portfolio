@@ -13,7 +13,6 @@ export default function Homepage () {
       animate='in'
       exit='out'
       variants={pageTransition.variants}
-      transition={pageTransition.transition}
     >
       <Greeting />
     </motion.div>

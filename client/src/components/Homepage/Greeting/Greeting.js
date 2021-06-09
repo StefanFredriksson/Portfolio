@@ -2,13 +2,29 @@ import React, { useEffect } from 'react'
 
 export default function Greeting () {
   useEffect(async () => {
-    const spans = document.querySelectorAll('.left')
+    setColor()
+    await wait(600)
+    beginAnimation()
+  }, [])
+
+  const wait = (duration = 1000) => {
+    return new Promise((resolve, reject) => {
+      setTimeout(() => {
+        resolve(true)
+      }, duration)
+    })
+  }
+
+  const setColor = () => {
+    const spans = document.querySelectorAll('.bounce')
 
     for (const span of spans) {
-      span.classList.remove('left')
-      span.classList.add('enter-left')
+      span.style.color = 'var(--main-color)'
     }
-    /*const spans = document.querySelectorAll('.bounce')
+  }
+
+  const beginAnimation = async () => {
+    const spans = document.querySelectorAll('.bounce')
     for (const span of spans) {
       span.addEventListener('animationend', e => {
         span.classList.remove('animated')
@@ -21,9 +37,9 @@ export default function Greeting () {
       span.addEventListener('mouseover', e => {
         span.classList.add('animated')
       })
-      span.style.transition = '0s'
-    }*/
-  }, [])
+      span.style.transition = '0.2s'
+    }
+  }
 
   const textEntrance = () => {
     return new Promise(async (resolve, reject) => {
@@ -52,8 +68,8 @@ export default function Greeting () {
 
   const spanEntrance = span => {
     return new Promise((resolve, reject) => {
+      span.style.color = ''
       setTimeout(() => {
-        span.style.opacity = '1'
         span.classList.add('animated')
         resolve(0)
       }, 50)
@@ -63,15 +79,15 @@ export default function Greeting () {
   return (
     <div id='welcome-container'>
       <div id='main-text'>
-        <div id='first-row'>
-          <span className='left'>H</span>
-          <span className='left'>e</span>
-          <span className='left'>l</span>
-          <span className='left'>l</span>
-          <span className='left'>o</span>
-          <span className='left'>,</span>
+        <div id='first-row' className='animated-row'>
+          <span className='bounce'>H</span>
+          <span className='bounce'>e</span>
+          <span className='bounce'>l</span>
+          <span className='bounce'>l</span>
+          <span className='bounce'>o</span>
+          <span className='bounce'>,</span>
         </div>
-        <div id='second-row'>
+        <div id='second-row' className='animated-row'>
           <span className='bounce'>I</span>
           <span className='bounce'>'</span>
           <span className='bounce'>m</span>
@@ -84,7 +100,7 @@ export default function Greeting () {
           <span className='bounce'>n</span>
           <span className='bounce'>.</span>
         </div>
-        <div id='third-row'>
+        <div id='third-row' className='animated-row'>
           <span className='bounce'>W</span>
           <span className='bounce'>e</span>
           <span className='bounce'>l</span>

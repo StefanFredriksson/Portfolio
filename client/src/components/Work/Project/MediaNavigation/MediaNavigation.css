@@ -1,0 +1,29 @@
+#inner-project-container #media-navigation {
+  width: 89%;
+  display: flex;
+  justify-content: space-between;
+  position: absolute;
+  top: 60%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+#inner-project-container #media-navigation span {
+  font-size: 2em;
+}
+
+#inner-project-container #media-navigation span:hover {
+  cursor: pointer;
+}
+
+#inner-project-container #media-navigation .prev-disabled,
+#inner-project-container #media-navigation .next-disabled {
+  color: gray;
+  user-select: none;
+}
+
+#inner-project-container #media-navigation .prev-active,
+#inner-project-container #media-navigation .next-active {
+  color: white;
+  user-select: none;
+}

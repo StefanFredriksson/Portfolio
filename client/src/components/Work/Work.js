@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react'
-import { motion, AnimatePresence } from 'framer-motion'
+import { motion } from 'framer-motion'
 import './Work.css'
 import WorkSelection from './WorkSelection/WorkSelection'
 import Project from './Project/Project'
@@ -14,7 +14,6 @@ export default function Work () {
       animate='in'
       exit='out'
       variants={pageTransition.variants}
-      transition={pageTransition.transition}
     >
       <ProjectSelection />
     </motion.div>

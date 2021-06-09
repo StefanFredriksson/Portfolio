@@ -48,17 +48,18 @@ export default function SelectedImage (props) {
 
     let ix = state.imageNav.ix + (next ? 1 : -1)
     let offset = state.imageNav.offset
-    if (ix < 0) {
+    if (ix < 0 && images.length > 4) {
       offset = moveToEnd(images)
       ix = images.length - 1
       await waitForTransition(1000)
-    } else if (ix >= images.length) {
+    } else if (ix >= images.length && images.length > 4) {
       offset = moveToStart()
       ix = 0
       await waitForTransition(1000)
     } else if (
-      (next && (state.imageNav.ix + 1) % 4 === 0) ||
-      (!next && state.imageNav.ix % 4 === 0)
+      images.length > 4 &&
+      ((next && (state.imageNav.ix + 1) % 4 === 0) ||
+        (!next && state.imageNav.ix % 4 === 0))
     ) {
       if (next) {
         offset = nextImages(state.imageNav.offset, images)
@@ -72,7 +73,7 @@ export default function SelectedImage (props) {
     state.imageNav.ix = ix
     setState({ ...state })
 
-    enlargeImage(div, path, selected, setSelected)
+    enlargeImage(div, path, selected, setSelected, state.navSwap)
   }
 
   return (

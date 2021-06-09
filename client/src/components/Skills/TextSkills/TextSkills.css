@@ -1,6 +1,21 @@
 #text-skills-container {
   width: 40%;
-  height: 80%;
-  margin-left: 50px;
-  padding: 40px;
+  height: 100%;
+  margin-left: 100px;
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+#text-skills-container h1 {
+  position: absolute;
+  top: 5%;
+}
+
+#text-skills-container #skills-text {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
 }

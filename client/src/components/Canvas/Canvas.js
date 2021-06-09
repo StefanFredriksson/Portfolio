@@ -9,7 +9,7 @@ import { initOscillator as init } from './Oscillator'
 export default function Canvas () {
   const [state] = useContext(StateContext)
   useEffect(() => {
-    init(state.trail)
+    init(state.trail, state.navSwap)
   }, [])
 
   return (

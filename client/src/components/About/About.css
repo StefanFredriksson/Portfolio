@@ -68,6 +68,7 @@
   height: 100%;
   width: 100%;
   color: white;
+  overflow: hidden;
 }
 
 #about-container #cards-container div .summary h1 {

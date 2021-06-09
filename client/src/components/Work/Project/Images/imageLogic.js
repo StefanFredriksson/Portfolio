@@ -1,8 +1,10 @@
-export const enlargeImage = (target, path, selected, setSelected) => {
+export const enlargeImage = (target, path, selected, setSelected, navSwap) => {
   const nav = document.querySelector('#navigation-container')
   const div = document.querySelector('#selected-image-container')
   const pos = target.getBoundingClientRect()
-  const x = pos.x - nav.offsetWidth
+  let navWidth = 0
+  if (window.innerWidth > navSwap) navWidth = nav.offsetWidth
+  const x = pos.x - navWidth
   const y = pos.y
   div.style.left = x + 'px'
   div.style.top = y + 'px'
@@ -16,7 +18,8 @@ export const enlargeImage = (target, path, selected, setSelected) => {
     const my = container.offsetHeight / 2.0
     const width = container.offsetWidth * 0.9
     const height = container.offsetHeight * 0.9
-    const fx = mx - width / 2.0 - x - nav.offsetWidth
+
+    const fx = mx - width / 2.0 - x - navWidth
     const fy = my - height / 2.0 - y
     div.style.width = '90vw'
     div.style.height = '90vh'
@@ -25,7 +28,7 @@ export const enlargeImage = (target, path, selected, setSelected) => {
 
   setTimeout(() => {
     div.querySelector('img').style.objectFit = 'contain'
-  }, 100)
+  }, 50)
 
   div.querySelector('img').src = path
   selected.width = target.offsetWidth
@@ -43,7 +46,7 @@ export const minimizeImage = (target, selected, setSelected) => {
 
   setTimeout(() => {
     target.querySelector('img').style.objectFit = ''
-  }, 300)
+  }, 400)
 
   setTimeout(() => {
     target.style.transition = ''
@@ -59,14 +62,7 @@ export const minimizeImage = (target, selected, setSelected) => {
 export const nextImages = (navOffset, images) => {
   const container = document.querySelector('#project-image-container')
   const imageContainers = container.querySelectorAll('.small-image-container')
-  if (
-    atEnd(
-      container.offsetWidth,
-      imageContainers[0].offsetWidth,
-      images,
-      navOffset
-    )
-  ) {
+  if (atEnd(images, navOffset)) {
     return navOffset
   }
 
@@ -77,9 +73,13 @@ export const nextImages = (navOffset, images) => {
   return navOffset - container.offsetWidth
 }
 
-const atEnd = (width, imgWidth, images, navOffset) => {
+export const atEnd = (images, navOffset) => {
+  const container = document.querySelector('#project-image-container')
+  const imageContainers = container.querySelectorAll('.small-image-container')
   const length = images.length
   if (length === 0 || !length) return true
+  const width = container.offsetWidth
+  const imgWidth = imageContainers[0].offsetWidth
 
   const fullWidth = imgWidth * length
   return navOffset * -1 >= fullWidth - width

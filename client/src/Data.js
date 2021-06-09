@@ -13,25 +13,24 @@ export const pageTransition = {
   variants: {
     initial: {
       y: '-100vh',
-      scale: 0.5
+      scale: 0.1
     },
     in: {
       y: 0,
       scale: 1,
       transition: {
+        duration: 1,
         delayChildren: 0.5,
         staggerChildren: 0.1
       }
     },
     out: {
       x: '100vw',
-      scale: 0.5
+      scale: 0.1,
+      transition: {
+        duration: 1
+      }
     }
-  },
-  transition: {
-    duration: 0.5,
-    type: 'spring',
-    bounce: 0.5
   }
 }
 

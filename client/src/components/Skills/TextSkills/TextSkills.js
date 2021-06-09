@@ -1,14 +1,17 @@
 import React from 'react'
 import './TextSkills.css'
+import { lines } from './Text'
+import Line from './Line/Line'
 
 export default function TextSkills () {
   return (
-    <div id='text-skills-container' className='skills-container'>
+    <div id='text-skills-container' className=''>
       <h1>Skills</h1>
-      <p>
-        Most of my programming experience nowadays revolve around web
-        development, both front-end and back-end. TODO!
-      </p>
+      <div id='skills-text'>
+        {lines.map((line, i) => {
+          return <Line text={line} index={i} />
+        })}
+      </div>
     </div>
   )
 }

@@ -1,0 +1,38 @@
+.path-container {
+  position: relative;
+  width: 100%;
+  height: 30px;
+  overflow: hidden;
+}
+
+.path-container label:hover {
+  cursor: pointer;
+}
+
+.path-container div,
+.path-container label {
+  position: absolute;
+  left: 50%;
+  transition: 0.2s;
+}
+
+.path-container div {
+  top: 0;
+  transform: translateX(-50%);
+}
+
+.path-container label {
+  opacity: 0;
+  color: var(--main-color);
+  top: 50%;
+  transform: translate(-50%, -50%);
+  text-transform: uppercase;
+}
+
+.path-container:hover label {
+  opacity: 1;
+}
+
+.path-container:hover div {
+  opacity: 0;
+}

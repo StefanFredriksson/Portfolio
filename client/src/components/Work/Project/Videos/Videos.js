@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import './Videos.css'
 import {
@@ -9,7 +9,6 @@ import {
 
 export default function Videos (props) {
   const { videos, folder, selected, setSelected, showImages } = props
-  const [offset, setOffset] = useState(0)
 
   const setVideo = () => {
     setTimeout(() => {
@@ -21,40 +20,6 @@ export default function Videos (props) {
         v.style.transform = 'translate(-50%, -50%)'
       }
     }, 100)
-  }
-
-  const previous = event => {
-    const container = document.querySelector('#videos-container')
-    const videoContainers = container.querySelectorAll('.video-thumbnail')
-
-    if (offset >= 0) return
-
-    const tempOffset = offset + container.offsetWidth
-    for (const video of videoContainers) {
-      video.style.transform = `translateX(${tempOffset}px)`
-    }
-    setOffset(tempOffset)
-  }
-  const next = event => {
-    const container = document.querySelector('#videos-container')
-    const videoContainers = container.querySelectorAll('.video-thumbnail')
-
-    if (atEnd(container.offsetWidth, videoContainers[0].offsetWidth)) return
-
-    const tempOffset = offset - container.offsetWidth
-    for (const video of videoContainers) {
-      video.style.transform = `translateX(${tempOffset}px)`
-    }
-
-    setOffset(tempOffset)
-  }
-
-  const atEnd = (width, videoWidth) => {
-    const length = videos.length
-    if (length === 0 || !length) return true
-
-    const fullWidth = videoWidth * length
-    return offset * -1 >= fullWidth - width
   }
 
   return (
@@ -84,10 +49,6 @@ export default function Videos (props) {
                 </div>
               )
             })}
-          </div>
-          <div id='video-navigation'>
-            <span onClick={previous}>&#60;</span>
-            <span onClick={next}>&#62;</span>
           </div>
         </motion.div>
       )}

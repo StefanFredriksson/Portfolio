@@ -5,6 +5,7 @@ import Content from './components/Content/Content'
 import { BrowserRouter as Router } from 'react-router-dom'
 import { useContext, useEffect } from 'react'
 import { StateContext } from './Store'
+import './Interactive.css'
 
 function App () {
   const [state] = useContext(StateContext)
@@ -16,6 +17,7 @@ function App () {
         <style>
           {`:root {
           --main-color: ${state.color};
+          --nav-width: ${state.navWidth}px;
         }`}
         </style>
 
