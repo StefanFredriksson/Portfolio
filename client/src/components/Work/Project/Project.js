@@ -1,32 +1,13 @@
 import React, { useState } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import './Project.css'
-import { workImgPath as imgPath } from '../../../Data'
+import { workImgPath as imgPath, projectVariants } from '../../../Data'
 import SelectedImage from './Images/SelectedImage/SelectedImage'
 import Images from './Images/Images'
 import Navigation from './Navigation/Navigation'
 import Videos from './Videos/Videos'
 import SelectedVideo from './Videos/SelectedVideo/SelectedVideo'
 import MediaNavigation from './MediaNavigation/MediaNavigation'
-
-const outerVariants = {
-  initial: {
-    y: 1000
-  },
-  in: {
-    y: 0,
-    transition: {
-      duration: 1,
-      delay: 0.5
-    }
-  },
-  out: {
-    x: 2000,
-    transition: {
-      duration: 1
-    }
-  }
-}
 
 export default function Project (props) {
   const { folder, images, videos, title, description } = props.project
@@ -44,7 +25,7 @@ export default function Project (props) {
       {props.showProject && (
         <motion.div
           key='project'
-          variants={outerVariants}
+          variants={projectVariants}
           initial='initial'
           animate='in'
           exit='out'

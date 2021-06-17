@@ -1,3 +1,50 @@
+@media screen and (max-width: 1500px) {
+  #main-project-container #inner-project-container {
+    width: 1056px;
+  }
+}
+
+@media screen and (max-width: 1290px) {
+  #homepage-container #welcome-container #main-text {
+    font-size: 70px;
+  }
+
+  #main-skills-container {
+    height: 200%;
+    flex-direction: column;
+    justify-content: center;
+    overflow: visible;
+  }
+
+  #text-skills-container {
+    margin-left: 0;
+    width: 80%;
+  }
+
+  #main-skills-container #visual-skills-container {
+    margin-right: 0;
+    width: 80%;
+  }
+
+  .skills-line {
+    font-size: 2.2vw;
+  }
+
+  #main-project-container #project-description h1 {
+    font-size: 2vw;
+  }
+
+  #main-project-container #project-description h3 {
+    font-size: 1.5vw;
+  }
+}
+
+@media screen and (max-width: 1140px) {
+  #main-project-container #inner-project-container {
+    width: 704px;
+  }
+}
+
 /*If changing max-width, also update state!*/
 @media screen and (max-width: 1000px) {
   /*Navigation*/
@@ -37,5 +84,88 @@
   /*Canvas*/
   #main-canvas-container {
     left: 0;
+  }
+
+  #main-project-container #project-description {
+    height: 40%;
+  }
+
+  #main-project-container #project-description h1 {
+    font-size: 2.5vw;
+  }
+
+  #main-project-container #project-description h3 {
+    font-size: 2vw;
+  }
+}
+
+@media screen and (max-width: 890px) {
+  #homepage-container #welcome-container #main-text {
+    font-size: 50px;
+  }
+
+  #navigation-container #info-container {
+    justify-content: space-evenly;
+    width: 100%;
+  }
+}
+
+@media screen and (max-width: 720px) {
+  #main-project-container #inner-project-container {
+    width: 352px;
+    height: 100%;
+  }
+
+  #main-project-container #project-description {
+    justify-content: flex-start;
+    height: 25%;
+  }
+
+  #main-project-container #inner-project-container .media-container {
+    height: 462px;
+    top: 52.5%;
+  }
+
+  #main-project-container #project-image-container #images,
+  #videos {
+    height: 100%;
+    flex-direction: column;
+    overflow: hidden;
+  }
+
+  #main-project-container
+    #project-image-container
+    #images
+    > .small-image-container,
+  #main-project-container #videos-container #videos .video-thumbnail {
+    min-height: 152px;
+  }
+
+  #inner-project-container #media-navigation {
+    top: 90%;
+  }
+
+  #main-project-container #project-navigation-container {
+    top: 92%;
+  }
+}
+
+@media screen and (max-width: 650px) {
+  #homepage-container #welcome-container #main-text {
+    font-size: 30px;
+  }
+}
+
+@media screen and (max-width: 360px) {
+  #main-project-container #inner-project-container {
+    width: 95vw;
+  }
+
+  #main-project-container
+    #project-image-container
+    #images
+    > .small-image-container {
+    min-width: 99.2%;
+    width: 99.2%;
   }
 }

@@ -2,19 +2,3 @@
   --background-color: #1d1d1d;
   --darker: #181818;
 }
-
-.magenta-color {
-  color: rgb(248, 47, 114);
-}
-
-.magenta-background {
-  background: rgb(248, 47, 114);
-}
-
-.cyan-color {
-  color: cyan;
-}
-
-.cyan-background {
-  background: cyan;
-}

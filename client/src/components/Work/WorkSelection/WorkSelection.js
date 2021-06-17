@@ -1,8 +1,6 @@
 import React, { Component } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
-import { textAnimation } from '../../../Data'
 import './WorkSelection.css'
-import { workText } from './workText'
 import { tsp } from './ProjectData/TSP'
 import { gol } from './ProjectData/3DGoL'
 import { fiveInARow } from './ProjectData/FiveInARow'
@@ -31,6 +29,12 @@ export default class WorkSelection extends Component {
     super(props)
 
     this.data = [tsp, gol, fiveInARow]
+    const length = this.data.length
+
+    while (this.data.length < 9) {
+      const ix = Math.floor(Math.random() * length)
+      this.data.push(this.data[ix])
+    }
   }
 
   render () {
@@ -45,16 +49,6 @@ export default class WorkSelection extends Component {
             exit='out'
             id='outer-work-container'
           >
-            <AnimatePresence>
-              <motion.div
-                id='text-work-container'
-                variants={textAnimation.variants}
-                initial='initial'
-                animate='in'
-              >
-                {workText}
-              </motion.div>
-            </AnimatePresence>
             <div id='inner-work-container'>
               {this.data.map(d => {
                 return (

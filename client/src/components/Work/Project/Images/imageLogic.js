@@ -1,11 +1,15 @@
-export const enlargeImage = (target, path, selected, setSelected, navSwap) => {
+import { navSwap, orientationSwap } from '../../../../Data'
+
+export const enlargeImage = (target, path, selected, setSelected) => {
   const nav = document.querySelector('#navigation-container')
   const div = document.querySelector('#selected-image-container')
   const pos = target.getBoundingClientRect()
   let navWidth = 0
+  let navHeight = 0
   if (window.innerWidth > navSwap) navWidth = nav.offsetWidth
+  else navHeight = nav.offsetHeight
   const x = pos.x - navWidth
-  const y = pos.y
+  const y = pos.y - navHeight
   div.style.left = x + 'px'
   div.style.top = y + 'px'
   div.style.width = target.offsetWidth + 'px'
@@ -20,7 +24,7 @@ export const enlargeImage = (target, path, selected, setSelected, navSwap) => {
     const height = container.offsetHeight * 0.9
 
     const fx = mx - width / 2.0 - x - navWidth
-    const fy = my - height / 2.0 - y
+    const fy = my - height / 2.0 - y - navHeight
     div.style.width = '90vw'
     div.style.height = '90vh'
     div.style.transform = `translate(${fx}px, ${fy}px)`
@@ -60,65 +64,91 @@ export const minimizeImage = (target, selected, setSelected) => {
 }
 
 export const nextImages = (navOffset, images) => {
+  const vertical = isVertical()
   const container = document.querySelector('#project-image-container')
   const imageContainers = container.querySelectorAll('.small-image-container')
-  if (atEnd(images, navOffset)) {
+  if (atEnd(images, navOffset, vertical)) {
     return navOffset
   }
 
+  const offset = vertical
+    ? navOffset - container.offsetHeight
+    : navOffset - container.offsetWidth
+
   for (const img of imageContainers) {
-    img.style.transform = `translateX(${navOffset - container.offsetWidth}px)`
+    img.style.transform = vertical
+      ? `translateY(${offset}px)`
+      : `translateX(${offset}px)`
   }
 
-  return navOffset - container.offsetWidth
+  return offset
 }
 
 export const atEnd = (images, navOffset) => {
+  const vertical = isVertical()
   const container = document.querySelector('#project-image-container')
   const imageContainers = container.querySelectorAll('.small-image-container')
   const length = images.length
   if (length === 0 || !length) return true
-  const width = container.offsetWidth
-  const imgWidth = imageContainers[0].offsetWidth
+  const measure = vertical ? container.offsetHeight : container.offsetWidth
+  const imgMeasure = vertical
+    ? imageContainers[0].offsetHeight
+    : imageContainers[0].offsetWidth
 
-  const fullWidth = imgWidth * length
-  return navOffset * -1 >= fullWidth - width
+  const full = imgMeasure * length
+  return navOffset * -1 >= full - measure
 }
 
 export const prevImages = navOffset => {
+  const vertical = isVertical()
   const container = document.querySelector('#project-image-container')
   const imageContainers = container.querySelectorAll('.small-image-container')
   if (navOffset >= 0) return
 
   for (const img of imageContainers) {
-    img.style.transform = `translateX(${navOffset + container.offsetWidth}px)`
+    img.style.transform = vertical
+      ? `translateY(${navOffset + container.offsetHeight}px)`
+      : `translateX(${navOffset + container.offsetWidth}px)`
   }
 
-  return navOffset + container.offsetWidth
+  return vertical
+    ? navOffset + container.offsetHeight
+    : navOffset + container.offsetWidth
 }
 
 export const moveToEnd = images => {
-  const container = document.querySelector('#project-image-container')
-  const imageContainers = container.querySelectorAll('.small-image-container')
-  if (imageContainers.length === 0) return
-  const width =
-    (imageContainers[0].offsetWidth * imageContainers.length -
-      container.offsetWidth) *
-    -1
-  for (const img of imageContainers) {
-    img.style.transform = `translateX(${width}px)`
+  let offset = 0
+  let prevOffset = -1
+
+  while (offset !== prevOffset) {
+    prevOffset = offset
+    offset = nextImages(offset, images)
   }
 
-  return width
+  return offset
 }
 
 export const moveToStart = () => {
+  const vertical = isVertical()
   const container = document.querySelector('#project-image-container')
   const imageContainers = container.querySelectorAll('.small-image-container')
 
   for (const img of imageContainers) {
-    img.style.transform = `translateX(${0}px)`
+    img.style.transform = vertical ? `translateY(0px)` : `translateX(0px)`
   }
 
   return 0
+}
+
+export const isVertical = () => {
+  return window.innerWidth <= orientationSwap
+}
+
+export const getLength = () => {
+  const container = document.querySelector('.media-container')
+  const thumbnails = container.querySelectorAll('.project-thumbnail')
+  if (thumbnails.length === 0) return 0
+  return isVertical()
+    ? Math.floor(container.offsetHeight / thumbnails[0].offsetHeight)
+    : Math.floor(container.offsetWidth / thumbnails[0].offsetWidth)
 }

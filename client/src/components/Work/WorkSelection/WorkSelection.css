@@ -9,35 +9,21 @@
   left: 0;
 }
 
-#text-work-container {
-  width: 80%;
-  height: 20%;
-  position: absolute;
-  top: 5%;
-  left: 50%;
-  transform: translateX(-50%);
-  font-size: 2em;
-}
-
 #inner-work-container {
-  height: 80%;
-  width: 80%;
-  position: absolute;
-  top: 55%;
-  left: 50%;
-  transform: translate(-50%, -50%);
+  height: 100%;
+  width: 100%;
   display: grid;
-  grid-template-columns: repeat(2, 1fr);
+  grid-template-columns: repeat(3, 1fr);
+  grid-template-rows: repeat(3, 1fr);
   overflow: hidden;
   z-index: 10;
 }
 
 #inner-work-container > div {
-  height: 99%;
-  width: 99%;
+  height: 100%;
+  width: 100%;
   position: relative;
   z-index: 10;
-  border: 1px solid white;
   overflow: hidden;
 }
 

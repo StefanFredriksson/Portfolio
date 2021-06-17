@@ -6,7 +6,8 @@ import {
   nextImages,
   prevImages,
   moveToEnd,
-  moveToStart
+  moveToStart,
+  isVertical
 } from '../imageLogic'
 import { StateContext } from '../../../../../Store'
 
@@ -29,9 +30,14 @@ export default function SelectedImage (props) {
       setSelected
     )
     await waitForTransition()
+    const vertical = isVertical()
     const divs = document.querySelectorAll('.small-image-container')
     let div = null
     let path = ''
+    const container = document.querySelector('#project-image-container')
+    const length = vertical
+      ? Math.floor(container.offsetHeight / divs[0].offsetHeight)
+      : Math.floor(container.offsetWidth / divs[0].offsetWidth)
 
     for (let i = 0; i < divs.length; i++) {
       if (divs[i] === selected.div) {
@@ -48,18 +54,18 @@ export default function SelectedImage (props) {
 
     let ix = state.imageNav.ix + (next ? 1 : -1)
     let offset = state.imageNav.offset
-    if (ix < 0 && images.length > 4) {
+    if (ix < 0 && images.length > length) {
       offset = moveToEnd(images)
       ix = images.length - 1
       await waitForTransition(1000)
-    } else if (ix >= images.length && images.length > 4) {
+    } else if (ix >= images.length && images.length > length) {
       offset = moveToStart()
       ix = 0
       await waitForTransition(1000)
     } else if (
-      images.length > 4 &&
-      ((next && (state.imageNav.ix + 1) % 4 === 0) ||
-        (!next && state.imageNav.ix % 4 === 0))
+      images.length > length &&
+      ((next && (state.imageNav.ix + 1) % length === 0) ||
+        (!next && state.imageNav.ix % length === 0))
     ) {
       if (next) {
         offset = nextImages(state.imageNav.offset, images)
@@ -73,7 +79,7 @@ export default function SelectedImage (props) {
     state.imageNav.ix = ix
     setState({ ...state })
 
-    enlargeImage(div, path, selected, setSelected, state.navSwap)
+    enlargeImage(div, path, selected, setSelected)
   }
 
   return (

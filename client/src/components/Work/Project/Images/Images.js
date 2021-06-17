@@ -14,6 +14,7 @@ export default function Images (props) {
       {showImages && (
         <motion.div
           id='project-image-container'
+          className='media-container'
           initial='initial'
           animate='in'
           exit='out'
@@ -23,7 +24,7 @@ export default function Images (props) {
             {images.map(image => {
               return (
                 <div
-                  className='small-image-container'
+                  className='small-image-container project-thumbnail'
                   onClick={event => {
                     if (selected.state) return
                     const imgs = document.querySelectorAll(

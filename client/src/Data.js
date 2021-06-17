@@ -8,6 +8,8 @@ export const endpoints = {
 
 export const workImgPath = 'img/work/'
 export const workVideoPath = 'video/work/'
+export const orientationSwap = 720
+export const navSwap = 1000
 
 export const pageTransition = {
   variants: {
@@ -71,6 +73,25 @@ export const mediaAnimation = {
       transition: {
         duration: 1
       }
+    }
+  }
+}
+
+export const projectVariants = {
+  initial: {
+    y: 1000
+  },
+  in: {
+    y: 0,
+    transition: {
+      duration: 1,
+      delay: 0.5
+    }
+  },
+  out: {
+    x: 2000,
+    transition: {
+      duration: 1
     }
   }
 }

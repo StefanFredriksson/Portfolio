@@ -7,8 +7,12 @@
   overflow: hidden;
 }
 
-.skill-indicator-container .skill-icons-container .skill-icon {
+.skill-indicator-container .skill-icons-container {
   width: 100px;
+}
+
+.skill-indicator-container .skill-icons-container .skill-icon {
+  width: 100%;
 }
 
 .skill-indicator-container .indicator-bar {

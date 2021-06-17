@@ -27,6 +27,7 @@ export default function Videos (props) {
       {!showImages && (
         <motion.div
           id='videos-container'
+          className='media-container'
           initial='initial'
           animate='in'
           exit='out'
@@ -36,7 +37,7 @@ export default function Videos (props) {
             {videos.map(v => {
               return (
                 <div
-                  className='video-thumbnail'
+                  className='video-thumbnail project-thumbnail'
                   onClick={event => {
                     selected.state = true
                     selected.src = `${videoPath}${folder}${v.src}`

@@ -5,8 +5,7 @@
   color: white;
   position: absolute;
   top: 0;
-  left: 60px;
-  overflow-y: hidden;
+  left: var(--nav-width);
 }
 
 .home-icon {
