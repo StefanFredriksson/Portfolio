@@ -1,13 +1,13 @@
 export const endpoints = {
   about: 'about',
   contact: 'contact',
-  home: '',
+  home: 'home',
   skills: 'skills',
   work: 'work'
 }
 
-export const workImgPath = 'img/work/'
-export const workVideoPath = 'video/work/'
+export const workImgPath = '../img/work/'
+export const workVideoPath = '../video/work/'
 export const orientationSwap = 720
 export const navSwap = 1000
 
