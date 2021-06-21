@@ -56,12 +56,10 @@ export const textAnimation = {
 export const mediaAnimation = {
   variants: {
     initial: {
-      x: -3000,
-      y: '-50%'
+      x: -3000
     },
     in: {
       x: '-50%',
-      y: '-50%',
       transition: {
         duration: 1,
         delay: 0.5
@@ -69,7 +67,6 @@ export const mediaAnimation = {
     },
     out: {
       x: 3000,
-      y: '-50%',
       transition: {
         duration: 1
       }

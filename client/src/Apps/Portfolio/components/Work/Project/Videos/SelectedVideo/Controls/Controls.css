@@ -22,7 +22,7 @@
 
 #time-bar {
   position: relative;
-  width: 90%;
+  width: 80%;
   height: 10px;
   background: grey;
   display: flex;
@@ -58,7 +58,7 @@
 
 #current-time,
 #duration {
-  width: 3%;
+  width: 100px;
   display: flex;
   align-items: center;
   justify-content: center;

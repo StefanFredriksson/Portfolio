@@ -20,6 +20,7 @@ export default function Content () {
   useEffect(() => {
     container = document.querySelector('#main-content-container')
     window.addEventListener('resize', resize)
+    resize()
 
     return () => {
       window.removeEventListener('resize', resize)
@@ -27,11 +28,13 @@ export default function Content () {
   }, [])
 
   const resize = event => {
-    const width =
-      window.innerWidth <= state.navSwap
-        ? window.innerWidth
-        : window.innerWidth - state.navWidth
-    container.style.width = `${width}px`
+    if (window.innerWidth <= state.navSwap) {
+      container.style.width = ''
+      return
+    }
+
+    const percent = state.navWidth / window.innerWidth
+    container.style.width = `${100 - percent * 100}vw`
   }
 
   return (

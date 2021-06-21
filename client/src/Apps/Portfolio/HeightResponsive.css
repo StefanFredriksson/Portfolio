@@ -1,0 +1,30 @@
+@media screen and (max-height: 700px) and (min-width: 720px) {
+  #navigation-container #info-container {
+    height: 90%;
+  }
+
+  .skill-indicator-container .skill-icons-container {
+    width: 50px;
+  }
+
+  /*#main-project-container #inner-project-container #outer-media-container {
+    top: 70%;
+  }*/
+}
+
+@media screen and (max-height: 800px) and (max-width: 720px) {
+  #main-project-container #inner-project-container #outer-media-container {
+    height: 366px;
+  }
+  #main-project-container #inner-project-container .media-container {
+    height: 308px;
+  }
+
+  #inner-project-container #media-navigation {
+    top: 326px;
+  }
+
+  #main-project-container #project-navigation-container {
+    top: 346px;
+  }
+}

@@ -70,36 +70,3 @@ export default class WorkSelection extends Component {
     )
   }
 }
-
-/*export default function WorkSelection (props) {
-  const data = [tsp, gol, fiveInARow]
-  return (
-    <motion.div
-      key='modal'
-      initial={{ y: '1000px' }}
-      animate={{ y: 0 }}
-      exit={{ y: '-1000px' }}
-      transition={{ duration: 1 }}
-      id='outer-work-container'
-    >
-      <motion.div id='text-work-container' variants={textAnimation.variants}>
-        {workText}
-      </motion.div>
-      <div id='inner-work-container'>
-        {data.map(d => {
-          return (
-            <div
-              onClick={event => {
-                props.setProject(d)
-                props.setShowProject(true)
-              }}
-            >
-              <span className='view-project'>View project</span>
-              <img src={d.thumbnail} alt='' />
-            </div>
-          )
-        })}
-      </div>
-    </motion.div>
-  )
-}*/

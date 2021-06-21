@@ -56,34 +56,36 @@ export default function Project (props) {
               <h3>{description}</h3>
             </div>
 
-            <AnimatePresence exitBeforeEnter>
-              <Images
+            <div id='outer-media-container'>
+              <AnimatePresence exitBeforeEnter>
+                <Images
+                  images={images}
+                  showImages={showImages}
+                  selected={selectedImage}
+                  setSelected={setSelectedImage}
+                  folder={folder}
+                  imgPath={imgPath}
+                />
+                <Videos
+                  showImages={showImages}
+                  videos={videos}
+                  folder={folder}
+                  selected={selectedVideo}
+                  setSelected={setSelectedVideo}
+                />
+              </AnimatePresence>
+              <MediaNavigation
+                showImages={showImages}
                 images={images}
-                showImages={showImages}
-                selected={selectedImage}
-                setSelected={setSelectedImage}
-                folder={folder}
-                imgPath={imgPath}
-              />
-              <Videos
-                showImages={showImages}
                 videos={videos}
-                folder={folder}
-                selected={selectedVideo}
-                setSelected={setSelectedVideo}
               />
-            </AnimatePresence>
-            <MediaNavigation
-              showImages={showImages}
-              images={images}
-              videos={videos}
-            />
 
-            <Navigation
-              setShowProject={props.setShowProject}
-              showImages={showImages}
-              setShowImages={setShowImages}
-            />
+              <Navigation
+                setShowProject={props.setShowProject}
+                showImages={showImages}
+                setShowImages={setShowImages}
+              />
+            </div>
           </div>
         </motion.div>
       )}

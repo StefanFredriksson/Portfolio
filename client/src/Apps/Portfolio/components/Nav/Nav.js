@@ -23,7 +23,13 @@ function Nav (props) {
   useEffect(() => {
     const container = document.querySelector('#info-container')
     container.addEventListener('click', event => {
-      if (!event.target.classList.contains('nav-icon')) return
+      const classList = event.target.classList
+      if (
+        !classList.contains('nav-icon') &&
+        !classList.contains('path-container')
+      ) {
+        return
+      }
       state.path = event.target.classList[0]
       setState({ ...state })
     })

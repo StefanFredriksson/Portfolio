@@ -3,3 +3,8 @@
   --darker: #181818;
   --lighter: #343434;
 }
+
+::placeholder {
+  color: var(--main-color);
+  opacity: 0.5;
+}

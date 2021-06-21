@@ -1,5 +1,5 @@
 @media screen and (max-width: 1500px) {
-  #main-project-container #inner-project-container {
+  #main-project-container #inner-project-container #outer-media-container {
     width: 1056px;
   }
 }
@@ -40,13 +40,16 @@
 }
 
 @media screen and (max-width: 1140px) {
-  #main-project-container #inner-project-container {
+  #main-project-container #inner-project-container #outer-media-container {
     width: 704px;
   }
 }
 
 /*If changing max-width, also update state!*/
 @media screen and (max-width: 1000px) {
+  #main-content-container {
+    width: 100vw;
+  }
   /*Navigation*/
   #navigation-container {
     width: 100vw;
@@ -108,12 +111,17 @@
     justify-content: space-evenly;
     width: 100%;
   }
+
+  #main-contact-container #inner-contact-container {
+    width: 90%;
+  }
 }
 
 @media screen and (max-width: 720px) {
-  #main-project-container #inner-project-container {
+  #main-project-container #inner-project-container #outer-media-container {
     width: 352px;
-    height: 100%;
+    height: 520px;
+    top: 30%;
   }
 
   #main-project-container #project-description {
@@ -124,7 +132,6 @@
 
   #main-project-container #inner-project-container .media-container {
     height: 462px;
-    top: 52.5%;
   }
 
   #main-project-container #project-image-container #images,
@@ -132,6 +139,7 @@
     height: 100%;
     flex-direction: column;
     overflow: hidden;
+    align-items: center;
   }
 
   #main-project-container
@@ -140,14 +148,15 @@
     > .small-image-container,
   #main-project-container #videos-container #videos .video-thumbnail {
     min-height: 152px;
+    position: relative;
   }
 
   #inner-project-container #media-navigation {
-    top: 82%;
+    top: 480px;
   }
 
   #main-project-container #project-navigation-container {
-    top: 84%;
+    top: 500px;
   }
 }
 

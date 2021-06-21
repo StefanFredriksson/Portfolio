@@ -2,7 +2,8 @@ import React, { useContext } from 'react'
 import { StateContext } from '../../Store'
 import Nav from './components/Nav/Nav'
 import Content from './components/Content/Content'
-import './Interactive.css'
+import './WidthResponsive.css'
+import './HeightResponsive.css'
 
 export default function Portfolio () {
   const [state] = useContext(StateContext)
