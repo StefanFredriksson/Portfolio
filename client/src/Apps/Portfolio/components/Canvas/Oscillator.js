@@ -15,6 +15,7 @@ export const initOscillator = (color, navSwap) => {
   }
   const canvas = document.querySelector('canvas')
   const c = canvas.getContext('2d')
+  c.running = true
 
   const mouse = { x: 0, y: 0 }
   const {
@@ -29,9 +30,24 @@ export const initOscillator = (color, navSwap) => {
   canvas.width = innerWidth
   canvas.height = innerHeight
 
+  const start = () => {
+    if (!c.running) {
+      c.running = true
+      loop()
+    }
+  }
+
+  const stop = () => {
+    c.running = false
+  }
+
   const init = event => {
     window.removeEventListener('mousemove', init)
+    window.removeEventListener('touchstart', init)
+
     window.addEventListener('mousemove', mousemove)
+    window.addEventListener('touchmove', mousemove)
+    window.addEventListener('touchstart', touchstart)
 
     mousemove(event)
     resize(event)
@@ -39,9 +55,22 @@ export const initOscillator = (color, navSwap) => {
     loop()
   }
 
+  const touchstart = event => {
+    if (event.touches.length === 1) {
+      mouse.x = event.touches[0].pageX - navWidth
+      mouse.y = event.touches[0].pageY
+    }
+  }
+
   const mousemove = event => {
-    mouse.x = event.clientX - navWidth
-    mouse.y = event.clientY
+    if (event.touches) {
+      mouse.x = event.touches[0].pageX - navWidth
+      mouse.y = event.touches[0].pageY
+    } else {
+      mouse.x = event.clientX - navWidth
+      mouse.y = event.clientY
+    }
+    event.preventDefault()
   }
 
   const resize = event => {
@@ -54,9 +83,6 @@ export const initOscillator = (color, navSwap) => {
     canvas.width = container.offsetWidth
     canvas.height = container.offsetHeight
   }
-
-  window.addEventListener('mousemove', init)
-  window.addEventListener('resize', resize)
 
   function Oscillator (options) {
     let value = 0
@@ -165,6 +191,7 @@ export const initOscillator = (color, navSwap) => {
   }
 
   const loop = () => {
+    if (!c.running) return
     c.globalCompositeOperation = 'source-over'
     c.globalCompositeOperation = 'lighter'
     c.clearRect(0, 0, canvas.width, canvas.height)
@@ -178,4 +205,10 @@ export const initOscillator = (color, navSwap) => {
 
     window.requestAnimationFrame(loop)
   }
+
+  window.addEventListener('mousemove', init)
+  window.addEventListener('touchstart', init)
+  window.addEventListener('resize', resize)
+  window.addEventListener('focus', start)
+  window.addEventListener('blur', stop)
 }

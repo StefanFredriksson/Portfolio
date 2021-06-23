@@ -12,6 +12,13 @@
   }*/
 }
 
+@media screen and (max-height: 700px) {
+  #main-skills-container #visual-skills-container #visual-skills-background {
+    width: 60vh;
+    height: 60vh;
+  }
+}
+
 @media screen and (max-height: 800px) and (max-width: 720px) {
   #main-project-container #inner-project-container #outer-media-container {
     height: 366px;
@@ -26,5 +33,11 @@
 
   #main-project-container #project-navigation-container {
     top: 346px;
+  }
+}
+
+@media screen and (max-height: 450px) {
+  #about-container #cards-container > div {
+    height: 40px;
   }
 }

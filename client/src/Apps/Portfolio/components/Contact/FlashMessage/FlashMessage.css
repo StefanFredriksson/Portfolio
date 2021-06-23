@@ -1,0 +1,17 @@
+#contact-flash-message {
+  position: absolute;
+  top: 50px;
+  left: 50%;
+  transform: translate(-50%, -500px);
+  background: var(--main-color);
+  width: 250px;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 0 10px var(--main-color);
+  text-align: center;
+  z-index: 1000;
+}
+
+#contact-flash-message h2 {
+  color: var(--background-color);
+}

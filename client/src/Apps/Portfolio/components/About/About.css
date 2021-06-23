@@ -7,10 +7,11 @@
 }
 
 #about-container #cards-container {
-  width: 90%;
-  height: 80%;
+  width: 100%;
+  height: 100%;
   display: flex;
   justify-content: space-evenly;
+  flex-direction: column;
   align-items: center;
 }
 
@@ -30,7 +31,8 @@
 }
 
 #about-container #cards-container .active-card {
-  height: 90%;
+  height: 60%;
+  width: 90%;
 }
 
 #about-container #cards-container div:hover {

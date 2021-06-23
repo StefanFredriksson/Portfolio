@@ -92,3 +92,24 @@ export const projectVariants = {
     }
   }
 }
+
+export const flashVariants = {
+  initial: {
+    y: -500,
+    x: '-50%'
+  },
+  in: {
+    y: 0,
+    x: '-50%',
+    transition: {
+      type: 'spring'
+    }
+  },
+  out: {
+    y: -500,
+    x: '-50%',
+    transition: {
+      type: 'spring'
+    }
+  }
+}

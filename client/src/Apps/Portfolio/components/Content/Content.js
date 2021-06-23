@@ -28,13 +28,13 @@ export default function Content () {
   }, [])
 
   const resize = event => {
-    if (window.innerWidth <= state.navSwap) {
-      container.style.width = ''
-      return
-    }
-
-    const percent = state.navWidth / window.innerWidth
-    container.style.width = `${100 - percent * 100}vw`
+    const less = window.innerWidth <= state.navSwap
+    const heightPercentage = state.navWidth / window.innerHeight
+    container.style.height = less
+      ? `${100 - heightPercentage * 100}vh`
+      : '100vh'
+    const widthPercentage = state.navWidth / window.innerWidth
+    container.style.width = less ? '100vw' : `${100 - widthPercentage * 100}vw`
   }
 
   return (

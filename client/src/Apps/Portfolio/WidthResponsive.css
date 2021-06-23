@@ -47,13 +47,10 @@
 
 /*If changing max-width, also update state!*/
 @media screen and (max-width: 1000px) {
-  #main-content-container {
-    width: 100vw;
-  }
   /*Navigation*/
   #navigation-container {
     width: 100vw;
-    height: 6vh;
+    height: var(--nav-width);
     z-index: 100;
   }
 
@@ -79,7 +76,7 @@
   /*Content*/
   #main-content-container {
     left: 0;
-    top: 6vh;
+    top: var(--nav-width);
     width: 100vw;
     height: 94vh;
   }
@@ -114,6 +111,10 @@
 
   #main-contact-container #inner-contact-container {
     width: 90%;
+  }
+
+  #about-container #cards-container > div {
+    width: 202.5px;
   }
 }
 
