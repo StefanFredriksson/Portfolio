@@ -104,6 +104,10 @@
     font-size: 50px;
   }
 
+  #homepage-container #welcome-container h2 {
+    font-size: 3vw;
+  }
+
   #navigation-container #info-container {
     justify-content: space-evenly;
     width: 100%;
@@ -159,6 +163,20 @@
   #main-project-container #project-navigation-container {
     top: 500px;
   }
+
+  #text-skills-container {
+    width: 90%;
+  }
+
+  .skills-line {
+    font-size: 2.8vw;
+  }
+
+  #main-skills-container
+    #visual-skills-container
+    #inner-visual-skills-container {
+    padding: 5px;
+  }
 }
 
 @media screen and (max-width: 650px) {
@@ -167,9 +185,25 @@
   }
 }
 
+@media screen and (max-width: 580px) {
+  .skill-indicator-container .indicator-bar {
+    width: 70%;
+  }
+}
+
+@media screen and (max-width: 420px) {
+  #homepage-container #welcome-container #main-text {
+    font-size: 6vw;
+  }
+}
+
 @media screen and (max-width: 360px) {
   #main-project-container #inner-project-container {
     width: 95vw;
+  }
+
+  #inner-project-container #media-navigation {
+    justify-content: space-evenly;
   }
 
   #main-project-container
@@ -178,5 +212,9 @@
     > .small-image-container {
     min-width: 99.2%;
     width: 99.2%;
+  }
+
+  .skill-indicator-container .indicator-bar {
+    width: 60%;
   }
 }

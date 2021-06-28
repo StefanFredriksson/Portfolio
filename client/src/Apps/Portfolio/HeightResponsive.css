@@ -14,8 +14,13 @@
 
 @media screen and (max-height: 700px) {
   #main-skills-container #visual-skills-container #visual-skills-background {
-    width: 60vh;
-    height: 60vh;
+    width: 50vh;
+    height: 50vh;
+  }
+
+  .skill-indicator-container {
+    height: 13vh;
+    margin-bottom: 0px;
   }
 }
 
@@ -23,6 +28,7 @@
   #main-project-container #inner-project-container #outer-media-container {
     height: 366px;
   }
+
   #main-project-container #inner-project-container .media-container {
     height: 308px;
   }
@@ -33,6 +39,24 @@
 
   #main-project-container #project-navigation-container {
     top: 346px;
+  }
+}
+
+@media screen and (max-height: 650px) and (max-width: 360px) {
+  #main-project-container #selected-image-container > span {
+    width: 50px;
+    height: 50px;
+  }
+}
+
+@media screen and (max-height: 500px) {
+  #main-project-container #selected-image-container #next-image,
+  #main-project-container #selected-image-container #previous-image {
+    top: 90%;
+  }
+
+  #main-project-container #selected-image-container #close-image {
+    top: 30%;
   }
 }
 

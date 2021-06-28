@@ -14,11 +14,9 @@ export const navSwap = 1000
 export const pageTransition = {
   variants: {
     initial: {
-      y: '-100vh',
-      scale: 0.1
+      scale: 0
     },
     in: {
-      y: 0,
       scale: 1,
       transition: {
         duration: 1,
@@ -27,8 +25,7 @@ export const pageTransition = {
       }
     },
     out: {
-      x: '100vw',
-      scale: 0.1,
+      scale: 0,
       transition: {
         duration: 1
       }

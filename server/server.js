@@ -7,7 +7,7 @@ const mongoose = require('mongoose')
 const app = express()
 
 const init = () => {
-  const port = 8000
+  const port = process.env.PORT || 8080
   const mongodb = process.env.DB_CON
 
   mongoose.connect(mongodb, {
@@ -20,7 +20,10 @@ const init = () => {
   app.use(bodyParser.raw())
   app.use(bodyParser.urlencoded({ extended: true }))
   app.use(cors())
-  app.use('/portfolio', require('./Routes/Portfolio/post'))
+  app.use('/portfolio', require('./src/Routes/Portfolio/post'))
+  app.get('/', (req, res) => {
+    res.send('Hello World!')
+  })
 
   app.listen(port, () => {
     console.log(`Server is running at http://localhost:${port}`)

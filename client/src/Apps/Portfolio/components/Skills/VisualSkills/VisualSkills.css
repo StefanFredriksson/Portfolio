@@ -35,6 +35,7 @@
   height: 30vw;
   border-radius: 50%;
   background: var(--main-color);
+  transition: width 1s, height 1s;
   animation: background-color 20s linear infinite;
 }
 

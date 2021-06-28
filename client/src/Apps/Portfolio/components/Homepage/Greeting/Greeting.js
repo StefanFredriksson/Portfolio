@@ -1,4 +1,5 @@
 import React, { useEffect } from 'react'
+import './Greeting.css'
 
 export default function Greeting () {
   useEffect(async () => {

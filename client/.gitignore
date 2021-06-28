@@ -8,6 +8,7 @@
 
 /public/video
 /public/img
+*.zip
 
 # testing
 /coverage
