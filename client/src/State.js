@@ -21,5 +21,6 @@ export const globalState = {
     ix: 0
   },
   navSwap: 1000,
-  navWidth: 70
+  navWidth: 70,
+  firstTime: true
 }

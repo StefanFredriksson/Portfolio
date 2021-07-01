@@ -17,6 +17,7 @@
   position: absolute;
   top: 10%;
   left: 0;
+  z-index: 10;
 }
 
 #navigation-container #info-container {
@@ -27,6 +28,7 @@
   justify-content: space-between;
   transition: 0.5s;
   position: relative;
+  background: var(--darker);
 }
 
 #navigation-container #info-container #nav-hamburger {
@@ -39,6 +41,11 @@
   display: flex;
   flex-direction: inherit;
   justify-content: inherit;
+  transition: 0.5s;
+}
+
+#navigation-container #info-container .nav-dropdown-active {
+  transition: 0.5s;
 }
 
 #navigation-container #info-container .nav-icon svg {

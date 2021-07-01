@@ -208,11 +208,18 @@
   }
 
   #navigation-container #info-container {
-    width: 40%;
+    width: 100%;
   }
 
   #navigation-container #info-container .nav-dropdown {
-    display: none;
+    display: flex;
+    position: fixed;
+    top: -10px;
+    z-index: -1;
+    left: 0;
+    background: var(--darker);
+    width: 100vw;
+    height: var(--nav-width);
   }
 
   #navigation-container #info-container #nav-hamburger {
@@ -257,13 +264,7 @@
   }
 
   #navigation-container #info-container .nav-dropdown-active {
-    display: flex;
-    position: fixed;
     top: var(--nav-width);
-    left: 0;
-    background: var(--darker);
-    width: 100vw;
-    height: var(--nav-width);
   }
 }
 

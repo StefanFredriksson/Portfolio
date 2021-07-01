@@ -1,25 +1,24 @@
-import React from 'react'
+import React, { useState, useContext } from 'react'
 import './AppNavigation.css'
-import AppThumbnail from './AppThumbnail/AppThumbnail'
+import SplashScreen from './SplashScreen/SplashScreen'
+import AppSelection from './AppSelection/AppSelection'
+import './WidthResponsive.css'
+import { StateContext } from '../../Store'
 const apps = [
   { path: '/portfolio/home', src: 'portfolio.png', title: 'Portfolio' }
 ]
 
 export default function AppNavigation () {
+  const [splash, setSplash] = useState(true)
+  const [state] = useContext(StateContext)
+
   return (
     <div id='outer-app-navigation-container'>
-      <div id='inner-app-navigation-container'>
-        {apps.map((app, i) => {
-          return (
-            <AppThumbnail
-              key={i.toString()}
-              path={app.path}
-              src={app.src}
-              title={app.title}
-            />
-          )
-        })}
-      </div>
+      {splash && state.firstTime ? (
+        <SplashScreen setSplash={setSplash} />
+      ) : (
+        <AppSelection apps={apps} />
+      )}
     </div>
   )
 }
