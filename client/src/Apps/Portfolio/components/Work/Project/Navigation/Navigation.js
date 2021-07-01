@@ -1,9 +1,7 @@
-import React, { useContext } from 'react'
-import { StateContext } from '../../../../../../Store'
+import React from 'react'
 import './Navigation.css'
 
 export default function Navigation (props) {
-  const [state] = useContext(StateContext)
   return (
     <div id='project-navigation-container'>
       <div id='go-back' onClick={event => props.setShowProject(false)}>

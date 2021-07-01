@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import './Contact.css'
 import { motion } from 'framer-motion'
-import { pageTransition } from '../../../../Data'
+import { pageTransition, api } from '../../../../Data'
 import { validInputs } from './FormValidation'
 import FlashMessage from './FlashMessage/FlashMessage'
 
@@ -41,16 +41,18 @@ export default function Contact () {
       message: message.value
     }
 
-    const response = await window.fetch(
-      'http://localhost:8000/portfolio/message',
-      {
-        method: 'post',
-        headers: {
-          'Content-Type': 'application/json'
-        },
-        body: JSON.stringify(data)
-      }
-    )
+    await window.fetch(`${api}/portfolio/message`, {
+      method: 'post',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(data)
+    })
+
+    name.value = ''
+    email.value = ''
+    subject.value = ''
+    message.value = ''
   }
 
   return (

@@ -19,8 +19,15 @@ export default function Indicator (props) {
   return (
     <div className='skill-indicator-container'>
       <div className='skill-icons-container'>
-        {props.icons.map(icon => {
-          return <img className='skill-icon' src={icon} alt={props.title} />
+        {props.icons.map((icon, i) => {
+          return (
+            <img
+              className='skill-icon'
+              src={icon}
+              alt={props.title}
+              key={i.toString()}
+            />
+          )
         })}
       </div>
       <div className='indicator-bar'>

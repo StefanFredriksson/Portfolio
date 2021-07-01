@@ -10,6 +10,7 @@ import Skills from '../Skills/Skills'
 import Work from '../Work/Work'
 import Contact from '../Contact/Contact'
 import Canvas from '../Canvas/Canvas'
+import NotFound from '../../../NotFound/NotFound'
 
 export default function Content () {
   const { path } = useRouteMatch()
@@ -56,6 +57,9 @@ export default function Content () {
           </Route>
           <Route path={`${path}/${endpoints.home}`}>
             <Homepage />
+          </Route>
+          <Route path={`${path}/*`}>
+            <NotFound />
           </Route>
         </Switch>
       </AnimatePresence>

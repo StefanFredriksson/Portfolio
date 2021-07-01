@@ -3,6 +3,7 @@ const express = require('express')
 const bodyParser = require('body-parser')
 const cors = require('cors')
 const mongoose = require('mongoose')
+const path = require('path')
 
 const app = express()
 
@@ -16,13 +17,14 @@ const init = () => {
     useCreateIndex: true
   })
 
+  app.use(express.static('public'))
   app.use(bodyParser.json())
   app.use(bodyParser.raw())
   app.use(bodyParser.urlencoded({ extended: true }))
   app.use(cors())
-  app.use('/portfolio', require('./src/Routes/Portfolio/post'))
-  app.get('/', (req, res) => {
-    res.send('Hello World!')
+  app.use('/api/portfolio', require('./src/Routes/Portfolio/post'))
+  app.get('*', (req, res) => {
+    res.sendFile(path.join(__dirname, 'build', 'index.html'))
   })
 
   app.listen(port, () => {

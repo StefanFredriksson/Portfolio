@@ -8,7 +8,7 @@ export default function TextSkills () {
     <div id='text-skills-container'>
       <div id='skills-text'>
         {lines.map((line, i) => {
-          return <Line text={line} index={i} />
+          return <Line text={line} index={i} key={i.toString()} />
         })}
       </div>
     </div>

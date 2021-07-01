@@ -1,11 +1,5 @@
 export const initOscillator = (color, navSwap) => {
   let tendrils = []
-  const hue = new Oscillator({
-    phase: Math.random() * (Math.PI * 2),
-    amplitude: 85,
-    frequency: 0.0015,
-    offset: 285
-  })
   const settings = {
     friction: 0.5,
     trails: 30,
@@ -82,29 +76,6 @@ export const initOscillator = (color, navSwap) => {
     const container = document.querySelector('#main-canvas-container')
     canvas.width = container.offsetWidth
     canvas.height = container.offsetHeight
-  }
-
-  function Oscillator (options) {
-    let value = 0
-
-    this.init = options => {
-      this.phase = options.phase || 0
-      this.offset = options.offset || 0
-      this.frequency = options.frequency || 0.001
-      this.amplitude = options.amplitude || 1
-    }
-
-    this.update = () => {
-      this.phase += this.frequency
-      value = this.offset + Math.sin(this.phase) * this.amplitude
-      return value
-    }
-
-    this.value = () => {
-      return value
-    }
-
-    this.init(options || {})
   }
 
   function Tendril (options) {

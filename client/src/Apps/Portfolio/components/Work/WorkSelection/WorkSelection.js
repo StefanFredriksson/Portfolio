@@ -50,13 +50,14 @@ export default class WorkSelection extends Component {
             id='outer-work-container'
           >
             <div id='inner-work-container'>
-              {this.data.map(d => {
+              {this.data.map((d, i) => {
                 return (
                   <div
                     onClick={event => {
                       this.props.setProject(d)
                       this.props.setShowProject(true)
                     }}
+                    key={i.toString()}
                   >
                     <span className='view-project'>View project</span>
                     <img src={d.thumbnail} alt='' />

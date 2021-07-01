@@ -1,7 +1,6 @@
-import React, { useEffect } from 'react'
+import React from 'react'
 import './Homepage.css'
 import Greeting from './Greeting/Greeting'
-import Avatar from './Avatar/Avatar'
 import { motion } from 'framer-motion'
 import { pageTransition } from '../../../../Data'
 

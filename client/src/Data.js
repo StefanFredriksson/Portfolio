@@ -10,14 +10,20 @@ export const workImgPath = '../img/work/'
 export const workVideoPath = '../video/work/'
 export const orientationSwap = 720
 export const navSwap = 1000
+export const api =
+  process.env.NODE_ENV === 'production'
+    ? process.env.REACT_APP_API
+    : 'http://localhost:8080/api'
 
 export const pageTransition = {
   variants: {
     initial: {
-      scale: 0
+      scale: 0,
+      opacity: 0
     },
     in: {
       scale: 1,
+      opacity: 1,
       transition: {
         duration: 1,
         delayChildren: 0.5,
@@ -26,6 +32,7 @@ export const pageTransition = {
     },
     out: {
       scale: 0,
+      opacity: 0,
       transition: {
         duration: 1
       }

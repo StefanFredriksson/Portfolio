@@ -10,7 +10,7 @@ export default function Home (props) {
           x2='5'
           y2='25'
           stroke={props.stroke}
-          stroke-width={props.sWidth}
+          strokeWidth={props.sWidth}
         />
         <line
           x1='5'
@@ -18,7 +18,7 @@ export default function Home (props) {
           x2='20'
           y2='25'
           stroke={props.stroke}
-          stroke-width={props.sWidth}
+          strokeWidth={props.sWidth}
         />
         <line
           x1='20'
@@ -26,7 +26,7 @@ export default function Home (props) {
           x2='20'
           y2='15'
           stroke={props.stroke}
-          stroke-width={props.sWidth}
+          strokeWidth={props.sWidth}
         />
         <line
           x1='12'
@@ -34,7 +34,7 @@ export default function Home (props) {
           x2='0'
           y2='16'
           stroke={props.stroke}
-          stroke-width={props.sWidth}
+          strokeWidth={props.sWidth}
         />
         <line
           x1='12'
@@ -42,7 +42,7 @@ export default function Home (props) {
           x2='25'
           y2='16'
           stroke={props.stroke}
-          stroke-width={props.sWidth}
+          strokeWidth={props.sWidth}
         />
       </svg>
     </div>

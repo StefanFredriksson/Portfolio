@@ -13,6 +13,7 @@ export default function Images (props) {
     <AnimatePresence>
       {showImages && (
         <motion.div
+          key='images'
           id='project-image-container'
           className='media-container'
           initial='initial'
@@ -21,10 +22,11 @@ export default function Images (props) {
           variants={mediaAnimation.variants}
         >
           <div id='images'>
-            {images.map(image => {
+            {images.map((image, i) => {
               return (
                 <div
                   className='small-image-container project-thumbnail'
+                  key={i.toString()}
                   onClick={event => {
                     if (selected.state) return
                     const imgs = document.querySelectorAll(

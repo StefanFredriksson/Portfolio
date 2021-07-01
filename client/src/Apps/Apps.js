@@ -1,7 +1,8 @@
 import React from 'react'
 import { Switch, Route } from 'react-router-dom'
 import Portfolio from './Portfolio/Portfolio'
-import AppNavigation from './AppNavigation'
+import AppNavigation from './AppNavigation/AppNavigation'
+import NotFound from './NotFound/NotFound'
 
 export default function Apps () {
   return (
@@ -10,8 +11,11 @@ export default function Apps () {
         <Route path='/portfolio'>
           <Portfolio />
         </Route>
-        <Route path='/'>
+        <Route exact path='/'>
           <AppNavigation />
+        </Route>
+        <Route path='*'>
+          <NotFound />
         </Route>
       </Switch>
     </div>

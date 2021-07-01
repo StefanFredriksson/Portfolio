@@ -21,6 +21,7 @@ function Nav (props) {
   }
 
   useEffect(() => {
+    document.querySelector('#nav-hamburger').addEventListener('click', dropdown)
     const container = document.querySelector('#info-container')
     container.addEventListener('click', event => {
       const classList = event.target.classList
@@ -38,58 +39,79 @@ function Nav (props) {
     setState({ ...state })
   }, [])
 
+  const dropdown = event => {
+    event.currentTarget.classList.toggle('nav-hamburger-active')
+    document
+      .querySelector('.nav-dropdown')
+      .classList.toggle('nav-dropdown-active')
+  }
+
   return (
     <div id='navigation-container'>
+      <Link to='/'>
+        <img id='logo' src='../img/Logo.svg' alt='Logo' />
+      </Link>
       <div id='info-container'>
-        <Link to={`${path}/${endpoints.home}`}>
-          <Homepage
-            stroke={
-              state.path === endpoints.home ? styling.active : styling.stroke
-            }
-            sWidth={styling.sWidth}
-            path={endpoints.home}
-          />
-        </Link>
-        <Link to={`${path}/${endpoints.about}`}>
-          <About
-            stroke={
-              state.path === endpoints.about ? styling.active : styling.stroke
-            }
-            sWidth={styling.sWidth}
-            fill={styling.fill}
-            path={endpoints.about}
-          />
-        </Link>
-        <Link to={`${path}/${endpoints.skills}`}>
-          <Skills
-            stroke={
-              state.path === endpoints.skills ? styling.active : styling.stroke
-            }
-            sWidth={styling.sWidth}
-            fill={styling.fill}
-            path={endpoints.skills}
-          />
-        </Link>
-        <Link to={`${path}/${endpoints.work}`}>
-          <Work
-            stroke={
-              state.path === endpoints.work ? styling.active : styling.stroke
-            }
-            sWidth={styling.sWidth}
-            fill={styling.fill}
-            path={endpoints.work}
-          />
-        </Link>
-        <Link to={`${path}/${endpoints.contact}`}>
-          <Contact
-            stroke={
-              state.path === endpoints.contact ? styling.active : styling.stroke
-            }
-            sWidth={styling.sWidth}
-            fill={styling.fill}
-            path={endpoints.contact}
-          />
-        </Link>
+        <div id='nav-hamburger'>
+          <span id='ham-top' />
+          <span id='ham-middle' />
+          <span id='ham-bottom' />
+        </div>
+        <div className='nav-dropdown'>
+          <Link to={`${path}/${endpoints.home}`}>
+            <Homepage
+              stroke={
+                state.path === endpoints.home ? styling.active : styling.stroke
+              }
+              sWidth={styling.sWidth}
+              path={endpoints.home}
+            />
+          </Link>
+          <Link to={`${path}/${endpoints.about}`}>
+            <About
+              stroke={
+                state.path === endpoints.about ? styling.active : styling.stroke
+              }
+              sWidth={styling.sWidth}
+              fill={styling.fill}
+              path={endpoints.about}
+            />
+          </Link>
+          <Link to={`${path}/${endpoints.skills}`}>
+            <Skills
+              stroke={
+                state.path === endpoints.skills
+                  ? styling.active
+                  : styling.stroke
+              }
+              sWidth={styling.sWidth}
+              fill={styling.fill}
+              path={endpoints.skills}
+            />
+          </Link>
+          <Link to={`${path}/${endpoints.work}`}>
+            <Work
+              stroke={
+                state.path === endpoints.work ? styling.active : styling.stroke
+              }
+              sWidth={styling.sWidth}
+              fill={styling.fill}
+              path={endpoints.work}
+            />
+          </Link>
+          <Link to={`${path}/${endpoints.contact}`}>
+            <Contact
+              stroke={
+                state.path === endpoints.contact
+                  ? styling.active
+                  : styling.stroke
+              }
+              sWidth={styling.sWidth}
+              fill={styling.fill}
+              path={endpoints.contact}
+            />
+          </Link>
+        </div>
       </div>
     </div>
   )

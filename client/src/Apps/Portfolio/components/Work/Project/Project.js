@@ -57,23 +57,21 @@ export default function Project (props) {
             </div>
 
             <div id='outer-media-container'>
-              <AnimatePresence exitBeforeEnter>
-                <Images
-                  images={images}
-                  showImages={showImages}
-                  selected={selectedImage}
-                  setSelected={setSelectedImage}
-                  folder={folder}
-                  imgPath={imgPath}
-                />
-                <Videos
-                  showImages={showImages}
-                  videos={videos}
-                  folder={folder}
-                  selected={selectedVideo}
-                  setSelected={setSelectedVideo}
-                />
-              </AnimatePresence>
+              <Images
+                images={images}
+                showImages={showImages}
+                selected={selectedImage}
+                setSelected={setSelectedImage}
+                folder={folder}
+                imgPath={imgPath}
+              />
+              <Videos
+                showImages={showImages}
+                videos={videos}
+                folder={folder}
+                selected={selectedVideo}
+                setSelected={setSelectedVideo}
+              />
               <MediaNavigation
                 showImages={showImages}
                 images={images}

@@ -9,6 +9,7 @@
 /public/video
 /public/img
 *.zip
+.env
 
 # testing
 /coverage

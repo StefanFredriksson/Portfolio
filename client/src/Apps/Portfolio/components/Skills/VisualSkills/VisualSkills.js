@@ -108,6 +108,7 @@ export default function VisualSkills () {
               width={d.width}
               background={d.background}
               index={i}
+              key={i.toString()}
             />
           )
         })}

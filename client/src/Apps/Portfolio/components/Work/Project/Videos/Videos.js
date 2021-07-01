@@ -26,6 +26,7 @@ export default function Videos (props) {
     <AnimatePresence>
       {!showImages && (
         <motion.div
+          key='videos'
           id='videos-container'
           className='media-container'
           initial='initial'
@@ -34,10 +35,11 @@ export default function Videos (props) {
           variants={mediaAnimation.variants}
         >
           <div id='videos'>
-            {videos.map(v => {
+            {videos.map((v, i) => {
               return (
                 <div
                   className='video-thumbnail project-thumbnail'
+                  key={i.toString()}
                   onClick={event => {
                     selected.state = true
                     selected.src = `${videoPath}${folder}${v.src}`
