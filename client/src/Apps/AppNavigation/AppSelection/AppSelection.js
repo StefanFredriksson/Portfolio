@@ -41,14 +41,3 @@ export default function AppSelection ({ apps }) {
     </div>
   )
 }
-
-/*{apps.map((app, i) => {
-        return (
-          <AppThumbnail
-            key={i.toString()}
-            path={app.path}
-            src={app.src}
-            title={app.title}
-          />
-        )
-      })} */

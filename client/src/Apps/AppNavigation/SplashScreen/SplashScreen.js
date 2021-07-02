@@ -22,7 +22,7 @@ export default function SplashScreen ({ setSplash }) {
     await wait()
     for (const span of spans) {
       span.style.transform = ''
-      await wait(100)
+      await wait(50)
     }
     for (const span of spans) {
       span.style.transition = '1.5s'
@@ -30,7 +30,7 @@ export default function SplashScreen ({ setSplash }) {
     await wait(2000)
     for (const span of spans) {
       span.style.transform = 'translateY(2000px)'
-      await wait(100)
+      await wait(50)
     }
     await wait(500)
     state.firstTime = false

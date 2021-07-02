@@ -10,6 +10,7 @@
 /public/img
 *.zip
 .env
+CanvasBackups
 
 # testing
 /coverage
