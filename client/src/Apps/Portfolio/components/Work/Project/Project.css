@@ -51,7 +51,7 @@
 #main-project-container #project-description h1 {
   font-size: 1.7vw;
   margin-bottom: 20px;
-  overflow: hidden;
+  overflow: visible;
 }
 
 #main-project-container #project-description h3 {

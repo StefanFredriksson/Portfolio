@@ -47,6 +47,7 @@ export default function SelectedVideo (props) {
   }
 
   const videoAction = event => {
+    if (event.target.id !== 'cursor') return
     const target = event.currentTarget
     const v = target.querySelector('video')
     if (videoPaused() && videoEnded()) {

@@ -6,6 +6,7 @@ export default function Controls () {
     current: '',
     duration: ''
   })
+  const [isDown, setIsDown] = useState(false)
 
   useEffect(() => {
     handleControls()
@@ -13,6 +14,16 @@ export default function Controls () {
 
   const handleControls = () => {
     window.requestAnimationFrame(checkTime)
+  }
+
+  const mouseDown = event => {
+    event.stopPropagation()
+    setIsDown(true)
+    barClick(event)
+  }
+
+  const mouseUp = event => {
+    setIsDown(false)
   }
 
   const checkTime = () => {
@@ -30,10 +41,13 @@ export default function Controls () {
   const convertTime = time => {
     const minutes = Math.floor((time / 60) % 60)
     const seconds = Math.floor(time % 60)
-    return `${minutes}:${seconds < 10 ? `0${seconds}` : seconds}`
+    return `${minutes < 0 ? 0 : minutes}:${
+      seconds < 10 ? `0${seconds < 0 ? 0 : seconds}` : seconds
+    }`
   }
 
   const barHover = event => {
+    if (isDown) barClick(event)
     const target = event.currentTarget
     const val = getBarVal(event)
     const hover = target.querySelector('#hover-time')
@@ -44,7 +58,6 @@ export default function Controls () {
   }
 
   const barClick = event => {
-    event.stopPropagation()
     const val = getBarVal(event)
     const v = document.querySelector('video')
     const targetTime = v.duration * val
@@ -77,9 +90,11 @@ export default function Controls () {
         onMouseLeave={event => {
           event.currentTarget.querySelector('#hover-time').style.display =
             'none'
+          setIsDown(false)
         }}
+        onMouseDown={mouseDown}
+        onMouseUp={mouseUp}
         onMouseMove={barHover}
-        onClick={barClick}
       >
         <span id='hover-time' />
         <span id='time-played'>

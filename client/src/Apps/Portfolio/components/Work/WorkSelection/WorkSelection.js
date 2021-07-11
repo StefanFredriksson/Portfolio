@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import './WorkSelection.css'
+import ProjectThumbnail from './ProjectThumbnail/ProjectThumbnail'
 import { tsp } from './ProjectData/TSP'
 import { gol } from './ProjectData/3DGoL'
 import { fiveInARow } from './ProjectData/FiveInARow'
@@ -31,10 +32,10 @@ export default class WorkSelection extends Component {
     this.data = [tsp, gol, fiveInARow]
     const length = this.data.length
 
-    while (this.data.length < 9) {
+    /*while (this.data.length < 9) {
       const ix = Math.floor(Math.random() * length)
       this.data.push(this.data[ix])
-    }
+    }*/
   }
 
   render () {
@@ -52,16 +53,12 @@ export default class WorkSelection extends Component {
             <div id='inner-work-container'>
               {this.data.map((d, i) => {
                 return (
-                  <div
-                    onClick={event => {
-                      this.props.setProject(d)
-                      this.props.setShowProject(true)
-                    }}
+                  <ProjectThumbnail
                     key={i.toString()}
-                  >
-                    <span className='view-project'>View project</span>
-                    <img src={d.thumbnail} alt='' />
-                  </div>
+                    setProject={this.props.setProject}
+                    setShowProject={this.props.setShowProject}
+                    project={d}
+                  />
                 )
               })}
             </div>

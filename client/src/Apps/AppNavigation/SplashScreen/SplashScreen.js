@@ -37,6 +37,7 @@ export default function SplashScreen ({ setSplash }) {
     setState({ ...state })
     setSplash(false)
   }, [])
+
   return (
     <div id='app-splash-screen-container'>
       <div id='app-splash-text'>
