@@ -5,7 +5,8 @@ import AppSelection from './AppSelection/AppSelection'
 import './WidthResponsive.css'
 import { StateContext } from '../../Store'
 const apps = [
-  { path: '/portfolio/home', src: 'portfolio.png', title: 'Portfolio' }
+  { path: '/portfolio/home', src: 'portfolio.png', title: 'Portfolio' },
+  { path: '/workout', src: 'workout.jpeg', title: 'Workout' }
 ]
 
 export default function AppNavigation () {

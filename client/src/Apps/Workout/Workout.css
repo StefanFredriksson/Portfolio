@@ -1,0 +1,13 @@
+#main-workout-container {
+  height: 100vh;
+  width: 100vw;
+  background: url('/img/appnav/workout.jpeg');
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed;
+  position: relative;
+  overflow: hidden;
+
+  --background: #333;
+  --text: #fff;
+}

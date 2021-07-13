@@ -19,7 +19,7 @@ export default function Tendrils ({ color, navSwap }) {
     } = document.querySelector('#main-canvas-container')
     navOffsetWidth = document.querySelector('#navigation-container').offsetWidth
 
-    let navWidth = navOffsetWidth
+    navWidth = navOffsetWidth
 
     canvas.width = innerWidth
     canvas.height = innerHeight

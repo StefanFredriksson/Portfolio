@@ -30,9 +30,9 @@ export default class WorkSelection extends Component {
     super(props)
 
     this.data = [tsp, gol, fiveInARow]
-    const length = this.data.length
+    /*const length = this.data.length
 
-    /*while (this.data.length < 9) {
+    while (this.data.length < 9) {
       const ix = Math.floor(Math.random() * length)
       this.data.push(this.data[ix])
     }*/
