@@ -6,6 +6,7 @@
   width: 100%;
   height: 100px;
   display: flex;
+  overflow: visible;
 }
 
 #timer-container #timer {
@@ -30,6 +31,11 @@
   background: rgba(0, 0, 0, 0.1);
 }
 
+#timer-container #timer input::placeholder {
+  color: white;
+  opacity: 1;
+}
+
 #timer-container #timer #colon {
   color: var(--text);
   font-size: 50px;
@@ -45,6 +51,7 @@
   font-size: 50px;
   transform: translate(-50%, calc(-50% + 5px));
   margin-left: 20px;
+  overflow: visible;
 }
 
 #timer-container #controls i:hover {
@@ -61,4 +68,35 @@
 
 #timer-container #controls #pause-stop i {
   transform: translateY(-5px);
+}
+
+#timer-container #default-container {
+  position: absolute;
+  top: 0;
+  left: 30px;
+  display: flex;
+  overflow: visible;
+  height: 100%;
+  width: 150px;
+}
+
+#timer-container #wait-container {
+  position: absolute;
+  top: 0;
+  left: calc(70% + 100px);
+  display: flex;
+  overflow: visible;
+  height: 100%;
+  width: 150px;
+}
+
+#timer-container #wait-container > label,
+#timer-container #default-container > label {
+  position: absolute;
+  width: 100%;
+  color: white;
+  font-size: 20px;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
 }
